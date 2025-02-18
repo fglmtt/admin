@@ -12,6 +12,7 @@
 		- [1.4.3. Is CPython compiled or interpreted?](#143-is-cpython-compiled-or-interpreted)
 	- [1.5. Interactive mode](#15-interactive-mode)
 		- [1.5.1. Is CPython interactive?](#151-is-cpython-interactive)
+	- [1.6. Development environment](#16-development-environment)
 - [2. Types, values, and expressions](#2-types-values-and-expressions)
 	- [2.1. Arithmetic operators](#21-arithmetic-operators)
 	- [2.2. Types of numbers](#22-types-of-numbers)
@@ -141,6 +142,8 @@ stateDiagram
 	CPython --> Computer: Machine code
 ```
 
+CPython compiles the source code in bytecode and interprets it
+
 ---
 ### 1.5. Interactive mode
 An interactive mode, aka read-eval-print loop (REPL)
@@ -162,6 +165,17 @@ $ python            # enables interactive mode
 hello               # print (P)
 >>>                 # waiting for a prompt... (L)
 ```
+
+---
+### 1.6. Development environment
+
+| Software                                              | Version     |
+| ----------------------------------------------------- | ----------- |
+| [Ubuntu Desktop](https://ubuntu.com/download/desktop) | 24.04.1 LTS |
+| [Python](https://www.python.org/downloads/)           | 3.13.2      |
+| [VS Code](https://code.visualstudio.com/)             | last        |
+
+[This](https://code.visualstudio.com/docs/python/python-tutorial) tutorial on how to set up Python in VS Code
 
 ---
 ## 2. Types, values, and expressions
@@ -312,7 +326,7 @@ multipleWords = 84      # bad
 
 ---
 ### 3.3. Modules
-Collections of variables and functions
+Collections of variables and functions (and classes)
 
 `import` statements make available variables and functions defined in other modules
 - Use such variables or functions with the dot operator (`.`)
@@ -341,11 +355,11 @@ Evaluation v. execution
 ---
 ### 3.5. Errors
 
-| Error    | About                                                       | Result                                                       |
-| -------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Syntax   | Structure of the program and the rules about that structure | Python does not even run the program                         |
-| Runtime  | Exceptions that occur while the program is running          | Python displays an error message and stops the program       |
-| Semantic | Meaning                                                     | The program does do what you intended, but no error messages |
+| Error    | About                                                       | Result                                                    |
+| -------- | ----------------------------------------------------------- | --------------------------------------------------------- |
+| Syntax   | Structure of the program and the rules about that structure | Python does not even run the program                      |
+| Runtime  | Exceptions that occur while the program is running          | Python displays an error message and stops the program    |
+| Semantic | Meaning                                                     | The program does what you intended, but no error messages |
 
 ---
 
@@ -488,10 +502,10 @@ A docstring should:
 ```python
 def add(num1, num2):
     """
-    Add up two numbers.
+    Add up two numbers
 
     num1 : first number to add
-    num2 : decond number to add
+    num2 : second number to add
     """
     return num1 + num2
 ```
@@ -664,7 +678,7 @@ Conditions are checked in order
 | Keyword argument            | An argument that includes the name of the parameter                                                                                       |
 | Local variable              | A variable defined inside a function and that can only be accessed inside that function                                                   |
 | Logical operator            | An operator that combines boolean expressions                                                                                             |
-| Module                      | A collection of variables and functions                                                                                                   |
+| Module                      | A collection of variables, functions, and classes                                                                                         |
 | Object                      | A data structure consisting of attributes and methods                                                                                     |
 | Object-oriented programming | A programming paradigm based on the concepts of objects                                                                                   |
 | Operand                     | One of the values on which an operator operates                                                                                           |
