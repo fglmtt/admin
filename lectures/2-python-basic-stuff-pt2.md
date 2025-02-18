@@ -498,7 +498,7 @@ If the aliased object is mutable, changes made with one reference affect the oth
 [5, 2, 3]
 ```
 
-This is error-prone $\rightarrow$ avoid aliasing when working with mutable objects
+In general, avoid aliasing when working with mutable objects
 
 ---
 
@@ -559,13 +559,13 @@ for n in needles:
 
 ---
 
-| `haystack` | Factor | `dict` time | Factor | `list` time | Factor    |
-| ---------- | ------ | ----------- | ------ | ----------- | --------- |
-| 1K         | 1      | 0.000202s   | 1.00   | 0.010556s   | 1.00      |
-| 10K        | 10     | 0.000140s   | 0.69   | 0.086586s   | 8.20      |
-| 100K       | 100    | 0.000228s   | 1.13   | 0.871560s   | 82.57     |
-| 1M         | 1K     | 0.000290s   | 1.44   | 9.189616s   | 870.56    |
-| 10M        | 10K    | 0.000337s   | 1.67   | 97.948056s  | 9,278.90x |
+| `haystack` | Factor | `dict` time | Factor | `list` time | Factor |
+| ---------- | ------ | ----------- | ------ | ----------- | ------ |
+| 1K         | 1      | 0.000202s   | 1.00   | 0.010556s   | 1.00   |
+| 10K        | 10     | 0.000140s   | 0.69   | 0.086586s   | 8.20   |
+| 100K       | 100    | 0.000228s   | 1.13   | 0.871560s   | 82.57  |
+| 1M         | 1K     | 0.000290s   | 1.44   | 9.189616s   | 870.56 |
+| 10M        | 10K    | 0.000337s   | 1.67   | 97.948056s  | 9278.9 |
 
 ---
 
@@ -725,7 +725,7 @@ Useful to swap the values of two variables
 (2, 1)
 ```
 
-This works because the right side is evaluated before the assignments
+This works because the right side is evaluated before  assignments
 
 ---
 
