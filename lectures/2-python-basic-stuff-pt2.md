@@ -26,6 +26,12 @@
 	- [4.1. A dictionary is a mapping](#41-a-dictionary-is-a-mapping)
 	- [4.2. Key search is very fast](#42-key-search-is-very-fast)
 	- [4.3. Looping and dictionaries](#43-looping-and-dictionaries)
+- [5. Tuples](#5-tuples)
+	- [5.1. Tuples are like lists](#51-tuples-are-like-lists)
+	- [5.2. But tuples are immutable](#52-but-tuples-are-immutable)
+	- [5.3. Tuple assignment](#53-tuple-assignment)
+	- [5.4. Tuples as return values](#54-tuples-as-return-values)
+	- [5.5. Argument packing](#55-argument-packing)
 ## 1. Iteration
 ---
 ### 1.1. Loops
@@ -361,12 +367,12 @@ There are only two operators that work with lists
 ---
 ### 3.5. List methods
 
-| Method           | Description                                                                                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `list.append(x)` | Add `x` to the end of the list                                                                                     |
-| `list.extend(l)` | Append all the elements of `l` to the end of the list                                                              |
-| `list.pop[i]`    | Remove the `i`th element, and return it. If no index is specified, remove and return the last element of the list. |
-| `list.remove(x)` | Remove the first element from the list whose value is equal to `x`                                                 |
+| Method      | Description                                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------------------------ |
+| `append(x)` | Add `x` to the end of the list                                                                                     |
+| `extend(l)` | Append all the elements of `l` to the end of the list                                                              |
+| `pop[i]`    | Remove the `i`th element, and return it. If no index is specified, remove and return the last element of the list. |
+| `remove(x)` | Remove the first element from the list whose value is equal to `x`                                                 |
 
 ---
 
@@ -683,41 +689,133 @@ Since tuples are immutable, they are hashable
 
 ---
 ### 5.3. Tuple assignment
+Values are assigned to variables from left to right
 
+```shell
+>>> a, b = 1, 2
+>>> a
+1
+>>> b
+2
+>>> a, b
+(1, 2)
+```
+
+---
+
+If the left side is a tuple, the right side can be any kind of sequence
+
+```shell
+>>> email = "mattia.fogli@unife.it"
+>>> username, domain = email.split("@")
+>>> username, domain
+('mattia.fogli', 'unife.it')
+```
+
+---
+
+Useful to swap the values of two variables
+
+```shell
+>>> a, b = 1, 2
+>>> a, b
+(1, 2)
+>>> a, b = b, a
+>>> a, b
+(2, 1)
+```
+
+This works because the right side is evaluated before the assignments
+
+---
+
+Also useful to loop through dictionaries
+
+```shell
+>>> d = {'zero': 0, 'one': 1, 'two': 2}
+>>> for k, v in d.items():
+...     print(k, '-->', v)
+...
+zero --> 0
+one --> 1
+two --> 2
+```
+
+---
+### 5.4. Tuples as return values
+Functions can only return a single value, but if that value is a tuple...
+
+```shell
+>>> quotient, reminder = divmod(10, 3)
+>>> quotient, reminder
+(3, 1)
+```
+
+---
+### 5.5. Argument packing
+Collecting multiple arguments into a tuple
+
+```shell
+>>> def mean(*args):
+...     return sum(args) / len(args)
+...
+>>> mean(1, 2)
+1.5
+>>> mean(1, 2, 3, 4, 5)
+3.0
+```
+
+Parameters that begins with the `*` operator packs
+
+---
+
+```shell
+>>> t = (10, 3)
+>>> divmod(t)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: divmod expected 2 arguments, got 1
+>>> divmod(*t)
+(3, 1)
+```
+
+Arguments that begins with the `*` operator unpacks
 
 ---
 ## Glossary
 
 | Term                          | Meaning                                                                                                                                                                                                                                                      |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Loop                          | A statement that runs one or more statements, often repeatedly                                                                                                                                                                                               |
-| Loop variable                 | A variable defined in the header of a `for` loop                                                                                                                                                                                                             |
-| File object                   | An object that represents an open file and keeps track of which parts of the file have been read or written                                                                                                                                                  |
-| Method                        | A function that is associated with an object and called using the dot operator                                                                                                                                                                               |
-| Variable update               | An assignment statement that give a new value to a variable that already exists, rather than creating a new variable                                                                                                                                         |
-| Variable initialization       | An assignment statement that creates a new variable and give it a value                                                                                                                                                                                      |
-| Augmented assignment operator | An operator that updates a variable more concisely                                                                                                                                                                                                           |
-| Linear search                 | A computational pattern that searches through a sequence of elements and stops when it finds what it is looking for                                                                                                                                          |
-| Doctest                       | A string at the beginning of a function that tests a function                                                                                                                                                                                                |
-| Sequence                      | An ordered collection of values where each value is identified by an integer index                                                                                                                                                                           |
-| Index                         | An integer value used to select an item in a sequence, such as a character in a string. In Python indices start from `0`                                                                                                                                     |
-| Slice                         | A part of a string specified by a range of indices                                                                                                                                                                                                           |
-| Empty string                  | A string that contains no characters and has length `0`                                                                                                                                                                                                      |
-| Immutable object              | If the elements of an object cannot be changed                                                                                                                                                                                                               |
-| Invocation                    | An expression, or part of an expression, that calls a method                                                                                                                                                                                                 |
-| List                          | A mutable object that contains a sequence of values                                                                                                                                                                                                          |
-| Element                       | One of the values in a list or other sequence                                                                                                                                                                                                                |
-| Nested list                   | A list that is an element of another list                                                                                                                                                                                                                    |
-| Mutable object                | If the elements of an object can be changed                                                                                                                                                                                                                  |
-| Equivalent                    | Having the same value                                                                                                                                                                                                                                        |
-| Identical                     | Being the same object                                                                                                                                                                                                                                        |
-| Reference                     | An association between a variable and its value                                                                                                                                                                                                              |
 | Aliased                       | If there is more than one variable that refers to an object, the object is aliased                                                                                                                                                                           |
 | Attribute                     | One of the named values (variables or methods) associated with an object                                                                                                                                                                                     |
+| Augmented assignment operator | An operator that updates a variable more concisely                                                                                                                                                                                                           |
 | Dictionary                    | An object that contains key-value pairs, also called items                                                                                                                                                                                                   |
+| Doctest                       | A string at the beginning of a function that tests a function                                                                                                                                                                                                |
+| Element                       | One of the values in a list or other sequence                                                                                                                                                                                                                |
+| Empty string                  | A string that contains no characters and has length `0`                                                                                                                                                                                                      |
+| Equivalent                    | Having the same value                                                                                                                                                                                                                                        |
+| File object                   | An object that represents an open file and keeps track of which parts of the file have been read or written                                                                                                                                                  |
 | Hash function                 | A function that can be used to map data of arbitrary size to fixed-size values                                                                                                                                                                               |
 | Hash table                    | A collection of key-value pairs that uses a hash function to compute an index into an array of buckets, from which the desired value can be found. During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored |
+| Identical                     | Being the same object                                                                                                                                                                                                                                        |
+| Immutable object              | If the elements of an object cannot be changed                                                                                                                                                                                                               |
+| Index                         | An integer value used to select an item in a sequence, such as a character in a string. In Python indices start from `0`                                                                                                                                     |
+| Invocation                    | An expression, or part of an expression, that calls a method                                                                                                                                                                                                 |
+| Linear search                 | A computational pattern that searches through a sequence of elements and stops when it finds what it is looking for                                                                                                                                          |
+| List                          | A mutable object that contains a sequence of values                                                                                                                                                                                                          |
+| Loop                          | A statement that runs one or more statements, often repeatedly                                                                                                                                                                                               |
+| Loop variable                 | A variable defined in the header of a `for` loop                                                                                                                                                                                                             |
+| Method                        | A function that is associated with an object and called using the dot operator                                                                                                                                                                               |
+| Mutable object                | If the elements of an object can be changed                                                                                                                                                                                                                  |
+| Nested list                   | A list that is an element of another list                                                                                                                                                                                                                    |
+| Packing                       | Collecting multiple arguments into a tuple                                                                                                                                                                                                                   |
+| Reference                     | An association between a variable and its value                                                                                                                                                                                                              |
+| Sequence                      | An ordered collection of values where each value is identified by an integer index                                                                                                                                                                           |
+| Slice                         | A part of a string specified by a range of indices                                                                                                                                                                                                           |
 | Tuple                         | An immutable object that contains a sequence of values                                                                                                                                                                                                       |
+| Unpacking                     | Treat a sequence as multiple arguments                                                                                                                                                                                                                       |
+| Variable initialization       | An assignment statement that creates a new variable and give it a value                                                                                                                                                                                      |
+| Variable update               | An assignment statement that give a new value to a variable that already exists, rather than creating a new variable                                                                                                                                         |
 
 ## Bibliography
 
