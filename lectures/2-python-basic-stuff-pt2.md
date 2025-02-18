@@ -68,7 +68,7 @@ for line in open("words.txt"):
 
 `for` loops over `words.txt` line by line
 - `open` returns a file object
-- `words.txt` is [this](/../../code/data/words.txt) file
+- `words.txt` is [this](../code/data/words.txt) file
 
 ---
 
@@ -165,7 +165,7 @@ as `apple` does not use any of `xyz`
 
 ---
 
-`uses_any.py` (see [here](/../../code/uses_any.py)):
+`uses_any.py` (see [here](../code/uses_any.py)):
 
 ```python
 import doctest
