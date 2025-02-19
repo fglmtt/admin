@@ -541,7 +541,7 @@ Dictionaries are implemented using hash tables
 - Significant memory overhead
 - Fast access regardless of the size (as long as it fits in memory)
 
-![Hash map](images/hash-table.svg)
+![Hash table](images/hash-table.svg)
 
 [Wikipedia](https://en.wikipedia.org/wiki/Hash_table)
 
