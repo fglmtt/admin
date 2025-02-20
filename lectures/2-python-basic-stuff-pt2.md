@@ -174,8 +174,6 @@ as `apple` does not use any of `xyz`
 `uses_any.py` (see [here](../code/uses_any.py)):
 
 ```python
-import doctest
-
 def uses_any(word, letters):
     """
 	Checks if a word uses any of a list of letters
@@ -191,8 +189,27 @@ def uses_any(word, letters):
     return False
 
 if __name__ == "__main__":
+	import doctest
     doctest.testmod()
 ```
+
+---
+
+The interpreter changes `__name__` as follows
+- If the program runs as a script, `__name__` equals  `"__main__"`
+- If the program is imported, `__name__` equals the module name
+
+```python
+if __name__ == "__main__":
+	import doctest
+    doctest.testmod()
+```
+
+Tests run only when the program is executed as a script
+
+Convention is to place this `if` a the bottom for clarity
+
+---
 
 ```shell
 $ python uses_any.py -v
@@ -261,7 +278,7 @@ The `[n:m]` operator
 ```
 
 - If `[:m]` $\rightarrow$ slice starts at the beginning
-- If `[n:]` $\rightarrow$, slice goes to the end 
+- If `[n:]` $\rightarrow$ slice goes to the end 
 - If `n` $\ge$ `m` $\rightarrow$ empty string
 
 ---
@@ -291,7 +308,7 @@ fruit.upper()      # method invocation
 ```
 
 The dot operator specifies
-- The nome of the method (`upper`)
+- The name of the method (`upper`)
 - The name of the `str` object to apply the method to (`fruit`)
 
 ---
