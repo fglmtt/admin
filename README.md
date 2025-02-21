@@ -36,24 +36,24 @@ Recordings will be made available **after** the lectures
 
 ## Lectures
 
-| #   | Title                                                                                                                                                                       |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | [Python: Basic stuff - Pt. 1](lectures/1-python-basic-stuff-pt1.md)                                                                                                         |
-| 2   | [Python: Basic stuff - Pt. 2](lectures/2-python-basic-stuff-pt2.md)                                                                                                         |
-| 3   | [Python: Basic stuff - Lab](lectures/3-python-basic-stuff-pt3.md)                                                                                                           |
-| 4   | [Python: Advanced stuff](lectures/4-python-advanced-stuff.md)                                                                                                               |
-| 5   | [Python: Advanced stuff - Lab](lectures/5-python-advanced-stuff-lab.md)                                                                                                     |
-| 6   | [Booting and system management daemons](6a-booting-and-system-management-daemons.md)<br>[Access control and rootly powers](lectures/6b-access-control-and-rootly-powers.md) |
-| 7   | Process control<br>Filesystem                                                                                                                                               |
-| 8   | Software installation management<br>User management                                                                                                                         |
-| 9   | Logging<br>Drivers and the kernel                                                                                                                                           |
-| 10  | TCP/IP networking<br>DNS: The domain name system                                                                                                                            |
-| 11  | Web hosting                                                                                                                                                                 |
-| 12  | Configuration management                                                                                                                                                    |
-| 13  | Storage<br>The network file system                                                                                                                                          |
-| 14  | Virtualization<br>Containers                                                                                                                                                |
-| 15  | Security<br>Cryptography                                                                                                                                                    |
-| 16  | SSH<br>Firewall                                                                                                                                                             |
-| 17  | VPN<br>Certificates                                                                                                                                                         |
-| 18  | Monitoring<br>Performance analysis                                                                                                                                          |
-| 19  | Mock exam                                                                                                                                                                   |
+| #   | Title                                                                                                                                                                                |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | [Python: Basic stuff - Pt. 1](lectures/1-python-basic-stuff-pt1.md)                                                                                                                  |
+| 2   | [Python: Basic stuff - Pt. 2](lectures/2-python-basic-stuff-pt2.md)                                                                                                                  |
+| 3   | [Python: Basic stuff - Lab](lectures/3-python-basic-stuff-lab.md)                                                                                                                    |
+| 4   | [Python: Advanced stuff](lectures/4-python-advanced-stuff.md)                                                                                                                        |
+| 5   | [Python: Advanced stuff - Lab](lectures/5-python-advanced-stuff-lab.md)                                                                                                              |
+| 6   | [Booting and system management daemons](lectures/6a-booting-and-system-management-daemons.md)<br>[Access control and rootly powers](lectures/6b-access-control-and-rootly-powers.md) |
+| 7   | Process control<br>Filesystem                                                                                                                                                        |
+| 8   | Software installation management<br>User management                                                                                                                                  |
+| 9   | Logging<br>Drivers and the kernel                                                                                                                                                    |
+| 10  | TCP/IP networking<br>DNS: The domain name system                                                                                                                                     |
+| 11  | Web hosting                                                                                                                                                                          |
+| 12  | Configuration management                                                                                                                                                             |
+| 13  | Storage<br>The network file system                                                                                                                                                   |
+| 14  | Virtualization<br>Containers                                                                                                                                                         |
+| 15  | Security<br>Cryptography                                                                                                                                                             |
+| 16  | SSH<br>Firewall                                                                                                                                                                      |
+| 17  | VPN<br>Certificates                                                                                                                                                                  |
+| 18  | Monitoring<br>Performance analysis                                                                                                                                                   |
+| 19  | Mock exam                                                                                                                                                                            |
