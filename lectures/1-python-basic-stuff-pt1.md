@@ -1,5 +1,7 @@
 # Python: Basic stuff - Pt. 1
+
 ## Table of contents
+
 - [1. Introduction](#1-introduction)
 	- [1.1. Python](#11-python)
 	- [1.2. Object-oriented programming](#12-object-oriented-programming)
@@ -41,9 +43,11 @@
 	- [5.5. Chained conditionals](#55-chained-conditionals)
 - [Glossary](#glossary)
 - [Bibliography](#bibliography)
+
 ## 1. Introduction
----
+
 ### 1.1. Python
+
 A programming language
 - Object oriented
 - Dynamically typed
@@ -52,8 +56,8 @@ The **standard implementation** is [CPython](https://github.com/python/cpython),
 - Is typically classified as interpreted
 - Provides an interactive mode
 
----
 ### 1.2. Object-oriented programming
+
 A programming paradigm based on the concepts of objects
 
 An object consists of
@@ -67,9 +71,8 @@ class MyClass:
 		return "hello world"
 ```
 
----
 ### 1.3. Static v. dynamic typing
----
+
 #### 1.3.1. Statically-typed languages
 - Types are bound to variables
 - Types are checked at **compile time**
@@ -80,8 +83,8 @@ String s = "abcd";
 
 `s` will forever be a `String`
 
----
 #### 1.3.2. Dynamically-typed languages
+
 - Types are bound to values
 - Types are checked at **run time**
 
@@ -93,8 +96,8 @@ s = ["a", 2, "c", 4]
 
 `s` was first a `str`, then an `int`, and lastly a `list`
 
----
 ### 1.4. Compilation v. interpretation
+
 There is no such thing as compiled or interpreted languages
 - Any programming language can be implemented either way
 - Compilers and interpreters are **implementation methods**
@@ -104,8 +107,8 @@ Yes, this means that there are
 - [Python compilers](https://github.com/lcompilers/lpython) \
 out there...
 
----
 #### 1.4.1. Compilation
+
 A program written in a language is translated into a program written in another language
 - Source language $\rightarrow$ object language
 - The compiler does this translation ($\rightarrow$)
@@ -117,8 +120,8 @@ $ ./a.out       # a.out is the translated program
 hello           # output of a.out
 ```
 
----
 #### 1.4.2. Interpretation
+
 The interpreter performs operations on behalf of the program being executed in order to run it
 - An interpreter is just another program
 
@@ -127,8 +130,8 @@ $ python hello.py   # python is the interpreter
 hello               # output of hello.py
 ```
 
----
 #### 1.4.3. Is CPython compiled or interpreted?
+
 Technically both, although typically classified as interpreted
 
 ```mermaid
@@ -144,8 +147,8 @@ stateDiagram
 
 CPython compiles the source code in bytecode and interprets it
 
----
 ### 1.5. Interactive mode
+
 An interactive mode, aka read-eval-print loop (REPL)
 - Takes single user prompts (read)
 - Executes them (eval)
@@ -155,8 +158,8 @@ Typically, interpreters have an interactive mode. However
 - There are interpreters that are not interactive
 - There are compilers that are interactive
 
----
 #### 1.5.1. Is CPython interactive?
+
 Yes
 
 ```shell
@@ -166,7 +169,6 @@ hello               # print (P)
 >>>                 # waiting for a prompt... (L)
 ```
 
----
 ### 1.6. Development environment
 
 | Software                                              | Version     |
@@ -177,10 +179,10 @@ hello               # print (P)
 
 [This](https://code.visualstudio.com/docs/python/python-tutorial) tutorial on how to set up Python in VS Code
 
----
 ## 2. Types, values, and expressions
----
+
 ### 2.1. Arithmetic operators
+
 Symbols that denote an arithmetic operations
 
 | Symbol | Meaning          |
@@ -193,8 +195,8 @@ Symbols that denote an arithmetic operations
 | `**`   | Exponentiation   |
 | `^`    | XOR              |
 
----
 ### 2.2. Types of numbers
+
 A type is a category of values
 
 | Type           | Class   | Meaning                      |
@@ -206,8 +208,8 @@ For example
 - `+`, `-`, `*`, or  `//` integers, the result is an integer
 - `/` integers, the result is a floating-point number
 
----
 ### 2.3. Expressions
+
 Combinations of variables, values, and operators. Every expression has a value
 
 Order of operations
@@ -221,8 +223,8 @@ Order of operations
 102
 ```
 
----
 ### 2.4. Strings
+
 Sequences of characters
 
 There are only two operators that work with strings
@@ -236,8 +238,8 @@ There are only two operators that work with strings
 'Spam, Spam, Spam, Spam, '
 ```
 
----
 ### 2.5. Values and types
+
 Every value has a type
 
 | Value             | Type                  | Class   |
@@ -272,10 +274,10 @@ The function `type` returns the type of any value
 '42.0'
 ```
 
----
 ## 3. Variables, statements, and modules
----
+
 ### 3.1. Variables
+
 Names that refer to values
 
 Assignment statements create variables. These consist of
@@ -300,7 +302,6 @@ Note that
 84
 ```
 
----
 ### 3.2. Variable names
 
 What you **can** do
@@ -324,8 +325,8 @@ multiple_words = 42     # good
 multipleWords = 84      # bad 
 ```
 
----
 ### 3.3. Modules
+
 Collections of variables and functions (and classes)
 
 `import` statements make available variables and functions defined in other modules
@@ -339,8 +340,8 @@ Collections of variables and functions (and classes)
 5.0
 ```
 
----
 ### 3.4. Statements
+
 Units of code that have an effect, but no value
 
 | Statement  | Effect                                |
@@ -352,7 +353,6 @@ Evaluation v. execution
 - Evaluation is to compute the value of an expression
 - Execution is to run a statement
 
----
 ### 3.5. Errors
 
 | Error    | About                                                       | Result                                                    |
@@ -375,10 +375,10 @@ Traceback (most recent call last):
 TypeError: unsupported operand type(s) for /: 'str' and 'int'
 ```
 
----
 ## 4. Functions
----
+
 ### 4.1. Arguments
+
 Values provided to a function when the function is called
 
 ```shell
@@ -388,8 +388,6 @@ Values provided to a function when the function is called
 
 `int` is the function being called and `'101'` is the argument
 
----
-
 Some functions can take any number of arguments
 
 ```shell
@@ -397,8 +395,8 @@ Some functions can take any number of arguments
 Any number of arguments
 ```
 
----
 ### 4.2. Function definitions
+
 A function definition specifies the name of a the function and the statements that run when the function is called
 
 ```python
@@ -424,11 +422,12 @@ The rest is the body (must be indented)
 	print("world")
 ```
 
----
-
 By convention, indentation is always 4 spaces
 
+---
+
 A function definition creates a function object
+
 ```shell
 >>> def f():
 ...     print("hello")
@@ -441,8 +440,8 @@ hello
 world
 ```
 
----
 ### 4.3. Parameters
+
 Variable names used inside a function to refer to the values passed as arguments
 
 ```python
@@ -454,8 +453,8 @@ def f(p):
 
 Parameters and variables defined inside a function are local
 
----
 ### 4.4. Keyword arguments
+
 Arguments that include the name of parameters
 
 ```shell
@@ -468,8 +467,8 @@ hello
 world
 ```
 
----
 ### 4.5. Return values
+
 Results that functions return
 
 The `return` statement is used to return the result of a function
@@ -486,15 +485,15 @@ def repeat(word, n):
 	print(word * n)
 ```
 
----
 ### 4.6. Docstrings
+
 Strings at the beginning of functions that explain interfaces
 
 By convention, docstrings are triple-quoted strings
 
 A docstring should:
 - Explain concisely what the function does (not how it works)
-- Explain what effect the parameters have on the behavior of the function
+- Explain the effect of parameters on the behavior of the function
 - Indicate parameter types (if not obvious)
 
 ---
@@ -510,8 +509,8 @@ def add(num1, num2):
     return num1 + num2
 ```
 
----
 ### 4.7. Tracebacks
+
 List of functions that are executing, printed when an exception occurs
 
 When a runtime error occurs, Python displays
@@ -536,10 +535,10 @@ Traceback (most recent call last):
 NameError: name 'p' is not defined
 ```
 
----
 ## 5. Conditionals
----
+
 ### 5.1. Relational operators
+
 Operators that compare their operands
 
 | Symbol | Meaning             |
@@ -551,8 +550,8 @@ Operators that compare their operands
 | `>=`   | Greater or equal to |
 | `<=`   | Less or equal to    |
 
----
 ### 5.2. Boolean expressions
+
 Expressions whose values are either `True`or `False`
 
 ```shell
@@ -562,8 +561,8 @@ True
 
 `True`and `False` are of type `bool` (not `str`)
 
----
 ### 5.3. Logical operators
+
 Operators that combine boolean expressions
 
 | Operation | Result                                       |
@@ -589,8 +588,8 @@ True
 True
 ```
 
----
 ### 5.4. Conditional statements
+
 Statements that control the execution flow depending on some condition
 
 ```python
@@ -617,8 +616,8 @@ else:
 
 The condition must be true or false, exactly one branch will run
 
----
 ### 5.5. Chained conditionals
+
 Conditional statements with a series of alternative branches
 
 ```python
@@ -637,9 +636,8 @@ There is no limit on the number of `elif` clauses
 If there is an `else` clause, it must be at the end
 
 Conditions are checked in order
-- Even if more than one condition is true, only the first true branch runs
+- If more than one condition is true, only the first true branch runs
 
----
 ## Glossary
 
 | Term                        | Meaning                                                                                                                                   |
@@ -694,6 +692,7 @@ Conditions are checked in order
 | Tracebacks                  | A list of the functions that are executing, printed when an exception occurs                                                              |
 | Type                        | A category of values                                                                                                                      |
 | Variable                    | A name that refer to a value                                                                                                              |
+
 ## Bibliography
 
 | Author     | Title                                                      | Year |

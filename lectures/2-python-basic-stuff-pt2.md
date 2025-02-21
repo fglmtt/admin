@@ -1,5 +1,7 @@
 # Python: Basic stuff - Pt. 2
+
 ## Table of contents
+
 - [1. Iteration](#1-iteration)
 	- [1.1. Loops](#11-loops)
 	- [1.2. Looping over a string](#12-looping-over-a-string)
@@ -32,9 +34,11 @@
 	- [5.3. Tuple assignment](#53-tuple-assignment)
 	- [5.4. Tuples as return values](#54-tuples-as-return-values)
 	- [5.5. Argument packing](#55-argument-packing)
+
 ## 1. Iteration
----
+
 ### 1.1. Loops
+
 Statements that run one or more statements
 
 ```python
@@ -48,7 +52,6 @@ for i in range(3):
 	2. Runs the body
 	3. Loops back around the header
 
----
 ### 1.2. Looping over a string
 
 ```python
@@ -64,7 +67,6 @@ def has_e(word):
     return False
 ```
 
----
 ### 1.3. Looping over a file
 
 ```python
@@ -90,7 +92,6 @@ for line in open("words.txt"):
 - Reads characters from the file until it gets to a newline (`\n`)
 - Returns the result as a `str`
 
----
 ### 1.4. Looping and counting
 
 ```python
@@ -122,8 +123,8 @@ for line in open("words.txt"):
 
 Python evaluates `total + 1` first, but `total` does **not** exist
 
----
 ### 1.5. Linear search
+
 - Searches through a sequence of elements 
 - Stops when it finds what it is looking for
 
@@ -138,8 +139,8 @@ def uses_any(word, letters):
 - `lower` is a method that can be called on `str`
 - `in` is both used for iteration and membership
 
----
 ### 1.6. Doctests
+
 Strings at the beginning of a function that test functions
 
 ```python
@@ -236,10 +237,10 @@ Test passed.
 - A log of what the `doctest` module is trying
 - A summary at the end
 
----
 ## 2. Strings
----
+
 ### 2.1. Strings are sequences
+
 A string is a sequence of characters. In other words
 - A string is an ordered collection of characters
 - Each character is identified by an integer index
@@ -252,8 +253,8 @@ A string is a sequence of characters. In other words
 'e'
 ```
 
----
 ### 2.2. String slices
+
 Parts of a strings specified by ranges of indices
 
 ```shell
@@ -281,8 +282,8 @@ The `[n:m]` operator
 - If `[n:]` $\rightarrow$ slice goes to the end 
 - If `n` $\ge$ `m` $\rightarrow$ empty string
 
----
 ### 2.3. Strings are immutable
+
 String elements cannot be changed
 
 ```shell
@@ -297,8 +298,8 @@ TypeError: 'str' object does not support item assignment
 'apple'
 ```
 
----
 ### 2.4. String methods
+
 Several methods can be called on string objects
 
 ```shell
@@ -311,11 +312,10 @@ The dot operator specifies
 - The name of the method (`upper`)
 - The name of the `str` object to apply the method to (`fruit`)
 
----
 ## 3. Lists
 
----
 ### 3.1. Lists are sequences
+
 Sequences of values, which can be of any type
 
 ```shell
@@ -326,8 +326,8 @@ Sequences of values, which can be of any type
 
 `t` is a nested list, i.e., a list that is an element of another list
 
----
 ### 3.2. Lists are mutable
+
 Unlike `str` objects, which are immutable
 
 `list` indices work the same way as `str` indices
@@ -339,8 +339,8 @@ Unlike `str` objects, which are immutable
 [42, 17]
 ```
 
----
 ### 3.3. List slices
+
 The slice operator works on lists as it works on strings
 
 ```shell
@@ -353,8 +353,8 @@ The slice operator works on lists as it works on strings
 
 - If `[:]`, the slice is a copy of the whole list 
 
----
 ### 3.4. List operations
+
 There are only two operators that work with lists
 - `+` joins two lists (concatenation)
 - `*` makes multiple copies and concatenates
@@ -381,7 +381,6 @@ There are only two operators that work with lists
 ['a', 'b', 'c']
 ```
 
----
 ### 3.5. List methods
 
 | Method      | Description                                                                                                        |
@@ -408,7 +407,6 @@ There are only two operators that work with lists
 [1, 2, 3, 4, 6, 7]
 ```
 
----
 ### 3.6. Lists and strings
 
 List of characters $\ne$ string
@@ -442,7 +440,6 @@ AttributeError: 'NoneType' object has no attribute 'remove'
 
 `l` is `NoneType` because `remove` returns `None`
 
----
 ### 3.7. Looping through a list
 
 ```shell
@@ -459,10 +456,9 @@ AttributeError: 'NoneType' object has no attribute 'remove'
 
 A `for` loop over an empty list `[]` never runs the body
 
----
 ### 3.8. Objects and values
 
-The `is` operator checks whether two variables refer to the same object
+`is` checks whether two variables refer to the same object
 
 ```shell
 >>> a = 'apple'
@@ -488,8 +484,8 @@ False
 - Have the same value (equivalent)
 - But are not identical
 
----
 ### 3.9. References and aliases
+
 A reference is the association of a variable with an object
 
 ```shell
@@ -501,9 +497,9 @@ True
 
 The object `[1, 2, 3]` has two references, i.e., `a` and `b`
 
----
-
 An object with more than one reference is aliased
+
+---
 
 If the aliased object is mutable, changes made with one reference affect the other
 
@@ -534,10 +530,10 @@ When you pass a list to a function, the function gets a reference
 
 `l` and `numbers`are aliases for the same object
 
----
 ## 4. Dictionaries
----
+
 ### 4.1. A dictionary is a mapping
+
 Objects that contain key-value pairs, aka items
 
 ```shell
@@ -552,8 +548,8 @@ Objects that contain key-value pairs, aka items
 
 Each key (`zero`, `one`, and `two`) maps to a value (`0`, `1`, and `2`)
 
----
 ### 4.2. Key search is very fast
+
 Dictionaries are implemented using hash tables
 - Significant memory overhead
 - Fast access regardless of the size (as long as it fits in memory)
@@ -599,7 +595,6 @@ Traceback (most recent call last):
 TypeError: unhashable type: 'list'
 ```
 
----
 ### 4.3. Looping and dictionaries
 
 ```shell
@@ -624,10 +619,10 @@ c 3
 3
 ```
 
----
 ## 5. Tuples
----
+
 ### 5.1. Tuples are like lists
+
 Like a list, a tuple is
 - A sequence of values
 - Indexed by integers
@@ -668,8 +663,8 @@ Most list operators also work with tuple
 ['e', 'h', 'l', 'l', 'o']
 ```
 
----
 ### 5.2. But tuples are immutable
+
 Bracket operator does not work
 
 ```shell
@@ -704,8 +699,8 @@ Since tuples are immutable, they are hashable
 {(1, 2): 'a', (3, 4): 'b'}
 ```
 
----
 ### 5.3. Tuple assignment
+
 Values are assigned to variables from left to right
 
 ```shell
@@ -758,8 +753,8 @@ one --> 1
 two --> 2
 ```
 
----
 ### 5.4. Tuples as return values
+
 Functions can only return a single value, but if that value is a tuple...
 
 ```shell
@@ -768,8 +763,8 @@ Functions can only return a single value, but if that value is a tuple...
 (3, 1)
 ```
 
----
 ### 5.5. Argument packing
+
 Collecting multiple arguments into a tuple
 
 ```shell
@@ -798,7 +793,6 @@ TypeError: divmod expected 2 arguments, got 1
 
 Arguments that begins with the `*` operator unpacks
 
----
 ## Glossary
 
 | Term                          | Meaning                                                                                                                                                                                                                                                      |
