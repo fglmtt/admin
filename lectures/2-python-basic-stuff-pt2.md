@@ -34,6 +34,8 @@
 	- [5.3. Tuple assignment](#53-tuple-assignment)
 	- [5.4. Tuples as return values](#54-tuples-as-return-values)
 	- [5.5. Argument packing](#55-argument-packing)
+- [Glossary](#glossary)
+- [Bibliography](#bibliography)
 
 ## 1. Iteration
 
