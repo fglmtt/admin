@@ -28,11 +28,11 @@ Recordings will be made available **after** the lectures
 
 Exams will be written
 
-| Mode     | Description                      | Language        |
-| -------- | -------------------------------- | --------------- |
-| Exercise | System or network programming    | Python          |
-| Exercise | System or network administration | Bash/Ansible    |
-| Theory   | Open questions                   | Italian/English |
+| Type      | Topic(s)                          | Language        |
+| --------- | --------------------------------- | --------------- |
+| Exercise  | System and network administration | Python          |
+| Exercise  | System and network administration | Bash/Ansible    |
+| Questions | Cybersecurity                     | Italian/English |
 
 Time available: 2 hours and 30 minutes
 
