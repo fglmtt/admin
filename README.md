@@ -24,6 +24,18 @@ Notes will be made available **before** the lectures
 
 Recordings will be made available **after** the lectures
 
+## Exams
+
+Exams will be written
+
+| Mode     | Description                      | Language        |
+| -------- | -------------------------------- | --------------- |
+| Exercise | System or network programming    | Python          |
+| Exercise | System or network administration | Bash/Ansible    |
+| Theory   | Open questions                   | Italian/English |
+
+Time available: 2 hours and 30 minutes
+
 ## Where to find what
 
 | Where                                                                                                                                                                                                                                                                                                                                        | What                                  |
