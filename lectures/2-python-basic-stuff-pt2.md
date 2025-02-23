@@ -36,6 +36,7 @@
 	- [5.5. Argument packing](#55-argument-packing)
 - [Glossary](#glossary)
 - [Bibliography](#bibliography)
+- [Licenses](#licenses)
 
 ## 1. Iteration
 
@@ -836,3 +837,10 @@ Arguments that begins with the `*` operator unpacks
 | ----------- | -------------------------------------------------------------------------------------- | ---- |
 | Downey, A.  | [Think Python](https://allendowney.github.io/ThinkPython/)                             | 2024 |
 | Ramalho, L. | [Fluent Python](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/) | 2022 |
+
+## Licenses
+
+| Content | License                                                                                                                       |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Code    | [MIT License](https://mit-license.org/)                                                                                       |
+| Text    | [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) |

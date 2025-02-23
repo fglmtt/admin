@@ -43,6 +43,7 @@
 	- [5.5. Chained conditionals](#55-chained-conditionals)
 - [Glossary](#glossary)
 - [Bibliography](#bibliography)
+- [Licenses](#licenses)
 
 ## 1. Introduction
 
@@ -698,3 +699,10 @@ Conditions are checked in order
 | Author     | Title                                                      | Year |
 | ---------- | ---------------------------------------------------------- | ---- |
 | Downey, A. | [Think Python](https://allendowney.github.io/ThinkPython/) | 2024 |
+
+## Licenses
+
+| Content | License                                                                                                                       |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Code    | [MIT License](https://mit-license.org/)                                                                                       |
+| Text    | [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) |

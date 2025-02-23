@@ -35,6 +35,7 @@
 	- [5.5. List comprehensions](#55-list-comprehensions)
 - [Glossary](#glossary)
 - [Bibliography](#bibliography)
+- [Licenses](#licenses)
 
 ## 1. Files
 
@@ -1072,3 +1073,10 @@ def capitalize_title(title):
 | Author      | Title                                                                                  | Year |
 | ----------- | -------------------------------------------------------------------------------------- | ---- |
 | Downey, A.  | [Think Python](https://allendowney.github.io/ThinkPython/)                             | 2024 |
+
+## Licenses
+
+| Content | License                                                                                                                       |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Code    | [MIT License](https://mit-license.org/)                                                                                       |
+| Text    | [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) |

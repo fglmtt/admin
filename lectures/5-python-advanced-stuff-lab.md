@@ -20,6 +20,8 @@
 		- [3.1.2. Assignment 2](#312-assignment-2)
 		- [3.1.3. Assignment 3](#313-assignment-3)
 - [Bibliography](#bibliography)
+- [Licenses](#licenses)
+
 ## 1. Get started
 
 ### 1.1. Assignment
@@ -182,3 +184,10 @@ Make `Date` objects [totally ordered](4-python-advanced-stuff#42-totally-ordered
 | Author                     | Title                                                                                                      | Year |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------- | ---- |
 | Downey, A.                 | [Think Python](https://allendowney.github.io/ThinkPython/)                                                 | 2024 |
+
+## Licenses
+
+| Content | License                                                                                                                       |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Code    | [MIT License](https://mit-license.org/)                                                                                       |
+| Text    | [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) |

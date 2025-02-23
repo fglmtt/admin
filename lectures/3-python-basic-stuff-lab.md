@@ -22,6 +22,7 @@
 	- [3.2. Hints](#32-hints)
 		- [3.2.1. Reading and writing files](#321-reading-and-writing-files)
 - [Bibliography](#bibliography)
+- [Licenses](#licenses)
 
 ## 1. Get started
 
@@ -413,3 +414,10 @@ f2.close()
 | Author                     | Title                                                                                                      | Year |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------- | ---- |
 | Downey, A.                 | [Think Python](https://allendowney.github.io/ThinkPython/)                                                 | 2024 |
+
+## Licenses
+
+| Content | License                                                                                                                       |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Code    | [MIT License](https://mit-license.org/)                                                                                       |
+| Text    | [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
