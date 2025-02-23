@@ -69,3 +69,7 @@ Time available: 2 hours and 30 minutes
 | 17  | VPN<br>Certificates                                                                                                                                                                  |
 | 18  | Monitoring<br>Performance analysis                                                                                                                                                   |
 | 19  | Mock exam                                                                                                                                                                            |
+
+## Credits
+
+The lectures on Python (1-5) are based, with some modifications, on [Think Python](https://allendowney.github.io/ThinkPython/) written by [Allen Downey](https://www.allendowney.com/wp/) for [Green Tea Press](https://greenteapress.com/wp/think-python-3rd-edition/). 
