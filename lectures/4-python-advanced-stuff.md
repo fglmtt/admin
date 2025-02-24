@@ -221,7 +221,7 @@ $ ls -R
 A class is a programmer-defined type
 
 ```python
-class CustomTime:
+class Time:
 	"""Represent a time of day"""
 ```
 
@@ -235,7 +235,7 @@ A class definition creates a class object, which is like a factory for creating 
 To create a `Time` object, just call `Time` as if it were a function
 
 ```shell
->>> class CustomTime:
+>>> class Time:
 ...     """Represent a time of day"""
 ... 
 >>> lunch = Time()
