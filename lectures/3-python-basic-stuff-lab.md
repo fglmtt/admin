@@ -61,7 +61,7 @@ Suppose the letters are ACDLORT, with R as the required letter. So "color" is an
 
 #### 2.1.1. Assignment 1
 
-Write a function called `check_word` that checks whether a given word is acceptable. Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2#16-doctests). Fill in the function and then check that all tests pass.
+Write a function called `check_word` that checks whether a given word is acceptable. Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2.md#16-doctests). Fill in the function and then check that all tests pass.
 
 ```python
 def check_word(word, available, required):
@@ -93,7 +93,7 @@ According to the rules
 - Longer words earn 1 point per letter.
 - Each puzzle includes at least one “pangram” which uses every letter. These are worth 7 extra points!
 
-Write a function called `score_word`. Assume that the word is acceptable. Here’s an outline of the function with doctests.
+Write a function called `score_word`. Assume that the word is acceptable. Here’s an outline of the function with [doctests](2-python-basic-stuff-pt2.md#16-doctests).
 
 ```python
 def score_word(word, available):
@@ -273,7 +273,7 @@ Got:
 ***Test Failed*** 5 failures.
 ```
 
-### 2.2.2. Problem decomposition
+#### 2.2.2. Problem decomposition
 
 Given that
 - `check_word` must check whether the required letters are used 
@@ -324,7 +324,7 @@ def uses_only(word, available):
 
 `uses_all` and `uses_only` are **very** similar: 
 1. Check out how to [loop over a string](2-python-basic-stuff-pt2.md#12-looping-over-a-string)
-2. Make sure to lower case letters (see [this](2-python-basic-stuff-pt2#15-linear-search) example)
+2. Make sure to lower case letters (see [this](2-python-basic-stuff-pt2.md#15-linear-search) example)
 
 ## 3. Text inspector
 
@@ -342,7 +342,7 @@ and after (and included)
 
 `*** END OF THIS PROJECT GUTENBERG EBOOK THE STRANGE CASE OF DR. ***`
 
-Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2#16-doctests). Fill in the function and then check that all tests pass.
+Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2.md#16-doctests). Fill in the function and then check that all tests pass.
 
 ```python
 def clean_book(source_filename, destination_filename):
@@ -360,7 +360,7 @@ def clean_book(source_filename, destination_filename):
 
 #### 3.1.2. Assignment 2
 
-Write a function called `count_unique_words` that counts the number of unique words in a file. Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2#16-doctests). Fill in the function and then check that all tests pass.
+Write a function called `count_unique_words` that counts the number of unique words in a file. Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2.md#16-doctests). Fill in the function and then check that all tests pass.
 
 ```python
 def count_unique_words(filename):
