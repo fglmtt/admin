@@ -72,4 +72,4 @@ Time available: 2 hours and 30 minutes
 
 ## Credits
 
-The lectures on Python (1-5) are based, with some modifications, on [Think Python](https://allendowney.github.io/ThinkPython/) written by [Allen Downey](https://www.allendowney.com/wp/) for [Green Tea Press](https://greenteapress.com/wp/think-python-3rd-edition/). 
+The lectures on Python (1-5) are based, with some modifications, on [Think Python](https://allendowney.github.io/ThinkPython/) written by [Allen Downey](https://www.allendowney.com/wp/) and published by [O'Reilly Media](https://www.oreilly.com/library/view/think-python-3rd/9781098155421/). The book is also available under free license from [Green Tea Press](https://greenteapress.com/wp/think-python-3rd-edition/). 
