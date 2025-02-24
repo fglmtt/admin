@@ -1,4 +1,4 @@
-# Network and system administration & cybersecurity
+# Network and System Administration & Cybersecurity
 
 ## About me
 
