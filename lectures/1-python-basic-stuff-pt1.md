@@ -67,9 +67,11 @@ An object consists of
 
 ```python
 class MyClass:
-	a = 12 # this is an attribute
+	def __init__(self, a):
+		self.a = a # this is an attribute
+		
 	def f(self): # this is a method
-		return "hello world"
+		return self.a
 ```
 
 ### 1.3. Static v. dynamic typing
