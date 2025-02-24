@@ -356,11 +356,11 @@ Evaluation v. execution
 
 ### 3.5. Errors
 
-| Error    | About                                                       | Result                                                    |
-| -------- | ----------------------------------------------------------- | --------------------------------------------------------- |
-| Syntax   | Structure of the program and the rules about that structure | Python does not even run the program                      |
-| Runtime  | Exceptions that occur while the program is running          | Python displays an error message and stops the program    |
-| Semantic | Meaning                                                     | The program does what you intended, but no error messages |
+| Error    | About                                                       | Result                                                        |
+| -------- | ----------------------------------------------------------- | ------------------------------------------------------------- |
+| Syntax   | Structure of the program and the rules about that structure | Python does not even run the program                          |
+| Runtime  | Exceptions that occur while the program is running          | Python displays an error message and stops the program        |
+| Semantic | Meaning                                                     | The program does not what you intended, but no error messages |
 
 ---
 
