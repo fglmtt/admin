@@ -222,7 +222,7 @@ A class is a programmer-defined type
 
 ```python
 class Time:
-	"""Represent a time of day"""
+    """Represent a time of day"""
 ```
 
 - The header indicates that the new class is called `Time`
@@ -334,18 +334,18 @@ def increment_time(time, hours, minutes, seconds):
     
     carry, time.second = divmod(time.second, 60)
     carry, time.minute = divmod(
-	    time.minute + carry, 60
-	)
+        time.minute + carry, 60
+    )
     carry, time.hour = divmod(time.hour + carry, 60)
 
 def add_time(time, hours, minutes, seconds):
     total = copy.copy(time)
     increment_time(
-	    total, 
-	    hours, 
-	    minutes, 
-	    seconds
-	)
+        total, 
+        hours,
+        minutes, 
+        seconds
+    )
     return total
 ```
 
@@ -417,10 +417,10 @@ class Time:
 
     def print_time(self):
         s = (
-	        f"{time.hour:02d}:"
-	        f"{time.minute:02d}:"
-	        f"{time.second:02d}"
-	    )
+            f"{time.hour:02d}:"
+            f"{time.minute:02d}:"
+            f"{time.second:02d}"
+        )
         print(s)
 
 def make_time(hour, minute, second):
@@ -470,18 +470,18 @@ Methods that can be invoked without an object as receiver
 class Time:
     """Represents the time of day""" 
 
-	def print_time(self):
+    def print_time(self):
         s = (
-			f"{time.hour:02d}:"
-			f"{time.minute:02d}:"
-			f"{time.second:02d}"
-		)
+            f"{time.hour:02d}:"
+            f"{time.minute:02d}:"
+            f"{time.second:02d}"
+        )
         print(s)
 
-	def int_to_time(seconds):
-		minute, second = divmod(seconds, 60)
-		hour, minute = divmod(minute, 60)
-		return make_time(hour, minute, second)
+    def int_to_time(seconds):
+        minute, second = divmod(seconds, 60)
+        hour, minute = divmod(minute, 60)
+        return make_time(hour, minute, second)
 
 def make_time(hour, minute, second):
     time = Time()
@@ -523,11 +523,11 @@ Change the way operators and some functions work with an object
 ```python
 class Time:
     """Represents the time of day"""
-    
-	def __init__(self, hour=0, minute=0, second=0):
-		self.hour = hour
-		self.minute = minute
-		self.second = second
+
+    def __init__(self, hour=0, minute=0, second=0):
+        self.hour = hour
+        self.minute = minute
+        self.second = second
 ```
 
 ---
@@ -548,17 +548,17 @@ class Time:
 class Time:
     """Represents the time of day""" 
 
-	def __init__(self, hour=0, minute=0, second=0):
-		self.hour = hour
-		self.minute = minute
-		self.second = second
+    def __init__(self, hour=0, minute=0, second=0):
+        self.hour = hour
+        self.minute = minute
+        self.second = second
 
-	def __str__(self):
+    def __str__(self):
         return (
-	        f"{time.hour:02d}:"
-	        f"{time.minute:02d}:"
-	        f"{time.second:02d}"
-	    )
+            f"{time.hour:02d}:"
+            f"{time.minute:02d}:"
+            f"{time.second:02d}"
+        )
 ```
 
 ---
@@ -591,36 +591,36 @@ Operator overloading is the process of using special methods to change the way o
 class Time:
     """Represents the time of day""" 
 
-	def __init__(self, hour=0, minute=0, second=0):
-		self.hour = hour
-		self.minute = minute
-		self.second = second
+    def __init__(self, hour=0, minute=0, second=0):
+        self.hour = hour
+        self.minute = minute
+        self.second = second
 
-	def __str__(self):
+    def __str__(self):
         return (
-	        f"{time.hour:02d}:"
-	        f"{time.minute:02d}:"
-	        f"{time.second:02d}"
-	    )
+            f"{time.hour:02d}:"
+            f"{time.minute:02d}:"
+            f"{time.second:02d}"
+        )
 
-	def int_to_time(seconds):
+    def int_to_time(seconds):
         minute, second = divmod(seconds, 60)
         hour, minute = divmod(minute, 60)
         return Time(hour, minute, second)
 
-	def time_to_int(self):
+    def time_to_int(self):
         minutes = self.hour * 60 + self.minute
         seconds = minutes * 60 + self.second
         return seconds
 
-	def __add__(self, other):
+    def __add__(self, other):
         seconds = (
-		    self.time_to_int() + 
-		    other.time_to_int()
-		)
+            self.time_to_int() + 
+            other.time_to_int()
+        )
         return Time.int_to_time(seconds)
 
-	def __eq__(self, other):
+    def __eq__(self, other):
         return (
             self.hour == other.hour
             and self.minute == other.minute
@@ -666,13 +666,13 @@ class Card:
     """Represent a standard playing card"""
 
     suits = [
-	    'Clubs', 'Diamonds', 'Hearts', 'Spades'
-	]
+        'Clubs', 'Diamonds', 'Hearts', 'Spades'
+    ]
     ranks = [
-	    None, 'Ace', '2', '3', '4', '5', 
-	    '6', '7','8', '9', '10', 
-	    'Jack', 'Queen', 'King', 'Ace'
-	]
+        None, 'Ace', '2', '3', '4', '5', 
+        '6', '7','8', '9', '10', 
+        'Jack', 'Queen', 'King', 'Ace'
+    ]
 ```
 
 ---
@@ -695,15 +695,15 @@ class Card:
     """Represent a standard playing card"""
 
     suits = [
-	    'Clubs', 'Diamonds', 'Hearts', 'Spades'
-	]
+        'Clubs', 'Diamonds', 'Hearts', 'Spades'
+    ]
     ranks = [
-	    None, 'Ace', '2', '3', '4', '5', 
-	    '6', '7','8', '9', '10', 
-	    'Jack', 'Queen', 'King', 'Ace'
-	]
+        None, 'Ace', '2', '3', '4', '5', 
+        '6', '7','8', '9', '10', 
+        'Jack', 'Queen', 'King', 'Ace'
+    ]
 
-	def __init__(self, suit, rank):
+    def __init__(self, suit, rank):
         self.suit = suit
         self.rank = rank
 ```
@@ -748,30 +748,30 @@ class Card:
     """Represent a standard playing card"""
 
     suits = [
-	    'Clubs', 'Diamonds', 'Hearts', 'Spades'
-	]
+        'Clubs', 'Diamonds', 'Hearts', 'Spades'
+    ]
     ranks = [
-	    None, 'Ace', '2', '3', '4', '5', 
-	    '6', '7','8', '9', '10', 
-	    'Jack', 'Queen', 'King', 'Ace'
-	]
+        None, 'Ace', '2', '3', '4', '5', 
+        '6', '7','8', '9', '10', 
+        'Jack', 'Queen', 'King', 'Ace'
+    ]
 
-	def __init__(self, suit, rank):
+    def __init__(self, suit, rank):
         self.suit = suit
         self.rank = rank
 
-	def __eq__(self, other):
+    def __eq__(self, other):
         return (
-	        self.suit == other.suit and 
-	        self.rank == other.rank
-	    )
+            self.suit == other.suit and 
+            self.rank == other.rank
+        )
 
     def to_tuple(self):
         return (self.suit, self.rank)
 
     def __lt__(self, other):
         # Suit is more important than rank
-		# If suits are equal, compare ranks
+        # If suits are equal, compare ranks
         return self.to_tuple() < other.to_tuple()
 
     def __le__(self, other):
@@ -793,7 +793,7 @@ class Deck:
     def __init__(self, cards):
         self.cards = cards
 
-	def __str__(self):
+    def __str__(self):
         res = []
         for card in self.cards:
             res.append(str(card))
@@ -808,19 +808,19 @@ class Deck:
                 cards.append(card)
         return cards
 
-	def shuffle(self):
+    def shuffle(self):
         random.shuffle(self.cards)
 
-	def sort(self):
+    def sort(self):
         self.cards.sort()
 
-	def take_card(self):
+    def take_card(self):
         return self.cards.pop()
 
-	def put_card(self, card):
+    def put_card(self, card):
         self.cards.append(card)
 
-	def move_cards(self, other, num):
+    def move_cards(self, other, num):
         for _ in range(num):
             card = self.take_card()
             other.put_card(card)
@@ -875,7 +875,7 @@ Inheritance is the ability to define a new class that is a modified version of a
 class Hand(Deck):
     """Represent a hand of a player"""
     
-	def __init__(self, label=''):
+    def __init__(self, label=''):
         self.label = label
         self.cards = []
 ```
@@ -1010,10 +1010,10 @@ Traditional loop:
 
 ```python
 def capitalize_title(title):
-	t = []
-	for word in title.split():
-	    t.append(word.capitalize()) 
-	return ' '.join(t)
+    t = []
+    for word in title.split():
+        t.append(word.capitalize()) 
+    return ' '.join(t)
 ```
 
 ---
@@ -1022,10 +1022,10 @@ With a list comprehension:
 
 ```python
 def capitalize_title(title):
-	t = [
-		word.capitalize() for word in title.split()
-	]
-	return ' '.join(t)
+    t = [
+        word.capitalize() for word in title.split()
+    ]
+    return ' '.join(t)
 ```
 
 - Brackets indicate that the result is a list
