@@ -60,7 +60,7 @@ In a large collection of files, there may be more than one copy of the same file
 
 #### 2.1.1. Assignment 1
 
-Write a function called `is_image` that takes a path and a list of file extensions, and returns `True` if the path ends with one of the extensions in the list (check out the `str` method `endswith`). Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2#16-doctests). Fill in the function and then check that all tests pass.
+Write a function called `is_image` that takes a path and a list of file extensions, and returns `True` if the path ends with one of the extensions in the list (check out the `str` method `endswith`). Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2.md#16-doctests). Fill in the function and then check that all tests pass.
 
 ```python
 def is_image(path, extensions):
@@ -86,7 +86,7 @@ Write a function called `add_path` that takes as arguments a path and a `default
 
 Note that if two files contain the same data, they will have the same digest. If two files differ, they will almost always have different digests. A digest is the output of an hash function. Use `md5` for this purpose.
 
-Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2#16-doctests). Fill in the function and then check that all tests pass.
+Here's an outline of the function that includes [doctests](2-python-basic-stuff-pt2.md#16-doctests). Fill in the function and then check that all tests pass.
 
 ```python
 def add_path(path, d):
@@ -104,7 +104,7 @@ def add_path(path, d):
 
 #### 2.1.3. Assignment 3
 
-Write a version of `walk` (see [here](4-python-advanced-stuff#14-walking-directories))  called `walk_images` that takes a directory and walks through the files in [this](../code/data/photos) directory and its subdirectories. For each file, it should use `is_image` to check whether it's an image file and `add_path` to add it to the `defaultdic`. Here's an outline of the function.
+Write a version of `walk` (see [here](4-python-advanced-stuff.md#14-walking-directories))  called `walk_images` that takes a directory and walks through the files in [this](../code/data/photos) directory and its subdirectories. For each file, it should use `is_image` to check whether it's an image file and `add_path` to add it to the `defaultdic`. Here's an outline of the function.
 
 ```python
 def walk_images(dirname, d):
@@ -113,7 +113,7 @@ def walk_images(dirname, d):
     - the key is the digest of the image
     - the value is a list of paths to the images with the same digest
 
-    path : path to a directory
+    dirname : path to a directory
     d : defaultdict of lists
     """
 ```
@@ -173,7 +173,7 @@ Write `__str__` method (see [special methods](4-python-advanced-stuff.md#34-sp
 
 #### 3.1.3. Assignment 3
 
-Make `Date` objects [totally ordered](4-python-advanced-stuff#42-totally-ordered-set-of-objects). Check that 
+Make `Date` objects [totally ordered](4-python-advanced-stuff.md#42-totally-ordered-set-of-objects). Check that 
 1. `1933-06-22 > 1900-01-01`
 2. `1933-06-22 <= 2000-01-01` 
 3. `1933-06-22 == 1933-06-22`
