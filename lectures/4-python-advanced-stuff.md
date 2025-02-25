@@ -292,9 +292,9 @@ The `copy` module provides two ways of copying objects
 
 ### 2.3. Pure functions
 
-Functions that 
-- Does not modify their parameters 
-- Have any effect other than returning a value
+Functions 
+- Whose return values are identical for identical arguments 
+- Have no side effects (e.g., modification of mutable reference arguments)
 
 Anything that can be done with impure functions can also be done with pure functions. As a rule of thumb
 - Write pure functions whenever it is reasonable
@@ -472,16 +472,16 @@ class Time:
 
 	def print_time(self):
         s = (
-	        f"{time.hour:02d}:"
-	        f"{time.minute:02d}:"
-	        f"{time.second:02d}"
-	    )
+			f"{time.hour:02d}:"
+			f"{time.minute:02d}:"
+			f"{time.second:02d}"
+		)
         print(s)
 
 	def int_to_time(seconds):
-        minute, second = divmod(seconds, 60)
-        hour, minute = divmod(minute, 60)
-        return make_time(hour, minute, second)
+		minute, second = divmod(seconds, 60)
+		hour, minute = divmod(minute, 60)
+		return make_time(hour, minute, second)
 
 def make_time(hour, minute, second):
     time = Time()
@@ -1059,7 +1059,7 @@ def capitalize_title(title):
 | Parent class              | A class that is inherited from                                                                                           |
 | Path                      | A string that specifies a sequence of directories, often leading to a file                                               |
 | Polimorphism              | The ability of a method or operator to work with multiple types of objects                                               |
-| Pure function             | A function that does not modify its parameters or have any effect other than returning a value                           |
+| Pure function             | A function (i) whose return values are identical for identical arguments and (ii) has no side effects                    |
 | Receiver                  | The object a method is invoked on                                                                                        |
 | Relative path             | A path that starts from the current working directory, or some other specified directory                                 |
 | Serialization             | Converting an object to a string                                                                                         |
