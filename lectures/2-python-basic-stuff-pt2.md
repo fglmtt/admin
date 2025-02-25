@@ -60,7 +60,7 @@ for i in range(3):
 ```python
 def has_e(word):
 	"""
-	Checks whether a word contains the letter 'e'
+	Check whether a word contains the letter 'e'
 
 	word : string to be checked
 	"""
@@ -74,7 +74,7 @@ def has_e(word):
 
 ```python
 for line in open("words.txt"):
-	print(word)
+	print(line)
 ```
 
 `for` loops over `words.txt` line by line
@@ -149,7 +149,7 @@ Strings at the beginning of a function that test functions
 ```python
 def uses_any(word, letters):
     """
-	Checks if a word uses any of a list of letters
+	Check if a word uses any of a list of letters
     
     >>> uses_any('banana', 'aeiou')
     True
@@ -180,7 +180,7 @@ as `apple` does not use any of `xyz`
 ```python
 def uses_any(word, letters):
     """
-	Checks if a word uses any of a list of letters
+	Check if a word uses any of a list of letters
     
     >>> uses_any('banana', 'aeiou')
     True
@@ -306,9 +306,11 @@ TypeError: 'str' object does not support item assignment
 Several methods can be called on string objects
 
 ```shell
-fruit = 'apple'
-fruit.upper()      # method invocation
+>>> fruit = 'apple'
+>>> fruit.upper()
 'APPLE'
+>>> fruit
+'apple'
 ```
 
 The dot operator specifies
@@ -386,12 +388,12 @@ There are only two operators that work with lists
 
 ### 3.5. List methods
 
-| Method      | Description                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------ |
-| `append(x)` | Add `x` to the end of the list                                                                                     |
-| `extend(l)` | Append all the elements of `l` to the end of the list                                                              |
-| `pop[i]`    | Remove the `i`th element, and return it. If no index is specified, remove and return the last element of the list. |
-| `remove(x)` | Remove the first element from the list whose value is equal to `x`                                                 |
+| Method      | Description                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------------- |
+| `append(x)` | Add `x` to the end of the list                                                                        |
+| `extend(l)` | Append all the elements of `l` to the end of the list                                                 |
+| `pop(i)`    | Remove the `i`th element, and return it. If no index is specified, remove and return the last element |
+| `remove(x)` | Remove the first element from the list whose value is equal to `x`                                    |
 
 ---
 
@@ -570,8 +572,8 @@ for n in needles:
 		found += 1
 ```
 
-- `haystack` is an array of floats
-- `needles` is an array of 1000 floats (50% picked from `haystack`)
+- `haystack` contains floats
+- `needles` is a list of 1000 floats (50% picked from `haystack`)
 
 ---
 
