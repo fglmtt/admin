@@ -77,6 +77,7 @@ class MyClass:
 ### 1.3. Static v. dynamic typing
 
 #### 1.3.1. Statically-typed languages
+
 - Types are bound to variables
 - Types are checked at **compile time**
 
@@ -107,7 +108,8 @@ There is no such thing as compiled or interpreted languages
 
 Yes, this means that there are
 - [C interpreters](https://github.com/jpoirier/picoc)
-- [Python compilers](https://github.com/lcompilers/lpython) \
+- [Python compilers](https://github.com/lcompilers/lpython) 
+
 out there...
 
 #### 1.4.1. Compilation
@@ -415,11 +417,13 @@ def f():
 ---
 
 The first line of a function definition is the header, which must end with a colon
+
 ```python
 def f():
 ```
 
 The rest is the body (must be indented)
+
 ```python
 	print("hello")
 	print("world")
@@ -576,7 +580,7 @@ Operators that combine boolean expressions
 
 ---
 
-Boolean operations always returns
+Boolean operations always return
 - `0` or `False` for false
 - `1` or `True` for true
 
