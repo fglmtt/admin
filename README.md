@@ -17,7 +17,7 @@ Lectures will be delivered at the times below and recorded
 
 | Day       | Start | End   | Location |
 | --------- | ----- | ----- | -------- |
-| Wednesday | 16:30 | 19:00 | INFO2    |
+| Wednesday | 16:30 | 19:00 | 3        |
 | Thursday  | 14:00 | 16:30 | INFO1    |
 
 Notes will be made available **before** the lectures
