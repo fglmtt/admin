@@ -72,6 +72,8 @@ Absolute v. relative paths
 | `path.isfile` | Check whether a path refers to a file       |
 | `path.join`   | Join directories and filenames into a path  |
 
+`path` is a submodule of `os`
+
 ---
 
 ```shell
@@ -114,7 +116,7 @@ Strings that
 12
 >>> writer.close()
 >>> print(open('deleteme.txt').read())
-dictionary: {'one': 1}, list: [1, 2, 3]
+dict: {'one': 1}, list: [1, 2, 3]
 sum list: 6
 ```
 
@@ -283,7 +285,7 @@ For programmer-defined classes, the default behavior of `==` is the same as `is`
 
 #### 2.2.1. Shallow copy v. deep copy
 
-The `copy` module provides two ways of copying objects
+The `copy` module provides two functions for copying objects
 
 | Function   | Description                                                                                     |
 | ---------- | ----------------------------------------------------------------------------------------------- |
@@ -555,9 +557,9 @@ class Time:
 
     def __str__(self):
         return (
-            f"{time.hour:02d}:"
-            f"{time.minute:02d}:"
-            f"{time.second:02d}"
+            f"{self.hour:02d}:"
+            f"{self.minute:02d}:"
+            f"{self.second:02d}"
         )
 ```
 
