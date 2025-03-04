@@ -47,7 +47,7 @@ Traditional booting:
 ```mermaid
 stateDiagram 
     direction LR
-    bl: boot loader
+    bl: Boot loader
     [*] --> Firmware
     Firmware --> bl
     bl --> Kernel
