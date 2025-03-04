@@ -102,12 +102,12 @@ As the first-stage boot loader is less than 512 bytes, it is not sophisticated e
 
 ---
 
-Option 1: 
+Option 1
 1. Reads the the disk-partitioning table
 2. Identifies the disk partition marked as "active"
 3. Executes the second-stage boot loader
 
-Option 2: 
+Option 2
 - The second-stage boot loader can live in the dead zone that lies between the MBR and the beginning of the first disk partition 
 - This dead zone contains around 32KB, enough for a filesystem driver
 
@@ -314,13 +314,10 @@ This depends on the mode in which the system should be operating (see [here](#13
 ---
 
 Booting $\rightarrow$ multiuser mode
-- Set the computer name
-- Set the time zone
-- Check disks
-- Mount filesystems
+- Set the computer name and time zone
+- Check disks and mount filesystems
 - Remove old files from `/tmp`
-- Configure network interfaces
-- Configure packet filters
+- Configure network interfaces and packet filters
 - Startup other daemons and services
 
 The system management daemon has very little knowledge about these tasks, it simply runs a set of commands or scripts that have been designated for execution in that particular order
@@ -333,7 +330,7 @@ The system management daemon has very little knowledge about these tasks, it sim
 timeline
 	CPU : Is hardwired to execute the firmware on startup
 	Firmware (BIOS/UEFI) : Probes for hardware and disks
-		: Runs a simple set of helth checks
+		: Runs a simple set of health checks
 		: Selects a boot device and loads a boot loader
 	Boot loader (GRUB) : Determines which kernel to boot
     	: Marshals kernel parameters
@@ -349,7 +346,7 @@ timeline
 timeline
 	CPU : Is hardwired to execute the firmware on startup
 	Firmware (UEFI) : Probes for hardware and disks
-		: Runs a simple set of helth checks
+		: Runs a simple set of health checks
 		: Selects a boot device and loads a kernel
 	Kernel (Linux) : Instantiates kernel data structures
     	: Starts init/systemd as PID 1
@@ -496,16 +493,16 @@ apparmor.service   enabled         enabled
 
 ---
 
-| Unit file state | Meaning                                                                                                                    |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `bad`           | Some kind of problem within `systemd` (usually a bad unit file)                                                            |
-| `disabled`      | Installed, but not configured to start on boot. The unit can be started manually                                           |
-| `masked`        | Completely disabled. The unit cannot even started manually                                                                 |
-| `enabled`       | Installed, will start on boot                                                                                              |
-| `indirect`      | Enabled by another service                                                                                                 |
-| `static`        | Started when another service depends on it. The unit file does not a `[Install]` section. The unit can be started manually |
-| `linked`        | The unit file is a symbolic link that points to a unit file that lives outside the standard `systemd` directories          |
-| `alias`         | A reference to another unit file                                                                                           |
+| Unit file state | Meaning                                                                                                                          |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `bad`           | Some kind of problem within `systemd` (usually a bad unit file)                                                                  |
+| `disabled`      | Installed, but not configured to start on boot. The unit can be started manually                                                 |
+| `masked`        | Completely disabled. The unit cannot even started manually                                                                       |
+| `enabled`       | Installed, will start on boot                                                                                                    |
+| `indirect`      | Enabled by another service                                                                                                       |
+| `static`        | Started when another service depends on it. The unit file does not have an `[Install]` section. The unit can be started manually |
+| `linked`        | The unit file is a symbolic link that points to a unit file that lives outside the standard `systemd` directories                |
+| `alias`         | A reference to another unit file                                                                                                 |
 
 ---
 
