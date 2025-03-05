@@ -298,7 +298,9 @@ Functions
 - Whose return values are identical for identical arguments 
 - Have no side effects (e.g., modification of mutable reference arguments)
 
-Anything that can be done with impure functions can also be done with pure functions. As a rule of thumb
+Anything that can be done with impure functions can also be done with pure functions
+
+As a rule of thumb
 - Write pure functions whenever it is reasonable
 - Resort to impure functions only if there is an advantage
 
@@ -419,9 +421,9 @@ class Time:
 
     def print_time(self):
         s = (
-            f"{time.hour:02d}:"
-            f"{time.minute:02d}:"
-            f"{time.second:02d}"
+            f"{self.hour:02d}:"
+            f"{self.minute:02d}:"
+            f"{self.second:02d}"
         )
         print(s)
 
@@ -474,9 +476,9 @@ class Time:
 
     def print_time(self):
         s = (
-            f"{time.hour:02d}:"
-            f"{time.minute:02d}:"
-            f"{time.second:02d}"
+            f"{self.hour:02d}:"
+            f"{self.minute:02d}:"
+            f"{self.second:02d}"
         )
         print(s)
 
@@ -600,9 +602,9 @@ class Time:
 
     def __str__(self):
         return (
-            f"{time.hour:02d}:"
-            f"{time.minute:02d}:"
-            f"{time.second:02d}"
+            f"{self.hour:02d}:"
+            f"{self.minute:02d}:"
+            f"{self.second:02d}"
         )
 
     def int_to_time(seconds):
