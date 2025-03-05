@@ -128,8 +128,7 @@ Python evaluates `total + 1` first, but `total` does **not** exist
 
 ### 1.5. Linear search
 
-- Searches through a sequence of elements 
-- Stops when it finds what it is looking for
+A computational pattern that searches through a sequence of elements  and stops when it finds what it is looking for
 
 ```python
 def uses_any(word, letters):
@@ -170,7 +169,8 @@ Each test consists of two lines
 
 For example
 1. `>>> uses_any('apple', 'xyz')` 
-2. `False` \
+2. `False` 
+
 as `apple` does not use any of `xyz` 
 
 ---
