@@ -21,6 +21,7 @@
 		- [3.1.2. Assignment 2](#312-assignment-2)
 	- [3.2. Hints](#32-hints)
 		- [3.2.1. Reading and writing files](#321-reading-and-writing-files)
+- [4. Solutions](#4-solutions)
 - [Bibliography](#bibliography)
 - [Licenses](#licenses)
 
@@ -408,6 +409,13 @@ f2.write("this is a test\n")
 f1.close()
 f2.close()
 ```
+
+## 4. Solutions
+
+| Problem                 | Program                                        | Input                                       | Output                                                  |
+| ----------------------- | ---------------------------------------------- | ------------------------------------------- | ------------------------------------------------------- |
+| [§2](#2-spelling-bee)   | [spelling_bee.py](../code/spelling_bee.py)     | [words.txt](../code/data/words.txt)         | n/a                                                     |
+| [§3](#3-text-inspector) | [text_inspector.py](../code/text_inspector.py) | [stevenson.txt](../code/data/stevenson.txt) | [stevenson_clean.txt](../code/data/stevenson_clean.txt) |
 
 ## Bibliography
 
