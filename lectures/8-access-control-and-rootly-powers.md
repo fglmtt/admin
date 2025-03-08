@@ -17,8 +17,9 @@
         - [2.3.2. The sudoers file](#232-the-sudoers-file)
         - [2.3.3. Permission precedence](#233-permission-precedence)
         - [2.3.4. Editing permissions](#234-editing-permissions)
-    - [2.4. Pros and cons](#24-pros-and-cons)
-    - [2.5. Final remarks](#25-final-remarks)
+    - [2.4. Final remarks](#24-final-remarks)
+        - [2.4.1. Pros and cons of sudo](#241-pros-and-cons-of-sudo)
+        - [2.4.2. Best practices](#242-best-practices)
 - [Glossary](#glossary)
 - [Bibliography](#bibliography)
 - [Licenses](#licenses)
@@ -540,20 +541,22 @@ User ubuntu may run the following commands on admin:
     (ALL) NOPASSWD: ALL
 ```
 
-### 2.4. Pros and cons
+### 2.4. Final remarks
+
+#### 2.4.1. Pros and cons of sudo
 
 | Pro                                                                                          | Con                                                                                             |
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | Command logging                                                                              | Command logging can be easily subverted (`sudo su`, although `sudo su`would at lest be logged)  |
 | Users can do stuff that requires root privileges without having unlimited root privileges    |                                                                                                 |
 | Users do not have to know the `root` password because `sudo` prompts for the user's password | Any breach in the security of a sudoer's personal account can be equivalent to breaching `root` |
-| `sudo` is faster of either `su` or `root` login                                              |                                                                                                 |
+| Faster of both `su` and `root` login                                                         |                                                                                                 |
 | Privileges can be revoked without changing the `root`password                                |                                                                                                 |
 | A list of all users with `root` privileges is maintained                                     |                                                                                                 |
 | Lower chance of a `root` shell left unattended                                               |                                                                                                 |
 | A single file can control access for an entire network                                       |                                                                                                 |
 
-### 2.5. Final remarks
+#### 2.4.2. Best practices
 
 As a rule of thumb
 - Forbid `root` login
