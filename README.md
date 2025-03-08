@@ -56,19 +56,18 @@ Time available: 2 hours and 30 minutes
 | 4   | [Python: Advanced stuff](lectures/4-python-advanced-stuff.md)                                    |
 | 5   | [Python: Advanced stuff - Lab](lectures/5-python-advanced-stuff-lab.md)                          |
 | 6   | [Booting and system management daemons](lectures/6-booting-and-system-management-daemons.md)<br> |
-| 7   | Access control and rootly powers<br>Process control<br>Filesystem                                |
-| 8   | Software installation management<br>User management                                              |
-| 9   | Logging<br>Drivers and the kernel                                                                |
-| 10  | TCP/IP networking<br>DNS: The domain name system                                                 |
-| 11  | Web hosting                                                                                      |
-| 12  | Configuration management                                                                         |
-| 13  | Storage<br>The network file system                                                               |
-| 14  | Virtualization<br>Containers                                                                     |
-| 15  | Security<br>Cryptography                                                                         |
-| 16  | SSH<br>Firewall                                                                                  |
-| 17  | VPN<br>Certificates                                                                              |
-| 18  | Monitoring<br>Performance analysis                                                               |
-| 19  | Mock exam                                                                                        |
+| 7   | Booting and system management daemons - Lab                                                      |
+| 8   | [Access control and rootly powers](lectures/8-access-control-and-rootly-powers.md)<br>           |
+|     | Process control<br>Filesystem<br>                                                                |
+|     | Software installation management<br>User management                                              |
+|     | TCP/IP networking<br>DNS: The domain name system                                                 |
+|     | Web hosting                                                                                      |
+|     | Configuration management                                                                         |
+|     | Security<br>Cryptography                                                                         |
+|     | SSH<br>Firewall                                                                                  |
+|     | VPN<br>Certificates                                                                              |
+|     | Monitoring<br>Performance analysis                                                               |
+|     | Mock exam                                                                                        |
 
 ## Credits
 
