@@ -378,16 +378,29 @@ For example, in the case of a service, the unit file tells `systemd`
 
 ---
 
-`systemd` reads unit files from several directories
+`systemd` reads unit files from [several directories](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#Unit%20File%20Load%20Path)
 
-| Directory                 | Meaning                                                                      |
-| ------------------------- | ---------------------------------------------------------------------------- |
-| `/usr/lib/systemd/system` | Where system units (e.g., packages) deposit unit files                       |
-| `/etc/systemd/system`     | System configuration directory (where to put customization for system units) |
-| `/usr/lib/systemd/user`   | Where user units (e.g., applications) deposit unit files                     |
-| `/etc/systemd/user`       | User configuration directory (where to put customization for user units)     |
+| Directory                    | Meaning                                       |
+| ---------------------------- | --------------------------------------------- |
+| `/usr/lib/systemd/system`    | System units installed by the package manager |
+| `/etc/systemd/system`        | System units created by the administrator     |
+| `/usr/lib/systemd/user`      | User units installed by the package manager   |
+| `/etc/systemd/user`          | User units created by the administrator       |
+| `$HOME/.config/systemd/user` | User configuration                            |
 
-Files in `/etc` have the highest priority
+- Files in `/etc` have the highest priority
+
+---
+
+In addition to the `systemd` system-wide instance, which
+- Has `PID 1`
+- Controls system units
+
+There are also `systemd` user instances. A user instance
+- Is started (stopped) as the user logs in (logs off)
+- Controls user units
+
+The system-wide instance is managed by the administrators, while a user instance is managed by either the user or an administrator
 
 ---
 
@@ -521,7 +534,6 @@ As a rule of thumb
 - Use `systemctl disable` to turn off `enabled` units
 - Use `systemctl mask` to turn off `static` units
 
-
 #### 2.2.3. Showing unit statuses
 
 `status` shows runtime status information
@@ -542,7 +554,7 @@ $ systemctl status rsync.service
 ---
 
 ```shell
-ubuntu@admin:~$ systemctl status systemd-journald.service -l
+$ systemctl status systemd-journald.service -l
 ● systemd-journald.service - Journal Service
      Loaded: loaded (/usr/lib/systemd/system/systemd-journald.service; static)
      Active: active (running) since Wed 2025-02-26 06:29:29 UTC; 5 days ago
