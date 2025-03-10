@@ -48,26 +48,26 @@ Time available: 2 hours and 30 minutes
 
 ## Lectures
 
-| #   | Title                                                                                            |
-| --- | ------------------------------------------------------------------------------------------------ |
-| 1   | [Python: Basic stuff - Pt. 1](lectures/1-python-basic-stuff-pt1.md)                              |
-| 2   | [Python: Basic stuff - Pt. 2](lectures/2-python-basic-stuff-pt2.md)                              |
-| 3   | [Python: Basic stuff - Lab](lectures/3-python-basic-stuff-lab.md)                                |
-| 4   | [Python: Advanced stuff](lectures/4-python-advanced-stuff.md)                                    |
-| 5   | [Python: Advanced stuff - Lab](lectures/5-python-advanced-stuff-lab.md)                          |
-| 6   | [Booting and system management daemons](lectures/6-booting-and-system-management-daemons.md)<br> |
-| 7   | Booting and system management daemons - Lab                                                      |
-| 8   | [Access control and rootly powers](lectures/8-access-control-and-rootly-powers.md)<br>           |
-|     | Process control<br>Filesystem<br>                                                                |
-|     | Software installation management<br>User management                                              |
-|     | TCP/IP networking<br>DNS: The domain name system                                                 |
-|     | Web hosting                                                                                      |
-|     | Configuration management                                                                         |
-|     | Security<br>Cryptography                                                                         |
-|     | SSH<br>Firewall                                                                                  |
-|     | VPN<br>Certificates                                                                              |
-|     | Monitoring<br>Performance analysis                                                               |
-|     | Mock exam                                                                                        |
+| #   | Title                                                                                                  |
+| --- | ------------------------------------------------------------------------------------------------------ |
+| 1   | [Python: Basic stuff - Pt. 1](lectures/1-python-basic-stuff-pt1.md)                                    |
+| 2   | [Python: Basic stuff - Pt. 2](lectures/2-python-basic-stuff-pt2.md)                                    |
+| 3   | [Python: Basic stuff - Lab](lectures/3-python-basic-stuff-lab.md)                                      |
+| 4   | [Python: Advanced stuff](lectures/4-python-advanced-stuff.md)                                          |
+| 5   | [Python: Advanced stuff - Lab](lectures/5-python-advanced-stuff-lab.md)                                |
+| 6   | [Booting and system management daemons](lectures/6-booting-and-system-management-daemons.md)<br>       |
+| 7   | [Booting and system management daemons - Lab](lectures/7-booting-and-system-management-daemons-lab.md) |
+| 8   | [Access control and rootly powers](lectures/8-access-control-and-rootly-powers.md)<br>                 |
+|     | Process control<br>Filesystem<br>                                                                      |
+|     | Software installation management<br>User management                                                    |
+|     | TCP/IP networking<br>DNS: The domain name system                                                       |
+|     | Web hosting                                                                                            |
+|     | Configuration management                                                                               |
+|     | Security<br>Cryptography                                                                               |
+|     | SSH<br>Firewall                                                                                        |
+|     | VPN<br>Certificates                                                                                    |
+|     | Monitoring<br>Performance analysis                                                                     |
+|     | Mock exam                                                                                              |
 
 ## Credits
 
