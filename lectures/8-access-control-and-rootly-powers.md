@@ -57,7 +57,7 @@ $ ls -l hello.txt
 
 ---
 
-`hello.txt` is owned by user `ubuntu` and group `ubuntu`
+`hello.txt` is owned by user `ubuntu` (first) and group `ubuntu` (second)
 
 | Permission bits | Meaning                                             |
 | --------------- | --------------------------------------------------- |
@@ -547,7 +547,7 @@ User ubuntu may run the following commands on admin:
 
 | Pro                                                                                          | Con                                                                                             |
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Command logging                                                                              | Command logging can be easily subverted (`sudo su`, although `sudo su`would at lest be logged)  |
+| Command logging                                                                              | Command logging can be easily subverted (`sudo su`, although `sudo su`would at least be logged) |
 | Users can do stuff that requires root privileges without having unlimited root privileges    |                                                                                                 |
 | Users do not have to know the `root` password because `sudo` prompts for the user's password | Any breach in the security of a sudoer's personal account can be equivalent to breaching `root` |
 | Faster of both `su` and `root` login                                                         |                                                                                                 |
