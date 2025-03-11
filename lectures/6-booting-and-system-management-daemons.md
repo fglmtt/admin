@@ -230,9 +230,12 @@ block-beta
     d["Device drivers"]:2
     space:3
     space:5
+	h["Hardware control"]:5
+	space:5
+	space:5
 	Hardware:5
 	
-    u -- "System calls (from user space to kernel space)" --> s
+    u -- "System calls (from user to kernel space)" --> s
     s --> u
     s --> f
     f --> s
@@ -240,12 +243,14 @@ block-beta
     p --> s
     p --> f
     f --> p
-    f -- "Buffer cache" --> d
+    f -- "Communication may be mediated by a buffer cache" --> d
     d --> f
-    p --> Hardware
-    Hardware --> p
-    d --> Hardware
-    Hardware --> d
+    p -- "Interrupts and machine communication" --> h
+    h --> p
+    d -- "Interrupts and machine communication" --> h
+    h --> d
+    h -- "From kernel to hardware space" --> Hardware
+    Hardware --> h
 ```
 
 #### 1.3.1. Kernel parameters
