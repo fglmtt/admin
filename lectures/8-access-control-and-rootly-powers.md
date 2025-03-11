@@ -572,24 +572,24 @@ About `sudo`
 
 | Term                      | Meaning                                                                                                                                                                                            |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Access control            | How the kernel and its delegates make security-related decisions                                                                                                                                   |
+| Access control model      | A model that determines who can access what and how                                                                                                                                                |
+| Group                     | A collection of users with shared permissions                                                                                                                                                      |
 | Grup identifier (GID)     | A value that identifies a group                                                                                                                                                                    |
 | Network file system (NFS) | A distributed filesystem protocol originally developed by Sun Microsystems in 1984                                                                                                                 |
-| Salt                      | A random value provided as an additional input to a one-way function before hashing                                                                                                                |
-| UNIX                      | A family of OSes that derive from the original AT&T Unix, whose development started in 1969 at Bell Labs by Thompson, K. et al.                                                                    |
-| User identifier (UID)     | A value that identifies a user                                                                                                                                                                     |
-| Access control            | How the kernel and its delegates make security-related decisions                                                                                                                                   |
-| Security                  | How to set up a system or network to minimize the chance of unwelcome access by intruders                                                                                                          |
-| Access control model      | A model that determines who can access what and how                                                                                                                                                |
-| User                      | An individual account with assigned permissions                                                                                                                                                    |
-| Group                     | A collection of users with shared permissions                                                                                                                                                      |
-| Owner                     | The user who owns the object. Typically, the owner is the user who created the object                                                                                                              |
 | Object                    | A resource that access control applies to                                                                                                                                                          |
-| `root` (aka superuser)    | A special account that can act as the owner of any object                                                                                                                                          |
-| Process signal            | A notification sent to a process that some condition has occurred                                                                                                                                  |
-| Process scheduling        | A mechanism of the OS that decides which process runs at a certain point in time                                                                                                                   |
-| Permission bits           | Nine bits that define who can access a file or directory and what actions they can perform                                                                                                         |
+| Owner                     | The user who owns the object. Typically, the owner is the user who created the object                                                                                                              |
 | `PATH`                    | An environment variable that lists directories where executable files are located. When a user prompts a command, the shell searches these directories to locate the corresponding executable file |
+| Permission bits           | Nine bits that define who can access a file or directory and what actions they can perform                                                                                                         |
+| Process scheduling        | A mechanism of the OS that decides which process runs at a certain point in time                                                                                                                   |
+| Process signal            | A notification sent to a process that some condition has occurred                                                                                                                                  |
+| `root` (aka superuser)    | A special account that can act as the owner of any object                                                                                                                                          |
+| Salt                      | A random value provided as an additional input to a one-way function before hashing                                                                                                                |
+| Security                  | How to set up a system or network to minimize the chance of unwelcome access by intruders                                                                                                          |
 | The sudoers file          | A file whose path is `/etc/sudoers` that contains the `sudo` configuration                                                                                                                         |
+| UNIX                      | A family of OSes that derive from the original AT&T Unix, whose development started in 1969 at Bell Labs by Thompson, K. et al.                                                                    |
+| User                      | An individual account with assigned permissions                                                                                                                                                    |
+| User identifier (UID)     | A value that identifies a user                                                                                                                                                                     |
 
 ## Bibliography 
 
