@@ -216,18 +216,36 @@ A computer program at the core of an operating system that
 
 ```mermaid
 block-beta
-	columns 3
-	Applications:3
-	space:3
-	space:3
-    s["System call interface"]:3
-    k["Kernel subsystems and modules"]:3
-    d["Device drivers"]:3
+	columns 5
+	u["User programs"]:5
+	space:5
+	space:5
+    s["System call interface"]:5
+    space:5
+    f["File subsystem"]:2
+    space:1
+    p["Process control subsystem"]:2
+    space:5
+    space:5
+    d["Device drivers"]:2
     space:3
-	Hardware:3
+    space:5
+	Hardware:5
 	
-    Applications -- "System calls (from user space to kernel space)" --> s
+    u -- "System calls (from user space to kernel space)" --> s
+    s --> u
+    s --> f
+    f --> s
+    s --> p
+    p --> s
+    p --> f
+    f --> p
+    f -- "Buffer cache" --> d
+    d --> f
+    p --> Hardware
+    Hardware --> p
     d --> Hardware
+    Hardware --> d
 ```
 
 #### 1.3.1. Kernel parameters
