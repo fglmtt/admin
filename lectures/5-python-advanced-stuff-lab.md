@@ -104,7 +104,7 @@ def add_path(path, d):
 
 #### 2.1.3. Assignment 3
 
-Write a version of `walk` (see [here](4-python-advanced-stuff.md#14-walking-directories))  called `walk_images` that takes a directory and walks through the files in [this](../code/data/photos) directory and its subdirectories. For each file, it should use `is_image` to check whether it's an image file and `add_path` to add it to the `defaultdic`. Here's an outline of the function.
+Write a version of `walk` (see [here](4-python-advanced-stuff.md#14-walking-directories))  called `walk_images` that takes a directory and walks through the files in [this](../code/data/photos) directory and its subdirectories. For each file, it should use `is_image` to check whether it's an image file and `add_path` to add it to the `defaultdict`. Here's an outline of the function.
 
 ```python
 def walk_images(dirname, d):
