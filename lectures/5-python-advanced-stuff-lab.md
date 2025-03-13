@@ -19,6 +19,7 @@
 		- [3.1.1. Assignment 1](#311-assignment-1)
 		- [3.1.2. Assignment 2](#312-assignment-2)
 		- [3.1.3. Assignment 3](#313-assignment-3)
+- [4. Solutions](#4-solutions)
 - [Bibliography](#bibliography)
 - [Licenses](#licenses)
 
@@ -178,6 +179,13 @@ Make `Date` objects [totally ordered](4-python-advanced-stuff.md#42-totally-orde
 2. `1933-06-22 <= 2000-01-01` 
 3. `1933-06-22 == 1933-06-22`
 4. The method `sort` works correctly on a list of `Date` objects
+
+## 4. Solutions
+
+| Problem                   | Program                                            | Input                         |
+| ------------------------- | -------------------------------------------------- | ----------------------------- |
+| [§2](#2-duplicate-finder) | [duplicate_finder.py](../code/duplicate_finder.py) | [photos](../code/data/photos) |
+| [§3](#3-date-object)      | [date.py](../code/date.py)                         | n/a                           |
 
 ## Bibliography
 
