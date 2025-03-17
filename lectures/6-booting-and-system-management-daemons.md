@@ -103,7 +103,7 @@ As the first-stage boot loader is less than 512 bytes, it is not sophisticated e
 ---
 
 Option 1
-1. Reads the the disk-partitioning table
+1. Reads the disk-partitioning table
 2. Identifies the disk partition marked as "active"
 3. Executes the second-stage boot loader
 
@@ -332,7 +332,7 @@ The kernel starts the system management daemon with `PID 1`
 
 The goal of the system management daemon is to make sure the system runs the right set of services and daemons at any given time
 
-This depends on the mode in which the system should be operating (see [here](#132-kernel-modes))
+This depends on the mode in which the system should be operating (see [§1.3.2](#132-kernel-operating-modes))
 
 ---
 
@@ -411,7 +411,7 @@ For example, in the case of a service, the unit file tells `systemd`
 | `/etc/systemd/user`          | User units created by the administrator       |
 | `$HOME/.config/systemd/user` | User configuration                            |
 
-- Files in `/etc` have the highest priority
+Files in `/etc` have the highest priority
 
 ---
 
@@ -525,7 +525,7 @@ apparmor.service   enabled         enabled
 | `STATE`     | Unit file state                                  |
 | `PRESET`    | Default unit file state as defined by the system |
 
-`apparmor.service` starts on boot (`STATE=enabled`) as defined by the system (`PRESET=enable`)
+`apparmor.service` starts on boot (`STATE=enabled`) as defined by the system (`PRESET=enabled`)
 
 ---
 
