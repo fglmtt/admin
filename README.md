@@ -58,16 +58,16 @@ Time available: 2 hours and 30 minutes
 | 6   | [Booting and system management daemons](lectures/6-booting-and-system-management-daemons.md)<br>       |
 | 7   | [Booting and system management daemons - Lab](lectures/7-booting-and-system-management-daemons-lab.md) |
 | 8   | [Access control and rootly powers](lectures/8-access-control-and-rootly-powers.md)<br>                 |
-|     | Process control<br>Filesystem<br>                                                                      |
-|     | Software installation management<br>User management                                                    |
-|     | TCP/IP networking<br>DNS: The domain name system                                                       |
-|     | Web hosting                                                                                            |
-|     | Configuration management                                                                               |
-|     | Security<br>Cryptography                                                                               |
-|     | SSH<br>Firewall                                                                                        |
-|     | VPN<br>Certificates                                                                                    |
-|     | Monitoring<br>Performance analysis                                                                     |
-|     | Mock exam                                                                                              |
+| 9   | [Process control](lectures/9-process-control.md)<br>                                                   |
+| 10  | The filesystem                                                                                         |
+| 11  | User management                                                                                        |
+| 12  | Networking                                                                                             |
+| 13  | Web hosting                                                                                            |
+| 14  | Security                                                                                               |
+| 15  | Configuration management - Pt. 1                                                                       |
+| 16  | Configuration management - Pt. 2                                                                       |
+| 17  | Configuration management - Lab                                                                         |
+| 18  | Mock exam                                                                                              |
 
 ## Credits
 
