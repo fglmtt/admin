@@ -714,8 +714,10 @@ When the system transitions to a new state, `systemd`
 
 | Author                   | Title                                                                                                                       | Year |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---- |
-| Nemeth, E. et al.        | [UNIX and Linux System Administration Handbook](https://www.admin.com/)                                                     | 2018 |
+| Bach, M.                 | [The Design of the UNIX Operating System](https://dl.acm.org/doi/10.5555/8570)                                              | 1986 |
+| Kerrisk, M.              | [The Linux Programming Interface](https://man7.org/tlpi)                                                                    | 2010 |
 | Stevens, R. and Rago, S. | [Advanced Programming in the UNIX Environment](https://www.oreilly.com/library/view/advanced-programming-in/9780321638014/) | 2013 |
+| Nemeth, E. et al.        | [UNIX and Linux System Administration Handbook](https://www.admin.com/)                                                     | 2018 |
 | Community                | [Wikipedia](https://en.wikipedia.org/)                                                                                      | 2025 |
 
 ## Licenses
