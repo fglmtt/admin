@@ -568,29 +568,6 @@ write(1, "\n", 1)                       = 1
 7. `write`: Write `"1742205790.180012 - 1.0"` (`23` bytes) to STDOUT (file descriptor `1`). Return `23`, which is the number of bytes actually written
 8. `write`: Write `"\n"` (`1` byte) to STDOUT (file descriptor `1`). Return `23`, which is the number of bytes actually written
 
-## Glossary
-
-| Term                                     | Meaning                                                                                                                                                                             |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Address space (or virtual address space) | The range of memory addresses that the kernel makes available for a process                                                                                                         |
-| Control group                            | A Linux feature that allows processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored                          |
-| Core dump                                | A file containing the address space (memory) of a process when the process terminates unexpectedly                                                                                  |
-| File descriptor                          | A reference to an open file description                                                                                                                                             |
-| Namespace                                | A namespace wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of that resource |
-| Open file description                    | An entry in the system-wide table of open files that records the file offset and the file status flags                                                                              |
-| Orphan                                   | A process that has not terminated yet, but whose parent has already terminated                                                                                                      |
-| Parent process identifier (PPID)         | The PID of the parent from which a process was cloned                                                                                                                               |
-| Process                                  | An abstraction that represents a program in execution                                                                                                                               |
-| Process data structures                  | Data structures maintained by the kernel that provide information about a process                                                                                                   |
-| Process group                            | A collection of one or more processes that can receive signals from the same terminal                                                                                               |
-| Process identifier (PID)                 | Unique identification number assigned by the kernel to a process                                                                                                                    |
-| Session                                  | A collection of one or more process groups                                                                                                                                          |
-| Session leader                           | The first process in a session                                                                                                                                                      |
-| Swapping                                 | When the kernel moves a process from RAM to disk                                                                                                                                    |
-| Symbolic link                            | A special type of file whose content is a string that is the pathname of another file, i.e., the file to which the link refers                                                      |
-| Thread                                   | An execution context within a process                                                                                                                                               |
-| Zombie                                   | A process that has terminated, but whose parent has not yet waited for it                                                                                                           |
-
 ## 7. Periodic processes
 
 It's often useful to have a program executed without any human intervention on a predefined schedule. The traditional tool for running programs on a predefined schedule is the `cron` daemon. `cron` starts when the system boots and runs as long as the system is up
@@ -733,6 +710,29 @@ ExecStart=systemd-tmpfiles --clean
 
 [...]
 ```
+
+## Glossary
+
+| Term                                     | Meaning                                                                                                                                                                             |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Address space (or virtual address space) | The range of memory addresses that the kernel makes available for a process                                                                                                         |
+| Control group                            | A Linux feature that allows processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored                          |
+| Core dump                                | A file containing the address space (memory) of a process when the process terminates unexpectedly                                                                                  |
+| File descriptor                          | A reference to an open file description                                                                                                                                             |
+| Namespace                                | A namespace wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of that resource |
+| Open file description                    | An entry in the system-wide table of open files that records the file offset and the file status flags                                                                              |
+| Orphan                                   | A process that has not terminated yet, but whose parent has already terminated                                                                                                      |
+| Parent process identifier (PPID)         | The PID of the parent from which a process was cloned                                                                                                                               |
+| Process                                  | An abstraction that represents a program in execution                                                                                                                               |
+| Process data structures                  | Data structures maintained by the kernel that provide information about a process                                                                                                   |
+| Process group                            | A collection of one or more processes that can receive signals from the same terminal                                                                                               |
+| Process identifier (PID)                 | Unique identification number assigned by the kernel to a process                                                                                                                    |
+| Session                                  | A collection of one or more process groups                                                                                                                                          |
+| Session leader                           | The first process in a session                                                                                                                                                      |
+| Swapping                                 | When the kernel moves a process from RAM to disk                                                                                                                                    |
+| Symbolic link                            | A special type of file whose content is a string that is the pathname of another file, i.e., the file to which the link refers                                                      |
+| Thread                                   | An execution context within a process                                                                                                                                               |
+| Zombie                                   | A process that has terminated, but whose parent has not yet waited for it                                                                                                           |
 
 ## Bibliography 
 
