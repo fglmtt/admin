@@ -31,7 +31,7 @@
 	3. [Python: Advanced stuff](4-python-advanced-stuff.md)
 3. Complete the previous assignments
 	1. [Python: Basic stuff - Lab](3-python-basic-stuff-lab.md)
-	2. [Python: Advanced suff - Lab](5-python-advanced-stuff-lab.md)
+	2. [Python: Advanced stuff - Lab](5-python-advanced-stuff-lab.md)
 4. Review [system and service management in Linux](6-booting-and-system-management-daemons.md#2-system-and-service-management-in-linux)
 
 ### 1.2. Hints
@@ -66,7 +66,7 @@ $ python cpu_logger.py --interval 5
 
 #### 2.1.1. Assignment 1
 
-Create a service unite file called `cpu-logger.service`. Check that `systemd` has installed it with the following command
+Create a service unit file called `cpu-logger.service`. Check that `systemd` has installed it with the following command
 
 ```shell
 $ systemctl --user list-unit-files --type=service | grep cpu-logger
