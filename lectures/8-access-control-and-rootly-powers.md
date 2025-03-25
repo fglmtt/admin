@@ -152,12 +152,18 @@ Typically
 ---
 
 ```shell
+$ id
+uid=1000(ubuntu) gid=1000(ubuntu) groups= [...]
 $ which sleep
 /usr/bin/sleep
 $ ls -l /usr/bin/sleep
--rwxr-xr-x 1 root root 35336 Apr  5  2024 /usr/bin/sleep
-$ ps -o pid,user,group,ruid,rgid,euid,egid,cmd | grep sleep
-   4468 ubuntu   ubuntu    1000  1000  1000  1000 sleep 5
+-rwxr-xr-x [...] root root [...] /usr/bin/sleep
+$ sleep 10 &
+[1] 14766
+$ ps -o pid,ruid,euid,suid,cmd | grep sleep
+14766  1000  1000  1000  sleep 10
+$ ps -o pid,rgid,egid,sgid,cmd | grep sleep
+14766  1000  1000  1000  sleep 10
 ```
 
 #### 1.2.3. The root account
@@ -176,7 +182,7 @@ Login passwords are stored in `/etc/shadow`
 
 ```shell
 ls -l /etc/shadow
--rw-r----- 1 root shadow 842 Feb  4 10:21 /etc/shadow
+-rw-r----- 1 root shadow [...] /etc/shadow
 ```
 
 - `root` can read and write, but not execute (`rw-`)
@@ -187,7 +193,7 @@ ls -l /etc/shadow
 
 ```shell
 $ ls -l $(which passwd)
--rwsr-xr-x 1 root root 64152 Apr  9  2024 /usr/bin/passwd
+-rwsr-xr-x 1 root root [...] /usr/bin/passwd
 ```
 
 - `root` can read, write, and execute (`rws`)
@@ -253,7 +259,7 @@ True
 
 ### 2.1. Root account login
 
-Most systems let users log in to the `root` account. This is a bad idea
+Most systems let users log in as `root` . This is a bad idea
 - Root logins leave no record of what operations were performed as `root`
 - If several people can login as `root`, there is no way to say who did what
 
@@ -271,7 +277,7 @@ root:*:19882:0:99999:7:::
 The `su` command let users change identity
 - Without any argument, `su` prompts for the `root` password and then starts a root shell. Type `exit` or `Ctrl + D` to exit from the root shell
 
-`su` is a better way to become `root` than log in. Although `su` does not record the commands executed as `root`, `su` creates a log entry that states who became root and when
+`su` is a better way to become `root` than log in. Although `su` does not record the commands executed as `root`, `su` creates a log entry that states who became `root` and when
 
 ---
 
@@ -315,7 +321,7 @@ The `sudo` command takes as its argument a command line to be executed as `root`
 
 ```shell
 $ ls -l /etc/shadow
--rw-r----- 1 root shadow 914 Mar  4 17:01 /etc/shadow
+-rw-r----- [...] root shadow [...] /etc/shadow
 $ whoami
 ubuntu
 $ cat /etc/shadow | grep ubuntu
@@ -416,7 +422,7 @@ Each permission line includes information about:
 
 The "allow all commands except..." type of permission is doomed to fail
 
-An easy way to circumvent the permission that allows `lynda` to run any command except `SHELL` as any user on any host is the following
+An easy way to circumvent the permission that allows `lynda` to run any command except `SHELLS` as any user on any host is the following
 
 ```shell
 $ cp /bin/sh /tmp/sh
@@ -439,7 +445,7 @@ User_Alias   MYSQL_ADMINS = alice, bob
 
 %wheel       ALL = (ALL) ALL
 MYSQL_ADMINS ALL = (mysql) NOPASSWD: ALL
-ADMINS       ALL = (ALL) NOPASSWD: /usr/sbin/logrotate
+ADMINS       ALL = (ALL) NOPASSWD: /sbin/dump
 ```
 
 `alice` must only enter their password for any command that is not explicitly covered by a `NOPASSWD` permission line
@@ -452,7 +458,7 @@ Suppose the permission lines are reversed
 User_Alias   ADMINS = alice, bob, charles
 User_Alias   MYSQL_ADMINS = alice, bob
 
-ADMINS       ALL = (ALL) NOPASSWD: /usr/sbin/logrotate
+ADMINS       ALL = (ALL) NOPASSWD: /sbin/dump
 MYSQL_ADMINS ALL = (mysql) NOPASSWD: ALL
 %wheel       ALL = (ALL) ALL
 ```
@@ -469,13 +475,13 @@ Always edit `/etc/sudoers` with the `visudo` command, which
 $ sudo update-alternatives --config editor
 There are 4 choices for the alternative editor (providing /usr/bin/editor).
 
-  Selection    Path                Priority   Status
-------------------------------------------------------------
-  0            /bin/nano            40        auto mode
-  1            /bin/ed             -100       manual mode
-  2            /bin/nano            40        manual mode
-* 3            /usr/bin/vim.basic   30        manual mode
-  4            /usr/bin/vim.tiny    15        manual mode
+Selection  Path               Priority   Status
+-------------------------------------------------
+0          /bin/nano          40        auto mode
+1          /bin/ed            -100      manual mode
+2          /bin/nano          40        manual mode
+* 3        /usr/bin/vim.basic 30        manual mode
+4          /usr/bin/vim.tiny  15        manual mode
 
 Press <enter> to keep the current choice[*], or type selection number:
 ```
@@ -490,7 +496,7 @@ Defaults        mail_badpass
 Defaults        secure_path="/usr/local/sbin: [...]"
 
 root    ALL=(ALL:ALL) ALL
-%admin ALL=(ALL) ALL
+%admin  ALL=(ALL) ALL
 %sudo   ALL=(ALL:ALL) ALL
 
 @includedir /etc/sudoers.d
