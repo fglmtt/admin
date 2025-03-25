@@ -145,7 +145,7 @@ Mar 10 22:16:08 admin python[817]: 1741644968.6842127 - 0.6
 $ pip install <package-name>
 ```
 
-A common practice is to list project dependencies in a file called `requirements.txt`, which is located in the project folder. For example
+A common practice is to list project dependencies in a file called `requirements.txt`, which is located in the project directory. For example
 
 ```shell
 $ cd <path-to-project>
@@ -180,7 +180,7 @@ To deactivate a virtual environment
 $ deactivate
 ```
 
-Fundamentally, a virtual environment is just a folder. To delete all the installed packages
+Fundamentally, a virtual environment is just a directory. To delete all the installed packages
 
 ```shell
 $ rm -r .venv
