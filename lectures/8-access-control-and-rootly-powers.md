@@ -328,7 +328,7 @@ $ cat /etc/shadow | grep ubuntu
 cat: /etc/shadow: Permission denied
 $ sudo cat /etc/shadow | grep ubuntu
 ubuntu:$y$j9T$ [...]:0:99999:7:::
-$ grep sudo /var/log/auth.log | grep cat | tail -n 1
+$ sudo cat /var/log/auth.log | grep cat | tail -n 1
 2025-03-05T13:38:03.810850+00:00 admin sudo:   ubuntu : TTY=pts/0 ; PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
 ```
 
