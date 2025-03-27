@@ -1,0 +1,11 @@
+[Unit]
+Description=CPU logger service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/cpu-logger
+ExecStart=%h/cpu-logger/.venv/bin/python app.py --interval 5
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

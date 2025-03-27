@@ -18,6 +18,7 @@
         - [2.2.2. Command-line argument parsing](#222-command-line-argument-parsing)
         - [2.2.3. Unit files and where to find them](#223-unit-files-and-where-to-find-them)
         - [2.2.4. How to control a systemd user instance](#224-how-to-control-a-systemd-user-instance)
+- [3. Solutions](#3-solutions)
 - [Licenses](#licenses)
 
 ## 1. Get started
@@ -205,6 +206,12 @@ Just append the `--user` option to the commands listed [here](6-booting-and-syst
 ```shell
 $ systemctl --user list-units
 ```
+
+## 3. Solutions
+
+| Problem             | Program                             | Requirements                                            | Unit file                                                   |
+| ------------------- | ----------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------- |
+| [§2](#2-cpu-logger) | [app.py](../code/cpu-logger/app.py) | [requirements.txt](../code/cpu-logger/requirements.txt) | [cpu-logger.service](../code/cpu-logger/cpu-logger.service) |
 
 ## Licenses
 
