@@ -586,7 +586,7 @@ write(1, "\n", 1)                       = 1
 5. `read`: Read from `3` up to `32768` bytes. `"cpu  6421 1370 6067 13140802 862"...` is the actual content being read. Return `780`, which is the number of bytes actually read
 6. `close`: Close file descriptor `3`. Return `0`, which means success
 7. `write`: Write `"1742205790.180012 - 1.0"` (`23` bytes) to STDOUT (file descriptor `1`). Return `23`, which is the number of bytes actually written
-8. `write`: Write `"\n"` (`1` byte) to STDOUT (file descriptor `1`). Return `23`, which is the number of bytes actually written
+8. `write`: Write `"\n"` (`1` byte) to STDOUT (file descriptor `1`). Return `1`, which is the number of bytes actually written
 
 ## 7. Periodic processes
 
@@ -744,7 +744,7 @@ ExecStart=systemd-tmpfiles --clean
 | Namespace                                | A namespace wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of that resource |
 | Open file description                    | An entry in the system-wide table of open files that records the file offset and the file status flags                                                                              |
 | Orphan                                   | A process that has not terminated yet, but whose parent has already terminated                                                                                                      |
-| Parent process identifier (PPID)         | The PID of the parent from which a process was cloned                                                                                                                               |
+| Parent process identifier (PPID)         | The PID of the parent from which a process was forked                                                                                                                               |
 | Process                                  | An abstraction that represents a program in execution                                                                                                                               |
 | Process data structures                  | Data structures maintained by the kernel that provide information about a process                                                                                                   |
 | Process group                            | A collection of one or more processes that can receive signals from the same terminal                                                                                               |
