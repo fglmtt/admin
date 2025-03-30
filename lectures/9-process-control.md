@@ -38,11 +38,11 @@ A process represents a running program. A process consists of
 
 The address space is the range of memory addresses that the kernel makes available for a process
 
-| Segment | Description                                                                                                                |
-| ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Stack   | Where automatic variables are stored along with information  that is saved each time a function is called (grows downward) |
-| Heap    | For dynamic memory allocation (grows upward)                                                                               |
-| Code    | Where instructions live                                                                                                    |
+| Segment | Description                                                                                                               |
+| ------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Stack   | Where automatic variables are stored along with information that is saved each time a function is called (grows downward) |
+| Heap    | For dynamic memory allocation (grows upward)                                                                              |
+| Code    | Where instructions live                                                                                                   |
 
 ### 1.2. Kernel data structures
 
@@ -736,8 +736,10 @@ ExecStart=systemd-tmpfiles --clean
 | Term                                     | Meaning                                                                                                                                                                             |
 | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Address space (or virtual address space) | The range of memory addresses that the kernel makes available for a process                                                                                                         |
+| Automatic variable                       | A variable that is created when a function is called and destroyed when it returns. Automatic variables are stored on the stack                                                     |
 | Control group                            | A Linux feature that allows processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored                          |
 | Core dump                                | A file containing the address space (memory) of a process when the process terminates unexpectedly                                                                                  |
+| Dynamic variable                         | A variable whose memory is manually allocated at runtime and must be manually freed. Dynamic variables are stored on the heap                                                       |
 | File descriptor                          | A reference to an open file description                                                                                                                                             |
 | Namespace                                | A namespace wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of that resource |
 | Open file description                    | An entry in the system-wide table of open files that records the file offset and the file status flags                                                                              |
@@ -749,6 +751,7 @@ ExecStart=systemd-tmpfiles --clean
 | Process identifier (PID)                 | Unique identification number assigned by the kernel to a process                                                                                                                    |
 | Session                                  | A collection of one or more process groups                                                                                                                                          |
 | Session leader                           | The first process in a session                                                                                                                                                      |
+| Static variable                          | A variable whose lifetime is the entire run of the program. Static variables are stored in the data segment                                                                         |
 | Swapping                                 | When the kernel moves a process from RAM to disk                                                                                                                                    |
 | Symbolic link                            | A special type of file whose content is a string that is the pathname of another file, i.e., the file to which the link refers                                                      |
 | Thread                                   | An execution context within a process                                                                                                                                               |
