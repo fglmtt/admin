@@ -92,7 +92,7 @@ The PPID of a process is the PID of the parent from which it was cloned
 
 Niceness is a value that specifies how nice you are planning to be to other users of the system
 
-The scheduling priority of a process determines how much CPU time the process will receive. The algorithm that the kernel users to compute priorities takes into account
+The scheduling priority of a process determines how much CPU time the process will receive. The algorithm that the kernel uses to compute priorities takes into account
 - The amount of CPU time that a process has recently consumed
 - The length of time the process has been waiting to run
 - Niceness
@@ -192,6 +192,26 @@ parent: pid 1265, child's pid 1266
 child: pid 1266, ppid 1
 ```
 
+---
+
+```mermaid
+stateDiagram    
+    a: Asleep
+    u: Running (user)
+    k: Running (kernel)
+    r: Ready to run
+    z: Zombie
+    
+    [*] --> r: Fork
+    r --> k: Schedule
+    k --> u: Return
+    u --> k: Sys call/interrupt
+    a --> r: Wakeup
+    k --> a: Sleep
+    k --> z: Exit
+    z --> [*]: Wait
+```
+
 ### 2.2. Signals
 
 A signal is a notification sent to a process that some condition has occurred. Signals can be sent
@@ -213,20 +233,20 @@ A process can prevent signals from arriving. Specifically, a signal can be
 
 ---
 
-| #   | Name    | Description      | Default   | Catch | Block | Dump |
-| --- | ------- | ---------------- | --------- | ----- | ----- | ---- |
-| 1   | `HUP`   | Hangup           | Terminate | Yes   | Yes   | No   |
-| 2   | `INT`   | Interrupt        | Terminate | Yes   | Yes   | No   |
-| 3   | `QUIT`  | Quit             | Terminate | Yes   | Yes   | Yes  |
-| 9   | `KILL`  | Kill             | Terminate | No    | No    | No   |
-| 10  | `BUS`   | Bus error        | Terminate | Yes   | Yes   | Yes  |
-| 11  | `SEGV`  | Segm. fault      | Terminate | Yes   | Yes   | Yes  |
-| 15  | `TERM`  | Software term.   | Terminate | Yes   | Yes   | No   |
-| 17  | `STOP`  | Stop             | Stop      | No    | No    | No   |
-| 18  | `TSTP`  | Keyboard stop    | Stop      | Yes   | Yes   | No   |
-| 19  | `CONT`  | Cont. after stop | Ignore    | Yes   | No    | No   |
-| 30  | `USR1`  | User-defined 1   | Terminate | Yes   | Yes   | No   |
-| 31  | `USR2`  | User-defined 2   | Terminate | Yes   | Yes   | Nor  |
+| #   | Name   | Description      | Default   | Catch | Block | Dump |
+| --- | ------ | ---------------- | --------- | ----- | ----- | ---- |
+| 1   | `HUP`  | Hangup           | Terminate | Yes   | Yes   | No   |
+| 2   | `INT`  | Interrupt        | Terminate | Yes   | Yes   | No   |
+| 3   | `QUIT` | Quit             | Terminate | Yes   | Yes   | Yes  |
+| 9   | `KILL` | Kill             | Terminate | No    | No    | No   |
+| 10  | `BUS`  | Bus error        | Terminate | Yes   | Yes   | Yes  |
+| 11  | `SEGV` | Segm. fault      | Terminate | Yes   | Yes   | Yes  |
+| 15  | `TERM` | Software term.   | Terminate | Yes   | Yes   | No   |
+| 17  | `STOP` | Stop             | Stop      | No    | No    | No   |
+| 18  | `TSTP` | Keyboard stop    | Stop      | Yes   | Yes   | No   |
+| 19  | `CONT` | Cont. after stop | Ignore    | Yes   | No    | No   |
+| 30  | `USR1` | User-defined 1   | Terminate | Yes   | Yes   | No   |
+| 31  | `USR2` | User-defined 2   | Terminate | Yes   | Yes   | No   |
 
 ---
 
@@ -285,7 +305,7 @@ root   2  0.0  0.0     0     0 ?   S    11:22   0:00 [kthreadd]
 [...]
 ```
 
-- `a` shows all process
+- `a` shows all processes
 - `x` shows even processes without a controlling terminal
 - `u` selects the user-oriented output
 
@@ -420,7 +440,7 @@ The 3rd line provides (`%Cpu(s)`) CPU-level statistics (press `1` to switch to p
 | `0 sy`    | % of CPU time spent for processes in kernel space             |
 | `0 ni`    | % of CPU time spent for lower-than-default priority processes |
 | `99.7 id` | % of CPU time spent doing nothing (idle time)                 |
-| `0 wa`    | % of CPU time spent waiting for I/O opererations              |
+| `0 wa`    | % of CPU time spent waiting for I/O operations                |
 | `0 hi`    | % of CPU time spent handling hardware interrupts              |
 | `0 si`    | % of CPU time spent handling software interrupts              |
 | `0 st`    | % of CPU time "stolen" by the hypervisor                      |
@@ -572,13 +592,13 @@ write(1, "\n", 1)                       = 1
 
 It's often useful to have a program executed without any human intervention on a predefined schedule. The traditional tool for running programs on a predefined schedule is the `cron` daemon. `cron` starts when the system boots and runs as long as the system is up
 
-`systemd` also can also be used to run periodic processes. In fact, `systemd` includes the concept of timers, which activate a given `systemd` service on a predefined schedule
+`systemd` can also be used to run periodic processes. In fact, `systemd` includes the concept of timers, which activate a given `systemd` service on a predefined schedule
 
 Some Linux distributions have abandoned `cron` entirely in favor of `systemd`. However, most distributions continue to include `cron` and to run it by default. Unfortunately, there is no standard. Software packages add their jobs to a random system of their own choice. Always check both systems 
 
 ### 7.1. Structure of timers
 
-A `systemd` timer comprises two [unit files]((6-booting-and-system-management-daemons.md#21-units-and-unit-files) 
+A `systemd` timer comprises two [unit files](6-booting-and-system-management-daemons.md#21-units-and-unit-files) 
 - A timer unit that describes the schedule and the unit to activate
 - A service unit that specifies the details of what to run
 
