@@ -59,15 +59,12 @@ Time available: 2 hours and 30 minutes
 | 7   | [Booting and system management daemons - Lab](lectures/7-booting-and-system-management-daemons-lab.md) |
 | 8   | [Access control and rootly powers](lectures/8-access-control-and-rootly-powers.md)<br>                 |
 | 9   | [Process control](lectures/9-process-control.md)<br>                                                   |
-| 10  | The filesystem                                                                                         |
-| 11  | User management                                                                                        |
-| 12  | Networking                                                                                             |
-| 13  | Web hosting                                                                                            |
-| 14  | Security                                                                                               |
-| 15  | Configuration management - Pt. 1                                                                       |
-| 16  | Configuration management - Pt. 2                                                                       |
-| 17  | Configuration management - Lab                                                                         |
-| 18  | Mock exam                                                                                              |
+| 10  | [The filesystem](lectures/10-the-filesystem.md)                                                        |
+| 11  | Networking                                                                                             |
+| 12  | Web hosting                                                                                            |
+| 13  | Security                                                                                               |
+| 14  | Configuration management                                                                               |
+| 15  | Mock exam                                                                                              |
 
 ## Credits
 
