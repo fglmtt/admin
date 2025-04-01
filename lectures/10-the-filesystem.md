@@ -754,11 +754,11 @@ $ ls -l myscript
 $ chown root:root myscript
 chown: [...]: Operation not permitted
 $ sudo chown root:root myscript
-$ $ ls -l myscript
+$ ls -l myscript
 -rwxr-xr-x 1 root root 0 Apr  1 05:42 myscript
 $ sudo chown ubuntu:ubuntu myscript
 $ chown :adm myscript
-$ $ ls -l myscript
+$ ls -l myscript
 -rwxr-xr-x 1 ubuntu adm 0 Apr  1 05:42 myscript
 ```
 
