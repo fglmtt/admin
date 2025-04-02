@@ -360,7 +360,7 @@ Cmnd_Alias SHELLS = /bin/sh, /bin/dash, /bin/bash
 
 mark, ed PHYSICS = ALL
 herb     CS = /usr/bin/tcpdump : PHYSICS = (operator) DUMP
-lynda    ALL = (ALL) ALL
+lynda    ALL = (ALL) ALL, !SHELLS
 %wheel   ALL, !PHYSICS = NOPASSWD: WATCHDOG
 ```
 
@@ -469,7 +469,7 @@ MYSQL_ADMINS ALL = (mysql) NOPASSWD: ALL
 
 Always edit `/etc/sudoers` with the `visudo` command, which
 - Opens the file with a text editor of your choice
-- Validates the syntax of the file upon saving, this preventing configuration errors
+- Validates the syntax of the file upon saving, thus preventing configuration errors
 
 ```shell
 $ sudo update-alternatives --config editor
