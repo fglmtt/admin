@@ -61,8 +61,8 @@ Time available: 2 hours and 30 minutes
 | 9   | [Process control](lectures/9-process-control.md)<br>                                                   |
 | 10  | [The filesystem](lectures/10-the-filesystem.md)                                                        |
 | 11  | Networking                                                                                             |
-| 12  | Web hosting                                                                                            |
-| 13  | Security                                                                                               |
+| 12  | Security                                                                                               |
+| 13  | Web hosting                                                                                            |
 | 14  | Configuration management                                                                               |
 | 15  | Mock exam                                                                                              |
 
