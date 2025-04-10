@@ -48,7 +48,7 @@ The address space is the range of memory addresses that the kernel makes availab
 
 ### 1.2. Kernel data structures
 
-The set of data structures record various pieces of information about the process. Some examples are
+A set of data structures that record various pieces of information about the process. Some examples are
 - Address space map
 - Current status
 - Execution priority
@@ -235,20 +235,20 @@ A process can prevent signals from arriving. Specifically, a signal can be
 
 ---
 
-| #   | Name   | Description      | Default   | Catch | Block | Dump |
-| --- | ------ | ---------------- | --------- | ----- | ----- | ---- |
-| 1   | `HUP`  | Hangup           | Terminate | Yes   | Yes   | No   |
-| 2   | `INT`  | Interrupt        | Terminate | Yes   | Yes   | No   |
-| 3   | `QUIT` | Quit             | Terminate | Yes   | Yes   | Yes  |
-| 9   | `KILL` | Kill             | Terminate | No    | No    | No   |
-| 10  | `BUS`  | Bus error        | Terminate | Yes   | Yes   | Yes  |
-| 11  | `SEGV` | Segm. fault      | Terminate | Yes   | Yes   | Yes  |
-| 15  | `TERM` | Software term.   | Terminate | Yes   | Yes   | No   |
-| 17  | `STOP` | Stop             | Stop      | No    | No    | No   |
-| 18  | `TSTP` | Keyboard stop    | Stop      | Yes   | Yes   | No   |
-| 19  | `CONT` | Cont. after stop | Ignore    | Yes   | No    | No   |
-| 30  | `USR1` | User-defined 1   | Terminate | Yes   | Yes   | No   |
-| 31  | `USR2` | User-defined 2   | Terminate | Yes   | Yes   | No   |
+| #   | Name   | Description      | Default   | Dump | Catch | Block |
+| --- | ------ | ---------------- | --------- | ---- | ----- | ----- |
+| 1   | `HUP`  | Hangup           | Terminate | No   | Yes   | Yes   |
+| 2   | `INT`  | Interrupt        | Terminate | No   | Yes   | Yes   |
+| 3   | `QUIT` | Quit             | Terminate | Yes  | Yes   | Yes   |
+| 9   | `KILL` | Kill             | Terminate | No   | No    | No    |
+| 10  | `BUS`  | Bus error        | Terminate | Yes  | Yes   | Yes   |
+| 11  | `SEGV` | Segm. fault      | Terminate | Yes  | Yes   | Yes   |
+| 15  | `TERM` | Software term.   | Terminate | No   | Yes   | Yes   |
+| 17  | `STOP` | Stop             | Stop      | No   | No    | No    |
+| 18  | `TSTP` | Keyboard stop    | Stop      | No   | Yes   | Yes   |
+| 19  | `CONT` | Cont. after stop | Ignore    | No   | Yes   | No    |
+| 30  | `USR1` | User-defined 1   | Terminate | No   | Yes   | Yes   |
+| 31  | `USR2` | User-defined 2   | Terminate | No   | Yes   | Yes   |
 
 ---
 
