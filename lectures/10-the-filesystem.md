@@ -45,7 +45,7 @@ Modern kernels define an abstract interface that accommodates many different fil
 
 ---
 
-Some portions of the filesystem are handled by traditional disk-based implementations. The kernel support various type of disk-based implementations, such as ext4, XFS, UFS, FAT, etc.
+Some portions of the filesystem are handled by traditional disk-based implementations. The kernel support various types of disk-based implementations, such as ext4, XFS, UFS, FAT, etc.
 
 Some portions are handled by drivers within the kernel. For example, network filesystems are handled by a driver that forwards the requested operations to a server on another computer
 
@@ -108,13 +108,13 @@ The filesystem is composed of smaller chunks, which are also called filesystems.
 
 Henceforth, the term file tree will refer to the overall layout. The term filesystem will be reserved to the "branches" attached to the tree
 
-A filesystem can be anything that obeys to the proper API, from a disk partition to a network file server or a kernel component. Most kernels also provides a "loop" filesystem that let you mount individual files as if they were distinct devices 
+A filesystem can be anything that obeys to the proper API, from a disk partition to a network file server or a kernel component. Most kernels also provide a "loop" filesystem that let you mount individual files as if they were distinct devices 
 
 ### 3.1. Mounting
 
 In most situations, filesystems are attached to the tree with the `mount` command. `mount` maps a directory within the existing file tree, called the mount point, to the root of the newly attached filesystem
 
-The previous contents of the mount point become temporarily inaccessible as long as another filesystem is mounted there. However, mount points are usually empty directory
+The previous contents of the mount point become temporarily inaccessible as long as another filesystem is mounted there. However, mount points are usually empty directories
 
 ```shell
 $ mount /dev/sda4 /mnt
@@ -124,7 +124,7 @@ mounts the filesystem stored on the disk partition `/dev/sda4` under the path `/
 
 ---
 
-The `/etc/fstab` file lists the filesystems that can be mounted
+The `/etc/fstab` file lists the filesystems that can be mounted, especially automatically at boot time
 
 ```shell
 $ cat /etc/fstab
@@ -165,13 +165,13 @@ When a filesystem is busy, a good idea is to find out which processes hold refer
 
 ```shell
 $ sudo fuser -v -m /proc
-                     USER        PID ACCESS COMMAND
-/proc:               root     kernel mount /proc
-                     root          1 f.... systemd
-                     root        281 f.... systemd-journal
-                     root        641 f.... udisksd
-                     syslog      675 f.... rsyslogd
-                     ubuntu    32713 f.... systemd
+            USER        PID ACCESS COMMAND
+/proc:      root     kernel mount /proc
+            root          1 f.... systemd
+            root        281 f.... systemd-journal
+            root        641 f.... udisksd
+            syslog      675 f.... rsyslogd
+            ubuntu    32713 f.... systemd
 ```
 
 - the kernel has mounted `/proc`
@@ -257,7 +257,7 @@ In general, don't expect the actual system to conform to the master plan in ever
 | `/etc`   | Host-specific, system-wide configuration files                                                                                                                                                                                  |
 | `/home`  | User home directories                                                                                                                                                                                                           |
 | `/lib`   | Essential libraries for the binaries in `/bin` and `/sbin`                                                                                                                                                                      |
-| `/media` | Mount points for filesystems on removable media. This directories is for auto-mounted, removable devices                                                                                                                        |
+| `/media` | Mount points for filesystems on removable media. This directory is for auto-mounted, removable devices                                                                                                                          |
 | `/mnt`   | Temporarily mounted filesystems. This is for manual, short-term mounts by system administrators                                                                                                                                 |
 | `/opt`   | Optional software packages (rarely used)                                                                                                                                                                                        |
 | `/proc`  | Virtual filesystem providing process and kernel information as files                                                                                                                                                            |
@@ -305,7 +305,7 @@ drwxr-xr-x 13 root root 4096 Feb  4 10:21 /var
 | --------------------- | ------ | ------------------- | ---------- |
 | Regular file          | `-`    | Editors, `cp`, etc. | `rm`       |
 | Directory             | `d`    | `mkdir`             | `rm -r`    |
-| Symbolic link         | `s`    | `ln -s`             | `rm`       |
+| Symbolic link         | `l`    | `ln -s`             | `rm`       |
 | Character device file | `c`    | `mknod`             | `rm`       |
 | Block device file     | `b`    | `mknod`             | `rm`       |
 | Named pipe            | `p`    | `mkfifo`            | `rm`       |
@@ -429,6 +429,7 @@ The `ln` command with the `-s` option creates a symbolic link
 
 ```shell
 $ ln -s cpu-logger/requirements.txt deleteme
+$ ls -l
 lrwxrwxrwx 1 [...] deleteme -> cpu-logger/requirements.txt
 ```
 
@@ -460,11 +461,11 @@ A pipe is a form for inter-process communication that
 - Can only be used between processes that have a common ancestor
 
 ```shell
-$ grep cat /var/log/auth.log | tail -n 1
+$ cat /var/log/auth.log | tail -n 1
 [...] COMMAND=/usr/bin/cat /etc/shadow
 ```
 
-The shell (i.e., the common ancestor) creates a separate process for each command (i.e., `cat` and `grep`) and links the standard output of one process to the standard input of the next using a pipe
+The shell (i.e., the common ancestor) creates a separate process for each command (i.e., `cat` and `tail`) and links the standard output of one process to the standard input of the next using a pipe
 
 ---
 
@@ -507,8 +508,8 @@ A socket is a form of network inter-process communication. In contrast to pipes,
 Local domain sockets (aka UNIX domain sockets) 
 - Are full-duplex (while pipes are half-duplex)
 - Are used to communicate with processes running on the same computer
-- Are more efficient then Internet domain socket because there is no networking overhead (a UNIX domain socket is referred to through a filesystem object rather than a network port)
-- Support both stream  (`SOCK_DGRAM`) and datagram (`SOCK_STREAM`) communication (while processes from pipes just read and write bytes)
+- Are more efficient than Internet domain socket because there is no networking overhead (a UNIX domain socket is referred to through a filesystem object rather than a network port)
+- Support both datagram  (`SOCK_DGRAM`) and stream (`SOCK_STREAM`) communication (while processes from pipes just read and write bytes)
 
 ## 6. File attributes
 
@@ -524,7 +525,7 @@ Although a user might fit into two of the three permission triplets, only the mo
 | --------- | ----------------- | ---------------------------------------------------------------------- | ----------- |
 | `-`       | Read              | Write                                                                  | Execute     |
 | `d`       | List the contents | Create, delete, and rename files. (works only in combination with `x`) | Enter       |
-| `s`       | n/a               | n/a                                                                    | n/a         |
+| `l`       | n/a               | n/a                                                                    | n/a         |
 | `c`       | Read              | Write                                                                  | n/a         |
 | `b`       | Read              | Write                                                                  | n/a         |
 | `p`       | Read              | Write                                                                  | n/a         |
@@ -534,7 +535,7 @@ Although a user might fit into two of the three permission triplets, only the mo
 
 ```shell
 $ ls -ld deleteme/
-drw-rwxr-x 2 ubuntu ubuntu 4096 Mar 31 19:43 deleteme/
+drw-rwxr-x [...] deleteme/
 $ ls -l deleteme/
 ls: cannot access 'deleteme/file.txt': Permission denied
 total 0
@@ -545,20 +546,20 @@ $ cd deleteme/
 
 ### 6.2. Set-UID and set-GID bits
 
-| File type | Set-UID                                             | Set-GID                                                                                                                               |
-| --------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `-`       | Run an executable file with the owner's permissions | Run an executable file with the group owner's permissions                                                                             |
-| `d`       | n/a                                                 | Newly created files take on the group ownership of the directory rather than than the default group of the user that created the file |
+| File type | Set-UID                                             | Set-GID                                                                                                                          |
+| --------- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `-`       | Run an executable file with the owner's permissions | Run an executable file with the group owner's permissions                                                                        |
+| `d`       | n/a                                                 | Newly created files take on the group ownership of the directory rather than the default group of the user that created the file |
 
-The set-GID bit on directories make it easier to share a directory among several users, as long as they belong to a common group
+The set-GID bit on directories makes it easier to share a directory among several users, as long as they belong to a common group
 
 ---
 
 ```shell
 $ ls -l /usr/bin/passwd
--rwsr-xr-x 1 root root 64152 Apr  9  2024 /usr/bin/passwd
+-rwsr-xr-x [...] /usr/bin/passwd
 $ ls -l /usr/bin/crontab
--rwxr-sr-x 1 root crontab 39664 Mar 31  2024 /usr/bin/crontab
+-rwxr-sr-x [...] /usr/bin/crontab
 ```
 
 When the set-UID (set-GID) is set, `s` replaces the letter `x` in the first (second) triplet. If the set-UID (set-GID) is set but `x` is not, `S` is shown instead of `s`
@@ -571,7 +572,7 @@ $ ls -ld /tmp
 drwxrwxrwt 12 root root 4096 Mar 31 20:07 /tmp
 ```
 
-When the sticky bit is set, `t` replaces `x` the third triplet. If the sticky bit is set but `x` is not, `T` is shown instead of `t`
+When the sticky bit is set, `t` replaces `x` in the third triplet. If the sticky bit is set but `x` is not, `T` is shown instead of `t`
 
 As `/tmp` is shared among users, the sticky bit ensures that a user that is not `root` cannot delete or rename files owned by other users
 
@@ -628,6 +629,8 @@ However, the octal syntax
 - Can only be used to specify an absolute value for the permission bits. In other words, you cannot just specify one permission bit at a time
 - Is more error-prone for people that are not used to octal numbers
 
+---
+
 | Octal | Binary | Permissions | Additional bits |
 | ----- | ------ | ----------- | --------------- |
 | `0`   | `000`  | `---`       |                 |
@@ -680,12 +683,13 @@ The mnemonic syntax may be confusing because
 | `-`      | Remove permissions |
 | `=`      | Set permissions    |
 
-| Permission | Meaning                         |
-| ---------- | ------------------------------- |
-| `r`        | Read                            |
-| `w`        | Write                           |
-| `x`        | Execute                         |
-| `s`        | Set-UID, set-GID, or sticky bit |
+| Permission | Meaning             |
+| ---------- | ------------------- |
+| `r`        | Read                |
+| `w`        | Write               |
+| `x`        | Execute             |
+| `s`        | Set-UID and set-GID |
+| `t`        | Sticky bit          |
 
 ---
 
@@ -712,7 +716,7 @@ is the equivalent of `4711` in octal
 
 ---
 
-In contrast to the octal syntax, which specifies an absolute value for permissions, the mnemonic syntax preserves permission bits that are set explicitly
+In contrast to the octal syntax, which specifies an absolute value for permissions, the mnemonic syntax preserves permission bits that are not set explicitly
 
 ```shell
 $ ls -l myscript
@@ -776,7 +780,7 @@ $ ls -l myscript
 | Hard link                                    | A directory entry that points to a file. There may be multiple directory entries that point to the same file. Each file must have at least one hard link                                                                                                                                  |
 | Inode                                        | A data structure used by many filesystems to store metadata about a file or a directory                                                                                                                                                                                                   |
 | Inode number                                 | A number that uniquely identify an inode within the system                                                                                                                                                                                                                                |
-| Local domain socket (aka UNIX domain socket) | A form of inter-process communication. A local domain socket allows processes running un the same computer to communicate with each other. Local domain socket are full-duplex (while pipes are half-duplex) and are more efficient than Internet domain sockets (no networking overhead) |
+| Local domain socket (aka UNIX domain socket) | A form of inter-process communication. A local domain socket allows processes running on the same computer to communicate with each other. Local domain socket are full-duplex (while pipes are half-duplex) and are more efficient than Internet domain sockets (no networking overhead) |
 | Mount point                                  | A directory in the file tree where the root directory of an attached filesystem is mounted. The mount point serves as the entry point for the attached filesystem                                                                                                                         |
 | Mounting                                     | Attaching a filesystem to the file tree                                                                                                                                                                                                                                                   |
 | Named pipe                                   | A form of inter-process communication. A named pipe is an extension of the traditional pipe concept that does not require a common ancestor                                                                                                                                               |
