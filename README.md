@@ -31,7 +31,7 @@ Exams will be written
 | Type      | Topic(s)                          | Language        |
 | --------- | --------------------------------- | --------------- |
 | Exercise  | System and network administration | Python          |
-| Exercise  | System and network administration | Bash/Ansible    |
+| Exercise  | System and network administration | Bash            |
 | Questions | Cybersecurity                     | Italian/English |
 
 Time available: 2 hours and 30 minutes
@@ -62,9 +62,7 @@ Time available: 2 hours and 30 minutes
 | 10  | [The filesystem](lectures/10-the-filesystem.md)                                                        |
 | 11  | Networking                                                                                             |
 | 12  | Security                                                                                               |
-| 13  | Web hosting                                                                                            |
-| 14  | Configuration management                                                                               |
-| 15  | Mock exam                                                                                              |
+| 13  | Mock exam                                                                                              |
 
 ## Credits
 
