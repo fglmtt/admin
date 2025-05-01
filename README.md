@@ -60,7 +60,7 @@ Time available: 2 hours and 30 minutes
 | 8   | [Access control and rootly powers](lectures/8-access-control-and-rootly-powers.md)<br>                 |
 | 9   | [Process control](lectures/9-process-control.md)<br>                                                   |
 | 10  | [The filesystem](lectures/10-the-filesystem.md)                                                        |
-| 11  | Networking                                                                                             |
+| 11  | [Networking](lectures/11-networking.md)                                                                |
 | 12  | Security                                                                                               |
 | 13  | Mock exam                                                                                              |
 
