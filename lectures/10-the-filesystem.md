@@ -521,15 +521,15 @@ Although a user might fit into two of the three permission triplets, only the mo
 
 ---
 
-| File type | Read bit          | Write bit                                                              | Execute bit |
-| --------- | ----------------- | ---------------------------------------------------------------------- | ----------- |
-| `-`       | Read              | Write                                                                  | Execute     |
-| `d`       | List the contents | Create, delete, and rename files. (works only in combination with `x`) | Enter       |
-| `l`       | n/a               | n/a                                                                    | n/a         |
-| `c`       | Read              | Write                                                                  | n/a         |
-| `b`       | Read              | Write                                                                  | n/a         |
-| `p`       | Read              | Write                                                                  | n/a         |
-| `s`       | Read              | Connect and write                                                      | n/a         |
+| File type | `r`               | `w`                                                                   | `x`     |
+| --------- | ----------------- | --------------------------------------------------------------------- | ------- |
+| `-`       | Read              | Write                                                                 | Execute |
+| `d`       | List the contents | Create, delete, and rename files (works only in combination with `x`) | Enter   |
+| `l`       | n/a               | n/a                                                                   | n/a     |
+| `c`       | Read              | Write                                                                 | n/a     |
+| `b`       | Read              | Write                                                                 | n/a     |
+| `p`       | Read              | Write                                                                 | n/a     |
+| `s`       | Read              | Connect and write                                                     | n/a     |
 
 ---
 
