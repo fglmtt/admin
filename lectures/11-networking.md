@@ -114,6 +114,8 @@ For example, `209.85.171.147` is an IPv4 address
 | D     | `224` - `239` | n/a                     | Multicasting           |
 | E     | `240` - `255` | n/a                     | Experimental addresses |
 
+---
+
 However
 - `0.0.0.0/8` is reserved for special use
 - `127.0.0.0/8` is reserved for loopback (localhost)
@@ -139,7 +141,7 @@ Tricks to do the math
 1. The number of hosts per network and the value of the last byte in the netmask always add up to 256
 2. The last byte of a network address must be evenly divisible by the number of hosts per network
 
-Consider `128.138.243.0/26`. The address starts with `128`, so it would be a class B address (`/24`) if no explicit netmask (`/26`) were specified. Each network can support $2^{32 - 26} = 2^6 = 64$ hosts. 
+Consider `128.138.243.0/26`. The address starts with `128`, so it would be a class B address (`/16`) if no explicit netmask (`/26`) were specified. Each network can support $2^{32 - 26} = 2^6 = 64$ hosts. 
 1. This means that the last netmask byte is $256 - 64 = 192$ 
 2. $\dfrac{256}{64} = 4$ is the number of networks. The last byte of each network address must be evenly divisible by the number of hosts, i.e., 64, so 0, 64, 128, and 192
 
@@ -202,7 +204,7 @@ NAT also maintains a table of the mappings between private and public address/po
 
 ---
 
-Consider a site that has a single public IPv4 address, say `203.0.113.5` and suppose an outbound packet arrives at the site's border router from `192.168.1.10:12345`
+Consider a site that has a single public IPv4 address, say `203.0.113.5`, and suppose an outbound packet arrives at the site's border router from `192.168.1.10:12345`
 1. The site's border router must change (at least) the source address, otherwise the recipient won't be able to reply (`192.168.1.10` is a private address). This is where NAT comes into play. For example, `192.168.1.10:12345` $\rightarrow$ `203.0.113.5:55231`
 2. The recipient will reply back to `203.0.113.5:55231`, which is the public IPv4 address of the site's border router that, in turn, will perform the reverse translation, i.e., `203.0.113.5:55231` $\rightarrow$  `192.168.1.10:12345` 
 
