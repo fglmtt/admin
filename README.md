@@ -61,7 +61,7 @@ Time available: 2 hours and 30 minutes
 | 9   | [Process control](lectures/9-process-control.md)<br>                                                   |
 | 10  | [The filesystem](lectures/10-the-filesystem.md)                                                        |
 | 11  | [Networking](lectures/11-networking.md)                                                                |
-| 12  | Security                                                                                               |
+| 12  | [Security](lectures/12-security.md)                                                                    |
 | 13  | Mock exam                                                                                              |
 
 ## Credits
