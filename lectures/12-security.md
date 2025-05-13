@@ -447,7 +447,7 @@ AES is perhaps the most widely used symmetric key algorithm
 
 A limitation of symmetric keys is the need to securely exchange the secret key in advance. The only way to do so with complete security is to meet in person without interference, a major inconvenience. The invention of public key cryptography, which addresses this problem, was an extraordinary breakthrough when it occurred in the 1970s
 
-The scheme works as follows. $A$ generates a pair of keys. The private key ($K^{-1}_{A}$) remains a secret, while the public key ($K_{A}$) can be widely known. $B$ does the same. When $A$ wants to send a message ($M$) to $B$, she encrypts it with $K_B$. $B$ who holds $K^{-1}_{B}$ is the only one that can decrypt $M$
+The scheme works as follows. $A$ generates a pair of keys. The private key ($K_{A}^{-1}$) remains a secret, while the public key ($K_{A}$) can be widely known. $B$ does the same. When $A$ wants to send a message ($M$) to $B$, she encrypts it with $K_B$. $B$ who holds $K_{B}^{-1}$ is the only one that can decrypt $M$
 
 RSA is perhaps the most widely used public key cryptosystem
 
@@ -462,20 +462,20 @@ RSA is perhaps the most widely used public key cryptosystem
 | $E$            | Encryption function            |
 | $D$            | Decryption function            |
 
-| Who sends to whom | Encryption            | Decryption                 |
-| ----------------- | --------------------- | -------------------------- |
-| $A \rightarrow B$ | $E(K_B, M) = M_{K_B}$ | $D(K_B^{-1}, M_{K_B}) = M$ |
-| $B \rightarrow A$ | $E(K_A, M) = M_{K_A}$ | $D(K_A^{-1}, M_{K_A}) = M$ |
+| Who sends to whom | Encryption                | Decryption                     |
+| ----------------- | ------------------------- | ------------------------------ |
+| $A \rightarrow B$ | $E(K_{B}, M) = M_{K_{B}}$ | $D(K_{B}^{-1}, M_{K_{B}}) = M$ |
+| $B \rightarrow A$ | $E(K_{A}, M) = M_{K_{A}}$ | $D(K_{A}^{-1}, M_{K_{A}}) = M$ |
 
 ---
 
-$A$ can also sign ($S$) the message with her private key ($K^{-1}_A$)
+$A$ can also sign ($S$) the message with her private key ($K_{A}^{-1}$)
 
-$$E(K^{-1}_A, M) = S_{K^{-1}_A}$$
+$$E(K_{A}^{-1}, M) = S_{K_{A}^{-1}}$$
 
-$B$ can then use $A$'s public key ($K_A$) to validate the authenticity of the message
+$B$ can then use $A$'s public key ($K_{A}$) to validate the authenticity of the message
 
-$$D(K_A, S_{K^{-1}_A}) = M$$
+$$D(K_{A}, S_{K_{A}^{-1}}) = M$$
 
 This process is known as digital signature
 
