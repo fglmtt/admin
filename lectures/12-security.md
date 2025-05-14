@@ -16,7 +16,7 @@
     - [4.3. Remote event logging](#43-remote-event-logging)
     - [4.4. Backups](#44-backups)
     - [4.5. Viruses and worms](#45-viruses-and-worms)
-    - [4.6. Root kits](#46-root-kits)
+    - [4.6. Rootkits](#46-rootkits)
     - [4.7. Packet filtering](#47-packet-filtering)
     - [4.8. Passwords and multifactor authentication](#48-passwords-and-multifactor-authentication)
     - [4.9. Vigilance](#49-vigilance)
@@ -53,7 +53,7 @@ Computer security is in a sorry state. In contrast to the progress seen in virtu
 | ---- | -------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | 2010 | Stuxnet                    | Iran's nuclear program              | Damaged centrifuges at a uranium enrichment plant                                                                                  |
 | 2013 | Snowden                    | NSA                                 | Exposed the massive NSA surveillance machine, revealing that some major Internet companies were complicit with the U.S. government |
-| 2015 | OPM data breach            | U.S. Office of Personnel Management | Compromised the sensitive and private details of more than 21 millions of U.S. citizens                                            |
+| 2015 | OPM data breach            | U.S. Office of Personnel Management | Compromised the sensitive and private details of more than 21 million U.S. citizens                                                |
 | 2016 | U.S. presidential election | Trump's candidacy                   | Mounted a campaign by Russian state-sponsored hackers to influence the election                                                    |
 | 2017 | WannaCry                   | Windows OS                          | Encrypted data and demanded a payment in BTC. The attack used an exploit developed by NSA                                          |
 
@@ -93,13 +93,13 @@ A good security policy should include training for employees; communications to 
 
 Phishing begins with deceptive communication. Attackers may send emails  containing malicious attachments or links ([email spoofing](https://attack.mitre.org/techniques/T1672/) and thread hijacking), typically to execute malicious code on victim systems, or use social media platforms
 
-Targeted attacks (spearphising) can be especially hard to defend against because the communication often include victim-specific information that lends an appearance of authenticity
+Targeted attacks (spearphishing) can be especially hard to defend against because the communication often include victim-specific information that lends an appearance of authenticity
 
 ### 3.2. Software vulnerabilities
 
-A vulnerability is a flaw or weakness in a system's design, implementation, or management that can be exploited by an attacker to compromise its security. Over the years, countless of security bugs have been discovered in computer software
+A vulnerability is a flaw or weakness in a system's design, implementation, or management that can be exploited by an attacker to compromise its security. Over the years, countless security bugs have been discovered in computer software
 
-Buffer overflows are an example of a software bug with complex security implications. Developers often allocate buffers, which are predetermined amount of temporary memory space
+Buffer overflows are an example of a software bug with complex security implications. Developers often allocate buffers, which are predetermined amounts of temporary memory space
 
 If the code is not careful about checking the size of the data against the size of the buffer, the memory adjacent to the allocated space is at risk of being overwritten. Hackers can input carefully composed data that crashes the program or, in the worst case, executes arbitrary code
 
@@ -145,11 +145,11 @@ However, this is also a perfect example of the need to balance security against 
 
 ## 4. Basic security measures
 
-Most systems do not come secured out of the box. Customizations made during and after installation change the security profile for new systems
+Most systems do not come secured out of the box. Customizations made during and after installation change the security profile of new systems
 
 Administrators should take steps to 
 - Harden new systems
-- Integrate them into the local environments
+- Integrate them into the local environment
 - Plan for their long-term security maintenance
 
 When auditors come knocking, it is useful to be able to prove that you have followed some kind of standard procedure, especially if that procedure conforms to external recommendations and best practices for your industry
@@ -165,7 +165,7 @@ Automation is a close ally. The more security steps you automate, the less room 
 
 ### 4.1. Software updates
 
-Keeping systems updated with the latest patches is an administrator's highest-value security chore. While patches may introduce novel security problems, most exploits target older vulnerability. You are much better off with regularly updated systems
+Keeping systems updated with the latest patches is an administrator's highest-value security chore. While patches may introduce novel security problems, most exploits target older vulnerabilities. You are much better off with regularly updated systems
 
 | What to do                                                                                                         | Suggestion                                                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -176,7 +176,7 @@ Keeping systems updated with the latest patches is an administrator's highest-va
 
 ### 4.2. Unnecessary services
 
-Disable, and possibly remove, unnecessary services, especially if they are network daemons. The `ss` is the command to investigate sockets. For example, to display the TCP sockets
+Disable, and possibly remove, unnecessary services, especially if they are network daemons. The `ss` command is to investigate sockets. For example, to display the TCP sockets
 
 ```shell
 $ ss -t
@@ -195,7 +195,7 @@ The `/etc/services` file maps network services to their corresponding ports and 
 
 ```shell
 $ grep ssh /etc/services
-ssh          22/tcp          # SSH Remote Login Protocol
+ssh     22/tcp     # SSH Remote Login Protocol
 ```
 
 The network service `ssh` communicates over `tcp` and listens on port `22`
@@ -237,17 +237,17 @@ However, backups can also be a security hazard. Protect backups by limiting (and
 
 A virus is a type of malware that, when executed, replicates itself by modifying computer programs and inserting its own code into those programs. A worm is standalone malware that replicates itself to spread to other computers. Worms do not require host programs
 
-Linux systems have historically been largely immune to viruses and worms. Some point to their smaller market share compared to Windows, while others credit stronger access control
+Linux systems have historically been largely immune to viruses and worms. Some point to their smaller market share compared to Windows, while others credit their stronger access control
 
 The latter argument holds some merit: Without `root` privileges, malware has limited reach. Counterintuitively, one valid reason to run antivirus software on Linux is to protect connected Windows systems from Windows-specific malware. Of course, doing so introduces an additional attack surface—the antivirus software itself
 
-### 4.6. Root kits
+### 4.6. Rootkits
 
-A root kit is software, typically malicious, designed to enable access to a computer or an area of its software that is not otherwise allowed and often masks its existence or the existence of other software
+A rootkit is software, typically malicious, designed to enable access to a computer or an area of its software that is not otherwise allowed and often masks its existence or the existence of other software
 
-Root kits come in many flavors and vary in sophistication, from simple application replacements, such as hacked versions of `ls` and `ps`, to kernel modules that are nearly impossible to detect
+Rootkits come in many flavors and vary in sophistication, from simple application replacements, such as hacked versions of `ls` and `ps`, to kernel modules that are nearly impossible to detect
 
-Although there are tools to help administrators remove root kits from compromised systems, the time it takes to perform a thorough cleaning would probably be better spent saving data and wiping the system. The most advanced root kits are aware of common removal programs and make attempts to subvert them
+Although there are tools to help administrators remove rootkits from compromised systems, the time it takes to perform a thorough cleaning would probably be better spent saving data and wiping the system. The most advanced rootkits are aware of common removal programs and make attempts to subvert them
 
 ### 4.7. Packet filtering
 
@@ -279,13 +279,13 @@ However, random passwords are simply impractical to commit to memory unless you 
 
 A password vault is a piece of software (or a combination of software and hardware) that encrypts the passwords it stores. A user can then access the passwords stored in the vault with a single master password, which becomes the only password to remember
 
-As password security increases exponentially with length, your best bet is to use a very long password that is unlikely to appear somewhere else but is easy to remember (i.e., a passphrase) as master password for the vault
+As password security increases exponentially with length, your best bet is to use a very long password that is unlikely to appear somewhere else but is easy to remember (i.e., a passphrase) as the master password for the vault
 
 ### 4.9. Vigilance
 
-To ensure the security of your system, monitor its health, network connections, process table, and overall status on a daily basis. Security compromises tend to start with a small foothold and expand. The earlier you identify an anomaly, the better you will be off
+To ensure the security of your system, monitor its health, network connections, process table, and overall status on a daily basis. Security compromises tend to start with a small foothold and expand. The earlier you identify an anomaly, the better off you will be
 
-Many administrators find beneficial to work with an external firm to perform a comprehensive vulnerability analysis. These projects can 
+Many administrators find it beneficial to work with an external firm to perform a comprehensive vulnerability analysis. These projects can 
 - Draw attention to issues that you had not previously considered
 - Establish a baseline understanding of the areas in which you are most exposed
 
@@ -303,7 +303,7 @@ Penetration testing is a poorly defined discipline. [OWASP](https://owasp.org/) 
 
 A network port scanner is a tool designed to probe a target system to identify which network ports are open, closed, or filtered
 
-Since most network services are associated with well known port numbers, this information tells you quite a lot about the software a machine is running 
+Since most network services are associated with well-known port numbers, this information tells you quite a lot about the software a machine is running 
 
 [Nmap](https://nmap.org/) is a network port scanner. Nmap also provides a [publicly available host](scanme.nmap.org) for safe scanning practice. Do not run Nmap on someone else's network without permission from one of that network's administrators
 
@@ -382,11 +382,11 @@ Intrusion detection is the act of monitoring a system or network to identify sig
 
 [Snort](https://www.snort.org/) is a network intrusion detection system that captures raw packets off the network (i.e., [packet sniffing](11-networking.md#43-sniffing-packets)) and compares them with a set of rules. When Snort detects a packet that matches against those rules, it generates an alert for system administrators
 
-[OSSEC](https://www.ossec.net/) is a host-based intrusion detection system that runs on the systems of interest and monitors their activity in real time. OSSEC provides root kit detection, filesystem integrity checks, log file analysis, time-based alerting, and active responses
+[OSSEC](https://www.ossec.net/) is a host-based intrusion detection system that runs on the systems of interest and monitors their activity in real time. OSSEC provides rootkit detection, filesystem integrity checks, log file analysis, time-based alerting, and active responses
 
 ### 5.6. Brute-force attack response systems
 
-A brute force attack is a trial-and-error method used by attackers to guess passwords, encryption keys, or login credentials by systematically trying all possible combinations until the correct one is found
+A brute-force attack is a trial-and-error method used by attackers to guess passwords, encryption keys, or login credentials by systematically trying all possible combinations until the correct one is found
 
 [Fail2Ban](https://github.com/fail2ban/fail2ban) is a brute-force attack response system written in Python. Fail2Ban scans log files such as `/var/log/auth.log`. It looks for IP addresses that have too many failed login attempts. When it finds one, it updates the firewall rules. This blocks new connections from that IP address for a configurable amount of time
 
@@ -404,7 +404,7 @@ Encryption is the process of using a cipher to convert plain text messages to un
 | --------------- | --------------------------------------------------------------------------- |
 | Confidentiality | Messages are impossible to read for everyone except the intended recipients |
 | Integrity       | It is impossible to modify the contents without detection                   |
-| Non-repudation  | The authenticity of the message can be validated                            |
+| Non-repudiation | The authenticity of the message can be validated                            |
 
 In other words, cryptography lets you communicate secretly over unsecured channels with the added benefits of being able to prove the correctness of the message and the identity of the sender
 
@@ -519,7 +519,7 @@ A hash function accepts input data of any length and generates a fixed-length va
 
 Hash functions are deterministic. This means that if you run a particular hash function on a particular input, you will always generate the same digest
 
-Because digests have a fixed length, only a finite number of possible outputs exist. For example, an 8-bit digest has only $2^8 = 256$ possible outputs. Therefore, some inputs necessarily generate the same output, an event known as a collision. Longer digests reduce the frequency of collision but can never eliminate them entirely
+Because digests have a fixed length, only a finite number of possible outputs exist. For example, an 8-bit digest has only $2^8 = 256$ possible outputs. Therefore, some inputs necessarily generate the same output, an event known as a collision. Longer digests reduce the frequency of collisions but can never eliminate them entirely
 
 ---
 
@@ -537,7 +537,7 @@ Digests verify the integrity of things. They can verify that a given configurati
 
 The only recommended hash algorithms for general use are the SHA-2 and SHA-3 families
 
-These algorithms exists with different digest lengths. For example, SHA3-512 is the SHA-3 algorithm configured to generate a 512-bit digest. A SHA algorithm without a version number refers to the SHA-2 family
+These algorithms exist with different digest lengths. For example, SHA3-512 is the SHA-3 algorithm configured to generate a 512-bit digest. A SHA algorithm without a version number refers to the SHA-2 family
 
 ---
 
@@ -552,25 +552,25 @@ b24077c2 [...] 208d9d41  mypasswd
 
 The SSH system is a protocol for remote logins and for securing network services on an insecure network. SSH capabilities range from remote command execution to port forwarding and file transfer. SSH is an indispensable tool for system administrators
 
-SSH is a client/server protocol that uses cryptography for authentication, confidentiality, and integrity of communications between two hosts. SSH is designed for algorithmic flexibility. This means that the underlying cryptographic protocols can be updated and deprecated as the industry evolves
+SSH is a client/server protocol that uses cryptography for authentication, confidentiality, and integrity of communications between two hosts. SSH is designed for algorithmic flexibility. This means that the underlying cryptographic protocols can be updated or deprecated as the industry evolves
 
 OpenSSH is the open source implementation of SSH that is included and enabled by default on nearly every Linux distributions
 
 ### 7.1. OpenSSH essentials
 
-| Command                   | Description                                 |
-| ------------------------- | ------------------------------------------- |
-| `ssh`                     | Run client                                  |
-| `sshd`                    | Run server daemon                           |
-| `ssh-keygen`              | Generate public/private key pairs           |
-| `ssh-add` and `ssh-agent` | Manage authentication keys                  |
-| `ssh-keyscan`             | Retrieve public keys from servers           |
-| `sftp-server`             | Run sftp server for file transfer over SFTP |
-| `sftp` and `scp`          | Run clients for file transfer over SFTP     |
+| Command                   | Description                             |
+| ------------------------- | --------------------------------------- |
+| `ssh`                     | Run client                              |
+| `sshd`                    | Run server daemon                       |
+| `ssh-keygen`              | Generate public/private key pairs       |
+| `ssh-add` and `ssh-agent` | Manage authentication keys              |
+| `ssh-keyscan`             | Retrieve public keys from servers       |
+| `sftp-server`             | Run server for file transfer over SFTP  |
+| `sftp` and `scp`          | Run clients for file transfer over SFTP |
 
 ---
 
-Use the `ssh-keygen` to generate a key pair. You can specify with cryptographic algorithm to use with the `-t` option. For example
+Use the `ssh-keygen` to generate a key pair. You can specify which cryptographic algorithm to use with the `-t` option. For example
 
 ```shell
 $ ssh-keygen -t ed25519
@@ -583,7 +583,7 @@ $ ssh-keygen -t ed25519
 By default, public and private keys are stored in `~/.ssh`
 
 Remember to
-- Set the permissions on the public (`~/.ssh/id_ed25519.pub`) and private (`~/.ssh/id_ed25519`) key correctly as `0644` and `0600`, respectively
+- Set the permissions on the public (`~/.ssh/id_ed25519.pub`) and private (`~/.ssh/id_ed25519`) keys correctly as `0644` and `0600`, respectively
 - Never share the private key
 
 Now you can give your public key to the server administrator, who adds it to the server in the file `~/.ssh/authorized_keys`
@@ -632,7 +632,7 @@ $ scp -i unife.pem hello.txt ubuntu@admin.unife.edu:~
 hello.txt               100%    6     0.1KB/s   00:00
 ```
 
-`scp` copied `hello.txt` from my local system to remote host `admin.unife.edu` in the `ubuntu`'s home directory (`~`)
+`scp` copied `hello.txt` from my local system to the remote host `admin.unife.edu` in the `ubuntu`'s home directory (`~`)
 
 ---
 
@@ -650,7 +650,7 @@ hello.txt
 
 A packet-filtering firewall limits the type of traffic that can pass through your Internet gateway (or through an internal gateway that separates domains within your organization) according to information in the packet header
 
-Packet-filtering software is included in Linux in the form of `iptables` (and its easier-to-use front end, `ufw`). Although these machine-specific firewalls are capable of sophisticated filtering and bring a welcome extra dose of security, it is not a good idea to use a general-purpose OS as firewall router
+Packet-filtering software is included in Linux in the form of `iptables` (and its easier-to-use front end, `ufw`). Although these machine-specific firewalls are capable of sophisticated filtering and bring a welcome extra dose of security, it is not a good idea to use a general-purpose OS as a firewall router
 
 The complexity of general-purpose OSes makes them inherently less secure and less reliable than task-specific devices. Use dedicated firewall appliances for site-wide network protection
 
@@ -711,7 +711,7 @@ In the `iptables` world, hooks are called chains
 
 #### 8.1.2. Tables
 
-Sets of chains make up table, and each table is used to handle a specific kind of packet processing, such as packet filtering or NAT
+Sets of chains make up a table, and each table is used to handle a specific kind of packet processing, such as packet filtering or NAT
 
 | Table    | Chain                                     | Scope                                                                               |
 | -------- | ----------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -781,7 +781,7 @@ The only TCP traffic that makes sense to allow to the firewall (`10.1.1.1`) is S
 iptables -A INPUT -i eth0 -d 10.1.1.1 -p tcp --dport 22 -j ACCEPT
 ```
 
-This command appends (`-A`) a rule to the `INPUT` chain of the `filter` table. This rule matches TCP packets (`-p`) coming in through the `eth0` interface (`-i`) with destination IP `10.1.1.1` (`-d`) and destination port `22` (`-dport`). Matching packets are accepted (`-j`)
+This command appends (`-A`) a rule to the `INPUT` chain of the `filter` table. This rule matches TCP packets (`-p`) coming in through the `eth0` interface (`-i`) with destination IP `10.1.1.1` (`-d`) and destination port `22` (`--dport`). Matching packets are accepted (`-j`)
 
 ---
 
@@ -813,7 +813,7 @@ $ iptables -t nat -A POSTROUTING -o eth1 \
     -j SNAT --to-source 128.138.101.4
 ```
 
-This command appends `(-A)` a rule to the `POSTROUTING` chain of the `nat` table (`-t`). This rule matches packets going out on the `eth1` interface (`-o`). The source IP address (`-j`) of the matching packets is changed to `128.138.101.4` (`--to-source`)
+This command appends (`-A`) a rule to the `POSTROUTING` chain of the `nat` table (`-t`). This rule matches packets going out on the `eth1` interface (`-o`). The source IP address (`-j`) of the matching packets is changed to `128.138.101.4` (`--to-source`)
 
 ---
 
@@ -889,7 +889,7 @@ These commands append (`-A`) three rules to the `FORWARD` chain of the `filter` 
 | Public key                                    | A cryptographic key that can be shared openly and is used to encrypt data or verify digital signatures                                                                                                                                                                                                          |
 | Public key cryptography                       | A form of cryptography uses a pair of cryptographic keys—one public and one private—where the public key encrypts data and only the corresponding private key can decrypt it                                                                                                                                    |
 | Rivest-Shamir-Adleman (RSA) cryptosystem      | A public key cryptosystem. The initialism "RSA" comes from the surnames of Ron Rivest, Adi Shamir and Leonard Adleman, who publicly described the algorithm in 1977                                                                                                                                             |
-| Root kit                                      | Software, typically malicious, designed to enable access to a computer or an area of its software that is not otherwise allowed and often masks its existence or the existence of other software                                                                                                                |
+| Rootkit                                       | Software, typically malicious, designed to enable access to a computer or an area of its software that is not otherwise allowed and often masks its existence or the existence of other software                                                                                                                |
 | Secure File Transfer Protocol (SFTP)          | A network protocol that provides file access, file transfer, and file management over any reliable data stream                                                                                                                                                                                                  |
 | Secure Hash Algorithms (SHA)                  | A family of cryptographic hash functions                                                                                                                                                                                                                                                                        |
 | Security auditing                             | The act of systematically evaluating the security of a system by measuring how well it conforms to an established set of criteria                                                                                                                                                                               |
