@@ -617,7 +617,7 @@ traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
 
 The first packets have TTL set to 1
 
-The first gateway to see them determines that the TTL has been exceeded and sends back an ICMP error message. The sender's IP address (`10.16.0.1`) in the header of that message identifies the gateway. 
+The first gateway to see them determines that the TTL has been exceeded and sends back an ICMP error message. The sender's IP address (`10.16.0.1`) in the header of that message identifies the gateway 
 
 Then, `traceroute` looks up this address in DNS to find the gateway's hostname (`r16.endif.man`)
 
