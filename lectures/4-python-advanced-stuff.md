@@ -693,7 +693,6 @@ Class variables are associated with the class, rather than instances
 
 ---
 
-
 ```python
 class Card:
     """Represent a standard playing card"""
