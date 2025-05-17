@@ -35,8 +35,8 @@
 - What are computer viruses and worms, and what are the key differences between these two types of malware?
 - What is a rootkit, how does it typically function, and why can it be particularly challenging to detect and remove?
 - What are the best practices and recommendations for creating secure passwords, managing passwords effectively, and implementing MFA?
-- What is symmetric key cryptography, and what are its primary advantages and disadvantages?
-- What is public key cryptography, and what are its primary advantages and disadvantages?
+- What is symmetric key cryptography, how does it work, and what are its primary advantages and disadvantages?
+- What is public key cryptography, how does it work, and what are its primary advantages and disadvantages?
 - What is a digital signature, what is its purpose, and how can it be created using public key cryptography?
 - What is a digital certificate, what purpose does it serve, and how is it typically obtained?
 - What is a hash function, and what specific properties define a cryptographic hash function?
