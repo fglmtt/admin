@@ -275,7 +275,7 @@ Technically speaking, the most secure password of a given length consists of a r
 
 ---
 
-However, random passwords are simply impractical to commit to memory unless you write them down somewhere. It is often said that passwords should never be written down, but it is  more accurate to say that they should never be left accessible to the wrong people
+However, random passwords are simply impractical to commit to memory unless you write them down somewhere. It is often said that passwords should never be written down, but it is more accurate to say that they should never be left accessible to the wrong people
 
 A password vault is a piece of software (or a combination of software and hardware) that encrypts the passwords it stores. A user can then access the passwords stored in the vault with a single master password, which becomes the only password to remember
 
