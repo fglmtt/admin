@@ -1,19 +1,30 @@
 # Cheat sheet
 
+## Python
+
+| Command   | Meaning                                          |
+| --------- | ------------------------------------------------ |
+| `gcc`     | GNU project C and C++ compiler                   |
+| `pip`     | The standard package management system in Python |
+| `python3` | CPython, version 3                               |
+
 ## Booting and system management daemons
 
-| Command         | Meaning                                |
-| --------------- | -------------------------------------- |
-| `efibootmgr`    | Change UEFI boot manager configuration |
-| `grup-mkconfig` | Generate GRUB configuration file       |
-| `systemctl`     | Control `systemd`                      |
-| `update-grub`   | Stub for `grub-mkconfig`               |
+| Command         | Meaning                                    |
+| --------------- | ------------------------------------------ |
+| `efibootmgr`    | Change UEFI boot manager configuration     |
+| `grup-mkconfig` | Generate GRUB configuration file           |
+| `journalctl`    | Print log entries from the systemd journal |
+| `systemctl`     | Control `systemd`                          |
+| `systemd`       | Linux system and service manager           |
+| `update-grub`   | Stub for `grub-mkconfig`                   |
 
 ## Access control and rootly powers
 
 | Command               | Meaning                                                       |
 | --------------------- | ------------------------------------------------------------- |
 | `cat`                 | Concatenate files and print on the stdout                     |
+| `cp`                  | Copy files                                                    |
 | `echo`                | Display a line of text                                        |
 | `grep`                | Print lines that match patterns                               |
 | `head`                | Output the first part of files                                |
@@ -38,6 +49,7 @@
 | `pidof`           | Find the process ID of a running program                         |
 | `ps`              | Report a snapshot of the current processes                       |
 | `renice`          | Alter priority of running processes                              |
+| `sleep`           | Delay for a specified amount of time                             |
 | `strace`          | Trace system calls and signals                                   |
 | `systemd-analyze` | Analyze and debug `systemd`                                      |
 | `top`             | Provide a dynamic real-time view of a running system             |
@@ -46,6 +58,7 @@
 
 | Command    | Meaning                                               |
 | ---------- | ----------------------------------------------------- |
+| `cd`       | Change working directory                              |
 | `chmod`    | Change file permission bits                           |
 | `chown`    | Change file owner and group                           |
 | `file`     | Determine file type                                   |
@@ -85,18 +98,38 @@
 | `nmap`        | Perform network exploration, security auditing, and port scanning                   |
 | `scp`         | Copy files between hosts on a network using SFTP                                    |
 | `sftp`        | Provide an interactive experience similar to a traditional FTP client but over SFTP |
-| `sftp-server` | Run server for file transfer over SFTP                                              |
+| `sftp-server` | OpenSSH server for file transfer over SFTP                                          |
 | `shasum`      | Print or check SHA checksums                                                        |
 | `ss`          | Dump socket statistics                                                              |
-| `ssh`         | Run SSH client                                                                      |
+| `ssh`         | OpenSSH SSH client                                                                  |
 | `ssh-add`     | Add private key identities to `ssh-agent`                                           |
-| `ssh-agent`   | Run SSH authentication agent                                                        |
+| `ssh-agent`   | OpenSSH authentication agent                                                        |
 | `ssh-keygen`  | Generate public/private key pairs                                                   |
 | `ssh-keyscan` | Retrieve public keys from servers                                                   |
-| `sshd`        | Run SSH server daemon                                                               |
+| `sshd`        | OpenSSH server daemon                                                               |
 | `unshadow`    | Combine `etc/passwd` and `/etc/shadow`                                              |
 
 ## Appendixes
+
+### Virtual environment
+
+The convention is to name the virtual environment directory `.venv` or `venv`. To create a virtual environment
+
+```shell
+$ python -m venv .venv
+```
+
+To activate a virtual environment
+
+```shell
+$ source .venv/bin/activate
+```
+
+Then, `pip` will automatically install packages to the virtual environment. To deactivate a virtual environment
+
+```shell
+$ deactivate
+```
 
 ### Subcommands
 
@@ -113,6 +146,12 @@
 | ---------- | -------- | ---------------------- |
 | `route`    | n/a      | Show routing table     |
 | `neigh`    | n/a      | Show ARP cache entries |
+
+#### pip
+
+| Subcommand | Argument  | Meaning           |
+| ---------- | --------- | ----------------- |
+| `install`  | `package` | Install `package` |
 
 #### systemctl
 
