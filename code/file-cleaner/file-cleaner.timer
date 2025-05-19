@@ -1,0 +1,17 @@
+# first and last name: mattia fogli
+# serial number: 123456
+#
+# path: $HOME/.config/systemd/user/file-cleaner.timer
+#
+# command to enable the timer: systemctl --user enable file-cleaner.timer
+# command to start the timer: systemctl --user start file-cleaner.timer
+
+[Unit]
+Description=File Cleaner Timer
+
+[Timer]
+Unit=file-cleaner.service
+OnCalendar=Mon..Fri *-*-* *:00/10
+
+[Install]
+WantedBy=timers.target

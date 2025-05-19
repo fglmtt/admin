@@ -1,0 +1,12 @@
+# first and last name: mattia fogli
+# serial number: 123456
+#
+# path: $HOME/.config/systemd/user/file-cleaner.service
+
+[Unit]
+Description=File Cleaner Service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/file-cleaner
+ExecStart=/usr/bin/python3 app.py --path %h/myapp --extension .tmp
