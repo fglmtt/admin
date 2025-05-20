@@ -40,7 +40,7 @@ def main():
         sys.exit(1)
 
     if not args.extension.startswith("."):
-        print(f"error: {args.extension} must start with a dot")
+        print(f"error: {args.extension} must start with a dot", file=sys.stderr)
         sys.exit(1)
 
     walk(args.path, args.extension)
