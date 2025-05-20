@@ -1,4 +1,4 @@
-# Exam
+# Mock exam
 
 ## Table of contents
 
@@ -22,7 +22,7 @@ The exam consists of two exercises and three open questions. The first exercise 
 
 The exam text is in Italian unless otherwise requested. If you wish the text in English, please let me know a few days in advance. Feel free to solve the exercises or answer the questions in either Italian or English
 
-The only things you are allowed to look up during the exam are a printed version of the [cheat sheet](13-cheat-sheet.md) (in English or Italian), manual pages (`man`), and Python documentation (`help`)
+The only things you are allowed to look up during the exam are a printed version of the [cheat sheet](14-cheat-sheet.md) (in English or Italian), manual pages (`man`), and Python documentation (`help`)
 
 ---
 
@@ -190,7 +190,7 @@ file-cleaner.service static -
 
 1 unit files listed.
 $ systemctl --user start file-cleaner.service
-$ journalctl --user -u file-cleaner
+$ journalctl --user -u file-cleaner.service
 [...] Started file-cleaner.service - File Cleaner Service.
 [...] removing /home/ubuntu/myapp/deleteme.tmp
 [...] removing /home/ubuntu/myapp/dir/deleteme.tmp
@@ -243,29 +243,32 @@ See the [project directory](../code/file-cleaner).
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
-| Interface | Network address   | Firewall IP     | Scope   |
-| --------- | ----------------- | --------------- | ------- |
-| `eth0`    | `93.184.216.0/24` | `93.184.216.32` | Public  |
-| `eth1`    | `10.10.10.0/24`   | `10.10.10.1`    | Private |
+| NIC    | Network address   | Firewall IP     | Scope   |
+| ------ | ----------------- | --------------- | ------- |
+| `eth0` | `93.184.216.0/24` | `93.184.216.32` | Public  |
+| `eth1` | `10.10.10.0/24`   | `10.10.10.1`    | Private |
 
-Hosts on  `10.10.10.0/24` use this firewall as their default gateway. Host `10.10.10.2` runs a web server that supports both HTTP and HTTPS.
+Hosts on  `10.10.10.0/24` use this firewall as their default gateway. Host `10.10.10.2` runs a web server that supports HTTP.
 
 Enforce the following rules:
 
-| Table        | Chain           | Rule                                                                                             |
-| ------------ | --------------- | ------------------------------------------------------------------------------------------------ |
-| `filter/nat` | `*`             | Flush existing rules                                                                             |
-| `filter`     | `INPUT/FORWARD` | Drop everything unless explicitly allowed                                                        |
-| `filter`     | `INPUT`         | Allow ICMP on both `eth0` and `eth1` to the firewall IP                                          |
-| `filter`     | `INPUT`         | Allow SSH (`tcp/22`) from `eth1` to the firewall IP                                              |
-| `filter`     | `FORWARD`       | Allow all packets from `eth1`                                                                    |
-| `filter`     | `FORWARD`       | Allow `ESTABLISHED,RELATED` packets                                                              |
-| `nat`        | `POSTROUTING`   | SNAT on `eth0` so that private hosts get replies from the Internet                               |
-| `nat`        | `PREROUTING`    | DNAT on `eth0` HTTP (`tcp/80`) to `10.10.10.2:30080` and HTTPS (`tcp/443`) to `10.10.10.2:30443` |
+| Table        | Chain           | Rule                                                                                      |
+| ------------ | --------------- | ----------------------------------------------------------------------------------------- |
+| `filter,nat` | `*`             | Flush existing rules                                                                      |
+| `filter`     | `INPUT,FORWARD` | Drop everything unless explicitly allowed                                                 |
+| `filter`     | `INPUT`         | Allow ICMP packets received on `eth0` and `eth1`                                          |
+| `filter`     | `INPUT`         | Allow SSH packets (`tcp/22`) received on `eth1`                                           |
+| `filter`     | `FORWARD`       | Allow all packets received on `eth1`                                                      |
+| `filter`     | `FORWARD`       | Allow `ESTABLISHED,RELATED` packets                                                       |
+| `nat`        | `POSTROUTING`   | SNAT for packets to be sent on `eth0` so that private hosts get replies from the Internet |
+| `nat`        | `PREROUTING`    | DNAT for HTTP packets (`tcp/80`) received on `eth0` to `10.10.10.2:30080`                 |
 
 #### 2.2.2. Solution
 
 ```shell
+# first and last name: mattia fogli
+# serial number: 123456
+
 -F
 -t nat -F
 
@@ -285,8 +288,6 @@ Enforce the following rules:
 
 -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to-destination 10.10.10.2:30080
 -A FORWARD -i eth0 -o eth1 -p tcp -d 10.10.10.2 --dport 30080 -j ACCEPT
--t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j DNAT --to-destination 10.10.10.2:30443
--A FORWARD -i eth0 -o eth1 -p tcp -d 10.10.10.2 --dport 30443 -j ACCEPT
 ```
 
 ## 3. Questions
