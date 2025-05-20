@@ -778,7 +778,8 @@ $ iptables -P FORWARD DROP
 The only TCP traffic that makes sense to allow to the firewall (`10.1.1.1`) is SSH, which is useful for managing the firewall itself
 
 ```shell
-iptables -A INPUT -i eth0 -d 10.1.1.1 -p tcp --dport 22 -j ACCEPT
+$ iptables -A INPUT -i eth0 \
+    -d 10.1.1.1 -p tcp --dport 22 -j ACCEPT
 ```
 
 This command appends (`-A`) a rule to the `INPUT` chain of the `filter` table. This rule matches TCP packets (`-p`) coming in through the `eth0` interface (`-i`) with destination IP `10.1.1.1` (`-d`) and destination port `22` (`--dport`). Matching packets are accepted (`-j`)
