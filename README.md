@@ -63,7 +63,7 @@ Time available: 2 hours and 30 minutes
 | 11  | [Networking](lectures/11-networking.md)                                                                |
 | 12  | [Security](lectures/12-security.md)                                                                    |
 | 13  | [Mock exam](lectures/13-mock-exam.md)                                                                  |
-| 14  | [Cheat sheet](14-cheat-sheet.md)                                                                       |
+| 14  | [Cheat sheet](lectures/14-cheat-sheet.md)                                                              |
 
 ## Credits
 
