@@ -1,0 +1,12 @@
+# first and last name: mattia fogli
+# serial number: 123456
+#
+# path: ~/.config/systemd/user/file-archiver.service
+
+[Unit]
+Description=file archiver service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/file-archiver
+ExecStart=/usr/bin/python3 app.py --path %h/mydocs --seconds 30

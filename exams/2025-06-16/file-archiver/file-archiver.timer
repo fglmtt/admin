@@ -1,0 +1,17 @@
+# first and last name: mattia fogli
+# serial number: 123456
+#
+# path: ~/.config/systemd/user/file-archiver.service
+#
+# comando per abilitare il timer: systemctl --user enable file-archiver.timer
+# comando per avviare il timer: systemctl --user start file-archiver.timer
+
+[Unit]
+Description=file archiver timer
+
+[Timer]
+Unit=file-archiver.service
+OnCalendar=Sat,Sun *-*-* 04:00
+
+[Install]
+WantedBy=timers.target
