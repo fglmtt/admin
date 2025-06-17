@@ -306,7 +306,7 @@ Enforce the following rules:
 - Why is a lazy unmount (`umount -l`) considered unsafe, which command lets you identify the processes that still hold references to the busy filesystem, and how can you perform a clean unmount instead?
 - What are the purposes of the set-UID, set-GID, and sticky bits, to which regular files or directories does each apply, and how do they alter permission checks?
 - Who may change a file’s permission bits, which command can they use, and how is that command invoked?
-- Who may change a file’s (group) ownership, what rules must be satisfied, and which command performs the operation?
+- Who may change a file’s ownership (owner and group owner), what rules must be satisfied, and which command performs the operation?
 
 ### [3.3. Networking](11-networking.md)
 
@@ -321,7 +321,7 @@ Enforce the following rules:
 - What does the CIA triad stand for in information security, and what does each principle mean?
 - What is social engineering, why is it particularly difficult to defend against, and what is one common form of this attack?
 - What is a software vulnerability, what is a specific example of such a vulnerability, and how can open-source code review practices help in reducing these vulnerabilities?
-- What is the difference between a DoS attack and a DDoS attack, and how do these attacks typically impact the targeted systems?
+- What is the difference between a DoS attack and a DDoS attack, and how do these attacks typically compromise the targeted systems?
 - What is insider abuse, and why is it often harder to detect than external attacks?
 - What is a backup in the context of computer security, and what are the key recommendations for effectively managing backups?
 - What are computer viruses and worms, and what are the key differences between these two types of malware?
