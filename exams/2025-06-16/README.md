@@ -24,7 +24,7 @@ $ stampa <path/file/da/stampare>
 > [!tip]
 > 1. Se si nota un errore sul file stampato, lo si può correggere a penna
 
-## 1. Demone
+## 1. Processo periodico
 
 ### 1.1. Script Python
 
