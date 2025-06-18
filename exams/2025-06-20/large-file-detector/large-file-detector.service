@@ -1,0 +1,20 @@
+# first and last name: mattia fogli
+# serial number: 123456
+#
+# path: ~/.config/systemd/user/large-file-detector.service
+#
+# command to enable the service: systemctl --user enable large-file-detector.service
+# command to start the service: systemctl --user start large-file-detector.service
+
+[Unit]
+Description=large file detector service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/large-file-detector
+ExecStart=/usr/bin/python3 app.py --target %h/docs --size 100 --interval 300 --log %h
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
