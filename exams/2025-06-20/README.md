@@ -151,7 +151,7 @@ $ stampa <path/file/to/print>
 ```
 
 > [!warning]
-> 1. Write your **first name**, **last name**, and serial number on every file you print
+> 1. Write your **first name**, **last name**, and student id on every file you print
 > 2. After sending the files to the printer, notify the instructor and **remain seated**
 
 > [!tip]
@@ -165,7 +165,7 @@ Write a Python script that periodically analyzes a specified directory (includin
 
 ```python
 # first name and last name:
-# serial number:
+# student id:
 #
 # path:
 
@@ -206,7 +206,7 @@ Create a _service_ unit named `large-file-detector.service` in your user's `syst
 
 ```
 # first name and last name:
-# serial number:
+# student id:
 #
 # path: 
 # 
@@ -242,7 +242,7 @@ Use this template:
 
 ```
 # first and last name:
-# serial number:
+# student id:
 ```
 
 ## 3. Open-ended questions
@@ -255,7 +255,7 @@ Use this template:
 
 ```
 # first and last name:
-# serial number:
+# student id:
 
 1.
 
