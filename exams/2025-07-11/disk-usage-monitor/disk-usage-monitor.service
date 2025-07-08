@@ -1,0 +1,12 @@
+# first and last name: mattia fogli
+# serial number: 123456
+#
+# path: ~/.config/systemd/user/disk-usage-monitor.service
+
+[Unit]
+Description=disk usage monitor service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/disk-usage-monitor
+ExecStart=/usr/bin/python3 app.py --partition / --threshold 90

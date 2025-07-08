@@ -1,0 +1,17 @@
+# first and last name: mattia fogli
+# serial number: 123456
+#
+# path: ~/.config/systemd/user/disk-usage-monitor.timer
+#
+# command to enable the timer: systemctl --user enable disk-usage-monitor.timer
+# command to start the timer: systemctl --user start disk-usage-monitor.timer
+
+[Unit]
+Description=disk usage monitor timer
+
+[Timer]
+Unit=disk-usage-monitor.service
+OnCalendar=*:0/2
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,21 @@
+# nome e cognome: mattia fogli
+# matricola: 123456
+
+-F
+-t nat -F
+
+-P INPUT DROP
+-P FORWARD DROP
+
+-A INPUT -i eth0 -p icmp -j ACCEPT
+-A INPUT -i eth1 -p icmp -j ACCEPT
+
+-A INPUT -i eth1 -s 192.168.30.200 -p tcp --dport 22 -j ACCEPT
+
+-A FORWARD -i eth1 -o eth0 -j ACCEPT
+-A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+-t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+-t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to-destination 192.168.30.60:8080
+-A FORWARD -i eth0 -o eth1 -p tcp -d 192.168.30.60 --dport 8080 -j ACCEPT
