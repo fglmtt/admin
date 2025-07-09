@@ -58,9 +58,7 @@ Dopo la validazione, calcola l’utilizzo percentuale della partizione indicata 
 Ad esempio, eseguendo
 
 ```shell
-$ python ~/disk-usage-monitor/app.py \
-    --partition / \
-    --threshold 80
+$ python ~/disk-usage-monitor/app.py --partition / --threshold 80
 ```
 
 lo script controllerà l'utilizzo percentuale della partizione `/`, registrando nel file di log `~/disk-usage-monitor/disk-usage-monitor.log` data, ora e percentuale di spazio usato se questa è uguale o superiore a `80`%.
@@ -201,9 +199,7 @@ After validation, calculate the partition's usage percentage (`shutil.disk_usage
 For example, running
 
 ```shell
-$ python ~/disk-usage-monitor/app.py \
-    --partition / \
-    --threshold 80
+$ python ~/disk-usage-monitor/app.py --partition / --threshold 80
 ```
 
 the script will check the usage percentage of the `/` partition, recording in the log file `~/disk-usage-monitor/disk-usage-monitor.log` the date, time, and used space percentage if it is equal to or above `80`%.
