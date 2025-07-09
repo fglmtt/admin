@@ -39,8 +39,8 @@ Scrivi uno script Python che sposta ogni file più vecchio di un certo numero di
 import argparse
 import os
 import sys
-import time
 import shutil
+import time
 
 def main():
     pass
@@ -54,7 +54,7 @@ Lo script deve accettare esattamente due argomenti da linea di comando, analizza
 
 Dopo il parsing, valida entrambi gli input: controlla che il percorso sia assoluto (`os.path.isabs`), esista (`os.path.exists`) e sia una directory (`os.path.isdir`); verifica inoltre che `--seconds` sia un intero positivo. Se un controllo fallisce, stampa un messaggio d’errore esplicativo sullo standard error (`print`) ed esci con un codice di stato diverso da zero (`sys.exit`).
 
-Dopo la validazione, assicurati che in `~` esista la cartella `archive` (`os.path.expanduser`, `os.makedirs`). Percorri quindi ricorsivamente l’albero delle directory al percorso fornito come primo argomento (`os.listdir`, `os.path.join`, `os.path.isdir`). Per ogni file incontrato (`os.path.isfile`), calcola da quanti secondi non viene modificato (`os.path.getmtime`, `time.time`). Se l’età in secondi è maggiore o uguale al valore di soglia, sposta il file nella cartella `~/archive` (`shutil.move`) e stampa un messaggio di log sullo standard output (`print`). Non tentare di spostare directory.
+Dopo la validazione, assicurati che in `~` esista la cartella `archive` (`os.path.expanduser`, `os.makedirs`). Percorri quindi ricorsivamente l’albero delle directory al percorso fornito come primo argomento (`os.listdir`, `os.path.join`, `os.path.isdir`). Per ogni file incontrato (`os.path.isfile`), calcola da quanti secondi non viene modificato (`os.path.getmtime`, `time.time`). Se l'età in secondi è maggiore o uguale al valore di soglia, sposta il file nella cartella `~/archive` (`shutil.move`) e stampa un messaggio di log sullo standard output (`print`). Non tentare di spostare directory.
 
 Ad esempio, eseguendo
 
@@ -66,7 +66,7 @@ lo script dovrà spostare nella cartella `~/archive` tutti i file più vecchi di
 
 ### 1.2. Service
 
-Crea un’unità *service* denominata `file-archiver.service` nella tua istanza utente di `systemd`. Configurala per avviare `~/file-archiver/app.py` con gli argomenti `--path %h/mydocs` e `--seconds 30`. Usa questo template:
+Crea un'unità service denominata `file-archiver.service` nella tua istanza utente di `systemd`. Configurala per avviare `~/file-archiver/app.py` con gli argomenti `--path %h/mydocs` e `--seconds 30`. Usa questo template:
 
 ```
 # nome e cognome:
@@ -77,7 +77,7 @@ Crea un’unità *service* denominata `file-archiver.service` nella tua istanza 
 
 ### 1.3. Timer
 
-Crea un’unità *timer* denominata `file-archiver.timer` nella tua istanza utente di `systemd`. Configurala per attivare `file-archiver.service` alle 04:00 di ogni sabato e domenica. Usa questo template:
+Crea un'unità timer denominata `file-archiver.timer` nella tua istanza utente di `systemd`. Configurala per attivare `file-archiver.service` alle 04:00 di ogni sabato e domenica. Usa questo template:
 
 ```
 # first and last name:
@@ -98,7 +98,7 @@ Configura un firewall Linux usando `iptables`. Il firewall dispone di due interf
 | `eth0` | `203.0.113.0/24`  | `203.0.113.10`  | Pubblico |
 | `eth1` | `192.168.50.0/24` | `192.168.50.1`  | Privato  |
 
-I nodi sulla rete `192.168.50.0/24` utilizzano questo firewall come gateway di default. L’host `192.168.50.20` esegue un server web che supporta HTTPS.
+Gli host sulla rete `192.168.50.0/24` utilizzano questo firewall come gateway di default. L'host `192.168.50.20` esegue un server web che supporta HTTPS.
 
 Applica le seguenti regole:
 
@@ -122,9 +122,9 @@ Usa questo template:
 
 ## 3. Domande a risposta aperta
 
-1. Perché un *lazy unmount* (`umount -l`) è considerato non sicuro, quale comando permette di individuare i processi che mantengono ancora riferimenti al filesystem occupato e come si può eseguire invece un *unmount* pulito?
-2. Che cos’è una vulnerabilità software, qual è un esempio specifico di tale vulnerabilità e in che modo le pratiche di revisione del codice open-source possono contribuire a ridurre queste vulnerabilità?
-3. Che cos’è la crittografia a chiave simmetrica, come funziona e quali sono i suoi principali vantaggi e svantaggi?
+1. Perché un lazy unmount (`umount -l`) è considerato non sicuro, quale comando permette di individuare i processi che mantengono ancora riferimenti al filesystem occupato e come si può eseguire invece un unmount pulito?
+2. Che cos'è una vulnerabilità software, qual è un esempio specifico di tale vulnerabilità e in che modo le pratiche di revisione del codice open source possono contribuire a ridurre queste vulnerabilità?
+3. Che cos'è la crittografia a chiave simmetrica, come funziona e quali sono i suoi principali vantaggi e svantaggi?
 
 Usa questo template:
 
@@ -180,8 +180,8 @@ Write a Python script that moves every file older than a certain number of secon
 import argparse
 import os
 import sys
-import time
 import shutil
+import time
 
 def main():
     pass
@@ -234,10 +234,10 @@ Create a timer unit named `file-archiver.timer` in your user instance of `system
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
-|NIC|Network Address|Firewall IP|Scope|
-|---|---|---|---|
-|`eth0`|`203.0.113.0/24`|`203.0.113.10`|Public|
-|`eth1`|`192.168.50.0/24`|`192.168.50.1`|Private|
+| NIC    | Network address   | Firewall IP    | Scope   |
+| ------ | ----------------- | -------------- | ------- |
+| `eth0` | `203.0.113.0/24`  | `203.0.113.10` | Public  |
+| `eth1` | `192.168.50.0/24` | `192.168.50.1` | Private |
 
 Hosts on the `192.168.50.0/24` network use this firewall as their default gateway. Host `192.168.50.20` runs a web server that supports HTTPS.
 

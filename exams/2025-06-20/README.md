@@ -89,7 +89,7 @@ Configura un firewall Linux utilizzando `iptables`. Il firewall ha due interfacc
 | `eth0` | `198.51.100.0/24` | `198.51.100.5`  | Pubblico |
 | `eth1` | `10.10.20.0/24`   | `10.10.20.1`    | Privato  |
 
-Gli host della rete `10.10.20.0/24` utilizzano il firewall come gateway predefinito. L’host `10.10.20.50` esegue un server FTP sulla porta `19990`.
+Gli host della rete `10.10.20.0/24` utilizzano il firewall come gateway predefinito. L'host `10.10.20.50` esegue un server FTP sulla porta `19990`.
 
 Applica le seguenti regole:
 
@@ -113,7 +113,7 @@ Usa questo template:
 
 ## 3. Domande a risposta aperta
 
-1. Chi può modificare l'*ownership* di un file (*owner* e *group owner*), quali regole devono essere soddisfatte e quale comando esegue l'operazione?
+1. Chi può modificare l'ownership di un file (owner e group owner), quali regole devono essere soddisfatte e quale comando esegue l'operazione?
 2. Cos'è l'ingegneria sociale, perché è particolarmente difficile da contrastare e qual è una forma comune di questo tipo di attacco?
 3. Qual è la differenza tra un attacco DoS e un attacco DDoS, e come questi attacchi generalmente compromettono i sistemi presi di mira?
 
@@ -202,7 +202,7 @@ the script will identify all files of `10` bytes or more in `~/archive` (and all
 
 ### 1.2. Service
 
-Create a _service_ unit named `large-file-detector.service` in your user's `systemd` instance. The unit must start `~/large-file-detector/app.py` with the arguments `--target %h/docs`, `--size 100`, `--interval 300`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
+Create a service unit named `large-file-detector.service` in your user's `systemd` instance. The unit must start `~/large-file-detector/app.py` with the arguments `--target %h/docs`, `--size 100`, `--interval 300`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
 
 ```
 # first name and last name:
@@ -223,7 +223,7 @@ Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 | `eth0` | `198.51.100.0/24`   | `198.51.100.5`  | Public   |
 | `eth1` | `10.10.20.0/24`     | `10.10.20.1`    | Private  |
 
-Hosts on the `10.10.20.0/24` network use the firewall as their default gateway. The host `10.10.20.50` runs an FTP server on port `19990`.
+Hosts on the `10.10.20.0/24` network use the firewall as their default gateway. Host `10.10.20.50` runs an FTP server on port `19990`.
 
 Apply the following rules:
 

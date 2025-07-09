@@ -51,9 +51,9 @@ if __name__ == "__main__":
 
 Lo script deve accettare esattamente due argomenti obbligatori da riga di comando, analizzati con il modulo `argparse`: `--partition`, che indica il percorso assoluto della partizione da monitorare; `--threshold`, che specifica la soglia in percentuale (%) oltre la quale deve essere segnalato l'utilizzo.
 
-Dopo il parsing, valida gli input ricevuti: verifica che il percorso specificato con `--partition` sia assoluto (`os.path.isabs`) e che esista (`os.path.exists`); controlla inoltre che il valore fornito per `--threshold` sia un intero compreso tra 0 e 100. Se un controllo fallisce, stampa un messaggio di errore esplicativo sullo standard error ed esci con un codice di stato diverso da zero.
+Dopo il parsing, valida gli input ricevuti: verifica che il percorso specificato con `--partition` sia assoluto (`os.path.isabs`) e che esista (`os.path.exists`); controlla inoltre che il valore fornito per `--threshold` sia un intero compreso tra 0 e 100. Se un controllo fallisce, stampa un messaggio di errore esplicativo sullo standard error (`print`) ed esci con un codice di stato diverso da zero (`sys.exit`).
 
-Dopo la validazione, calcola l’utilizzo percentuale della partizione indicata (`shutil.disk_usage`); se la percentuale supera o eguaglia la soglia, apri in modalità append il file di log `~/disk-usage-monitor/disk-usage-monitor.log` (crea la directory se necessario) e scrivi una riga contenente data e ora corrente (`datetime.now`), uno spazio e la percentuale di spazio disco utilizzato.
+Dopo la validazione, calcola l’utilizzo percentuale della partizione indicata (`shutil.disk_usage`); se la percentuale supera o eguaglia la soglia, apri in modalità append il file di log `~/disk-usage-monitor/disk-usage-monitor.log` (`open`), crea la directory se necessario (`os.makedirs`) e scrivi una riga contenente data e ora corrente (`datetime.now`), uno spazio e la percentuale di spazio disco utilizzato.
 
 Ad esempio, eseguendo
 
@@ -67,7 +67,7 @@ lo script controllerà l'utilizzo percentuale della partizione `/`, registrando 
 
 ### 1.2. Service
 
-Crea un'unità _service_ denominata `disk-usage-monitor.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/disk-usage-monitor/app.py` con gli argomenti `--partition /` e `--threshold 90`. Usa questo template:
+Crea un'unità service denominata `disk-usage-monitor.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/disk-usage-monitor/app.py` con gli argomenti `--partition /` e `--threshold 90`. Usa questo template:
 
 ```
 # nome e cognome:
@@ -78,7 +78,7 @@ Crea un'unità _service_ denominata `disk-usage-monitor.service` nella tua istan
 
 ### 1.3. Timer
 
-Crea un'unità _timer_ denominata `disk-usage-monitor.timer` nella tua istanza utente di `systemd`. Configurala per avviare `disk-usage-monitor.service` ogni 2 minuti. Usa questo template:
+Crea un'unità timer denominata `disk-usage-monitor.timer` nella tua istanza utente di `systemd`. Configurala per avviare `disk-usage-monitor.service` ogni 2 minuti. Usa questo template:
 
 ```
 # nome e cognome:
@@ -124,7 +124,7 @@ Usa questo template:
 ## 3. Domande a risposta aperta
 
 1. Che cos'è l'esecuzione set-UID, perché `passwd` ne ha bisogno e cosa succede quando un utente normale esegue `passwd`?
-2. Che cos'è l'ARP *spoofing*, quali debolezze del protocollo ARP sfrutta e come si svolge in pratica un attacco MITM?
+2. Che cos'è l'ARP spoofing, quali debolezze del protocollo ARP sfrutta e come si svolge in pratica un attacco MITM?
 3. Che cos'è la crittografia a chiave pubblica, come funziona e quali sono i suoi principali vantaggi e svantaggi?
 
 Usa questo template:
@@ -194,9 +194,9 @@ if __name__ == "__main__":
 
 The script must accept exactly two required command-line arguments, parsed with the `argparse` module: `--partition`, which specifies the absolute path of the partition to monitor; and `--threshold`, which specifies the percentage (%) threshold above which usage must be reported.
 
-After parsing, validate the inputs: check that the path given with `--partition` is absolute (`os.path.isabs`) and exists (`os.path.exists`); also ensure that the value provided for `--threshold` is an integer between 0 and 100. If any check fails, print an explanatory error message to standard error and exit with a non-zero status code.
+After parsing, validate the inputs: check that the path given with `--partition` is absolute (`os.path.isabs`) and exists (`os.path.exists`); also ensure that the value provided for `--threshold` is an integer between 0 and 100. If any check fails, print an explanatory error message to standard error (`print`) and exit with a non-zero status code (`sys.exit`).
 
-After validation, calculate the partition’s usage percentage (`shutil.disk_usage`); if the percentage exceeds or equals the threshold, open in append mode the log file `~/disk-usage-monitor/disk-usage-monitor.log` (create that directory if necessary) and write a line containing the current date and time (`datetime.now`), a space, and the percentage of disk space used.
+After validation, calculate the partition's usage percentage (`shutil.disk_usage`); if the percentage exceeds or equals the threshold, open in append mode the log file `~/disk-usage-monitor/disk-usage-monitor.log` (`open`), create that directory if necessary (`os.makedirs`), and write a line containing the current date and time (`datetime.now`), a space, and the percentage of disk space used.
 
 For example, running
 
