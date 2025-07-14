@@ -46,7 +46,7 @@ def main():
 
         log_path = os.path.join(log_dir, "disk-usage-monitor.log")
         with open(log_path, "a") as log_file:
-            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            now = datetime.now()
             log_file.write(f"{now} {percent_used:.2f}%\n")
 
 
