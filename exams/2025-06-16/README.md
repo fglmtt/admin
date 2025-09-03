@@ -80,8 +80,8 @@ Crea un'unità service denominata `file-archiver.service` nella tua istanza uten
 Crea un'unità timer denominata `file-archiver.timer` nella tua istanza utente di `systemd`. Configurala per attivare `file-archiver.service` alle 04:00 di ogni sabato e domenica. Usa questo template:
 
 ```
-# first and last name:
-# student id:
+# nome e cognome:
+# matricola:
 #
 # path: 
 #
