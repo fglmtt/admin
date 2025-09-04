@@ -1,7 +1,7 @@
 # first and last name: mattia fogli
-# serial number: 123456
+# student id: 123456
 #
-# path: ~/.config/systemd/user/file-archiver.service
+# path: ~/.config/systemd/user/file-archiver.timer
 #
 # command to enable the timer: systemctl --user enable file-archiver.timer
 # command to start the timer: systemctl --user start file-archiver.timer

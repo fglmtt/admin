@@ -1,5 +1,5 @@
 # first and last name: mattia fogli
-# serial number: 123456
+# student id: 123456
 #
 # path: ~/disk-usage-monitor/app.py
 
