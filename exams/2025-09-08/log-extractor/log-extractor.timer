@@ -1,0 +1,17 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/log-extractor.timer
+#
+# command to enable the timer: systemctl --user enable log-extractor.timer
+# command to start the timer: systemctl --user start log-extractor.timer
+
+[Unit]
+Description=log extractor timer
+
+[Timer]
+Unit=log-extractor.service
+OnCalendar=Mon,Fri *-*-* 02:00
+
+[Install]
+WantedBy=timers.target
