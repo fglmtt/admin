@@ -80,7 +80,7 @@ mindmap
 
 | Topic                    | Text                                                                   | Solution                                  |
 | ------------------------ | ---------------------------------------------------------------------- | ----------------------------------------- |
-| Daemon                   | [CPU logger](7-booting-and-system-management-daemons-lab#2-cpu-logger) | [Project directory](../code/cpu-logger)   |
+| Daemon                   | [CPU logger](7-booting-and-system-management-daemons-lab.md#2-cpu-logger) | [Project directory](../code/cpu-logger)   |
 | Periodic process         | [File cleaner](#21-file-cleaner)                                       | [Project directory](../code/file-cleaner) |
 | Packet filtering and NAT | [Firewall configuration](#22-firewall-configuration)                   | [Code snippet](#222-solution)             |
 | Cybersecurity            | [Questions](#3-questions)                                              | n/a                                       |
