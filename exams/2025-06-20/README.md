@@ -68,7 +68,7 @@ lo script dovrà individuare tutti i file di `10` byte o più presenti in `~/arc
 
 ### 1.2. Service
 
-Crea un’unità *service* denominata `large-file-detector.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/large-file-detector/app.py` con gli argomenti `--target %h/docs`, `--size 100`, `--interval 300`, e `--log %h`, partire all'avvio del sistema e ripartire in caso di fallimenti. Usa questo template:
+Crea un'unità service denominata `large-file-detector.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/large-file-detector/app.py` con gli argomenti `--target %h/docs`, `--size 100`, `--interval 300`, e `--log %h`, partire all'avvio del sistema e ripartire in caso di fallimenti. Usa questo template:
 
 ```
 # nome e cognome:
@@ -76,8 +76,8 @@ Crea un’unità *service* denominata `large-file-detector.service` nella tua is
 #
 # path: 
 # 
-# comando per abilitare il servizio:
-# comando per avviare il servizio:
+# comando per abilitare il service:
+# comando per avviare il service:
 ```
 
 ## 2. Filtraggio dei pacchetti e NAT
