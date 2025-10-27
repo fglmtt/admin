@@ -1,0 +1,20 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/old-file-detector.service
+#
+# command to enable the service: systemctl --user enable old-file-detector.service
+# command to start the service: systemctl --user start old-file-detector.service
+
+[Unit]
+Description=old file detector service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/old-file-detector
+ExecStart=/usr/bin/python3 app.py --target %h/archive --days 30 --interval 60 --log %h
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
