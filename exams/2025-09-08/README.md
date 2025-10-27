@@ -262,7 +262,7 @@ Use this template:
 
 ```
 # first and last name:
-# student is:
+# student id:
 ```
 
 ## 3. Open-ended questions
