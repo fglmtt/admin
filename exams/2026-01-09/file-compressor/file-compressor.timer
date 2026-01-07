@@ -1,0 +1,17 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/file-compressor.timer
+#
+# command to enable the timer: systemctl --user enable file-compressor.timer
+# command to start the timer: systemctl --user start file-compressor.timer
+
+[Unit]
+Description=file compressor timer
+
+[Timer]
+Unit=file-compressor.service
+OnCalendar=Mon,Thu *-*-* 02:00
+
+[Install]
+WantedBy=timers.target

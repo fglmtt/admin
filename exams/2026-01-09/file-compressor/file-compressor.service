@@ -1,0 +1,12 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/file-compressor.service
+
+[Unit]
+Description=file compressor service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/file-compressor
+ExecStart=/usr/bin/python3 app.py --path %h/media --size 1048576
