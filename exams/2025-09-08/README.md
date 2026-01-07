@@ -242,7 +242,7 @@ Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 | `eth0` | `198.51.100.0/24` | `198.51.100.5`  | Public   |
 | `eth1` | `172.16.10.0/24`  | `172.16.10.1`   | Private  |
 
-Hosts on the `172.16.10.0/24` network use this firewall as the default gateway. The host `172.16.10.30` runs a DNS server (`upd/53`) and an HTTP server (`tcp/8080`).
+Hosts on the `172.16.10.0/24` network use this firewall as the default gateway. The host `172.16.10.30` runs a DNS server (`udp/53`) and an HTTP server (`tcp/8080`).
 
 Apply the following rules:
 
