@@ -1,0 +1,20 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/dir-size-monitor.service
+#
+# command to enable the service: systemctl --user enable dir-size-monitor.service
+# command to start the service: systemctl --user start dir-size-monitor.service
+
+[Unit]
+Description=dir size monitor service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/dir-size-monitor
+ExecStart=/usr/bin/python3 app.py --target %h/documents --threshold 1000 --interval 60 --log %h
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
