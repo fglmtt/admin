@@ -139,7 +139,7 @@ System administrators must never knowingly install back doors in the environment
 
 Systems can be configured securely or not-so-securely. Software is developed to be useful instead of annoying, hence not-so-securely is too often the default
 
-An example of host configuration vulnerability is the standard practice of allowing Linux systems to boot without requiring a [boot loader](6-booting-and-system-management-daemons.md#12-boot-loader) password. GRUB can be configured at installation to require a password, but administrators almost never activate this option. This omission leaves the system open to physical attack
+An example of host configuration vulnerability is the standard practice of allowing Linux systems to boot without requiring a [boot loader](booting-and-system-management-daemons.md#12-boot-loader) password. GRUB can be configured at installation to require a password, but administrators almost never activate this option. This omission leaves the system open to physical attack
 
 However, this is also a perfect example of the need to balance security against usability (see [§1](#1-security-facts)). If the system were unintentionally rebooted (e.g., after a power outage), an administrator would have to be physically there to get the computer running again
 
@@ -157,7 +157,7 @@ When auditors come knocking, it is useful to be able to prove that you have foll
 ---
 
 At the highest level, you can improve your site's security by keeping in mind a few rules of thumb
-1. Apply the principle of least privilege. This rule applies to any situation where [access control](8-access-control-and-rootly-powers.md) is used
+1. Apply the principle of least privilege. This rule applies to any situation where [access control](access-control-and-rootly-powers.md) is used
 2. Layer security measures to achieve defense in depth. For example, don't rely only on your external firewall for network protection
 3. Minimize the attack surface. The fewer the interfaces, exposed systems, unnecessary services, and unused  systems, the lower the potential for security issues
 
@@ -267,7 +267,7 @@ Almost any interface can be protected with MFA, from shell accounts to bank acco
 
 ---
 
-In addition to securing all Internet-facing privileged access through MFA, it is important to select and manage passwords securely. In the world of `sudo` (see [here](8-access-control-and-rootly-powers.md#23-executing-commands-as-another-user)), administrators' personal passwords are just as important as `root` passwords
+In addition to securing all Internet-facing privileged access through MFA, it is important to select and manage passwords securely. In the world of `sudo` (see [here](access-control-and-rootly-powers.md#23-executing-commands-as-another-user)), administrators' personal passwords are just as important as `root` passwords
 
 It is all too common that a large breach occurs and usernames with passwords are exposed. If those usernames and passwords were used elsewhere, all those accounts are compromised. Never use the same password for more than one purpose
 
@@ -359,7 +359,7 @@ In contrast to network port scanners (see [§5.1](#51-network-port-scanners)), s
 
 One way to thwart poor password choices is to try to break the passwords yourself and to force users to change passwords that you have broken
 
-[John the Ripper](https://www.openwall.com/john/) is an offline password cracker. Although most systems use a [shadow password file](8-access-control-and-rootly-powers.md#123-the-root-account) to hide encrypted passwords, it is still wise to verify that your user's passwords are crack resistant (especially for those users with `sudo` privileges)
+[John the Ripper](https://www.openwall.com/john/) is an offline password cracker. Although most systems use a [shadow password file](access-control-and-rootly-powers.md#123-the-root-account) to hide encrypted passwords, it is still wise to verify that your user's passwords are crack resistant (especially for those users with `sudo` privileges)
 
 ---
 
@@ -380,7 +380,7 @@ ubuntu:mattia:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
 
 Intrusion detection is the act of monitoring a system or network to identify signs of malicious activity
 
-[Snort](https://www.snort.org/) is a network intrusion detection system that captures raw packets off the network (i.e., [packet sniffing](11-networking.md#43-sniffing-packets)) and compares them with a set of rules. When Snort detects a packet that matches against those rules, it generates an alert for system administrators
+[Snort](https://www.snort.org/) is a network intrusion detection system that captures raw packets off the network (i.e., [packet sniffing](networking.md#43-sniffing-packets)) and compares them with a set of rules. When Snort detects a packet that matches against those rules, it generates an alert for system administrators
 
 [OSSEC](https://www.ossec.net/) is a host-based intrusion detection system that runs on the systems of interest and monitors their activity in real time. OSSEC provides rootkit detection, filesystem integrity checks, log file analysis, time-based alerting, and active responses
 

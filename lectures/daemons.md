@@ -33,7 +33,7 @@
 3. Complete the previous assignments
 	1. [Python: Basic stuff - Lab](3-python-basic-stuff-lab.md)
 	2. [Python: Advanced stuff - Lab](5-python-advanced-stuff-lab.md)
-4. Review [system and service management in Linux](6-booting-and-system-management-daemons.md#2-system-and-service-management-in-linux)
+4. Review [system and service management in Linux](booting-and-system-management-daemons.md#2-system-and-service-management-in-linux)
 
 ### 1.2. Hints
 
@@ -193,7 +193,7 @@ $ rm -r .venv
 
 #### 2.2.3. Unit files and where to find them
 
-As mentioned [here](6-booting-and-system-management-daemons.md#21-units-and-unit-files), there are several directories where `systemd` reads unit files. The recommended directory for user units created by the user is `~/.config/systemd/user`. For example, the path of the unit file for the service `cpu-logger` should be `~/.config/systemd/user/cpu-logger.service`. If the `~/.config/systemd/user` does not exist, just create it. To create a directory and make parent directories as needed
+As mentioned [here](booting-and-system-management-daemons.md#21-units-and-unit-files), there are several directories where `systemd` reads unit files. The recommended directory for user units created by the user is `~/.config/systemd/user`. For example, the path of the unit file for the service `cpu-logger` should be `~/.config/systemd/user/cpu-logger.service`. If the `~/.config/systemd/user` does not exist, just create it. To create a directory and make parent directories as needed
 
 ```shell
 $ mkdir -p ~/.config/systemd/user
@@ -201,7 +201,7 @@ $ mkdir -p ~/.config/systemd/user
 
 #### 2.2.4. How to control a systemd user instance
 
-Just append the `--user` option to the commands listed [here](6-booting-and-system-management-daemons.md#22-controlling-systemd) to control the `systemd` user instance instead of the system-wide one. For example
+Just append the `--user` option to the commands listed [here](booting-and-system-management-daemons.md#22-controlling-systemd) to control the `systemd` user instance instead of the system-wide one. For example
 
 ```shell
 $ systemctl --user list-units

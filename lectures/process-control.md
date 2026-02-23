@@ -600,7 +600,7 @@ Some Linux distributions have abandoned `cron` entirely in favor of `systemd`. H
 
 ### 7.1. Structure of timers
 
-A `systemd` timer comprises two [unit files](6-booting-and-system-management-daemons.md#21-units-and-unit-files) 
+A `systemd` timer comprises two [unit files](booting-and-system-management-daemons.md#21-units-and-unit-files) 
 - A timer unit that describes the schedule and the unit to activate
 - A service unit that specifies the details of what to run
 

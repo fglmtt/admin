@@ -22,7 +22,7 @@ The exam consists of two exercises and three open questions. The first exercise 
 
 The exam text is in Italian unless otherwise requested. If you wish the text in English, please let me know a few days in advance. Feel free to solve the exercises or answer the questions in either Italian or English
 
-The only things you are allowed to look up during the exam are a printed version of the [cheat sheet](14-cheat-sheet.md) (in English or Italian), manual pages (`man`), and Python documentation (`help`)
+The only things you are allowed to look up during the exam are a printed version of the [cheat sheet](cheat-sheet.md) (in English or Italian), manual pages (`man`), and Python documentation (`help`)
 
 ---
 
@@ -80,7 +80,7 @@ mindmap
 
 | Topic                    | Text                                                                   | Solution                                  |
 | ------------------------ | ---------------------------------------------------------------------- | ----------------------------------------- |
-| Daemon                   | [CPU logger](7-booting-and-system-management-daemons-lab.md#2-cpu-logger) | [Project directory](../code/cpu-logger)   |
+| Daemon                   | [CPU logger](daemons.md#2-cpu-logger) | [Project directory](../code/cpu-logger)   |
 | Periodic process         | [File cleaner](#21-file-cleaner)                                       | [Project directory](../code/file-cleaner) |
 | Packet filtering and NAT | [Firewall configuration](#22-firewall-configuration)                   | [Code snippet](#222-solution)             |
 | Cybersecurity            | [Questions](#3-questions)                                              | n/a                                       |
@@ -292,7 +292,7 @@ Enforce the following rules:
 
 ## 3. Questions
 
-### [3.1. Access control and rootly powers](8-access-control-and-rootly-powers.md)
+### [3.1. Access control and rootly powers](access-control-and-rootly-powers.md)
 
 - What core rules govern the traditional UNIX permission model?
 - Which operations can only the file owner (or `root`) perform, and what permission bits can be set on a file?
@@ -300,7 +300,7 @@ Enforce the following rules:
 - What is set-UID execution, why does `passwd` need it, and what happens when a regular user runs `passwd`?
 - Why is `sudo` generally preferred to direct `root` login or `su` for obtaining `root` privileges, and what are its main advantages and drawbacks?
 
-### [3.2. The filesystem](10-the-filesystem.md)
+### [3.2. The filesystem](the-filesystem.md)
 
 - Which file types does UNIX support, and how do the nine permission bits (`rwx` for user, group, and other) govern the allowed operations on each type?
 - Why is a lazy unmount (`umount -l`) considered unsafe, which command lets you identify the processes that still hold references to the busy filesystem, and how can you perform a clean unmount instead?
@@ -308,7 +308,7 @@ Enforce the following rules:
 - Who may change a file’s permission bits, which command can they use, and how is that command invoked?
 - Who may change a file’s ownership (owner and group owner), what rules must be satisfied, and which command performs the operation?
 
-### [3.3. Networking](11-networking.md)
+### [3.3. Networking](networking.md)
 
 - What is ARP spoofing, which weaknesses in the ARP protocol does it exploit, and how does a MITM attack unfold in practice?
 - How can an attacker mount a MITM attack with ICMP redirect messages, and which weaknesses in the ICMP protocol make this possible?
@@ -316,7 +316,7 @@ Enforce the following rules:
 - What is IP spoofing, and what defences can be used against it?
 - What is IPv4 source routing, and how can an attacker exploit it?
 
-### [3.4. Security](12-security.md)
+### [3.4. Security](security.md)
 
 - What does the CIA triad stand for in information security, and what does each principle mean?
 - What is social engineering, why is it particularly difficult to defend against, and what is one common form of this attack?
