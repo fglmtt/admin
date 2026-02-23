@@ -66,6 +66,12 @@ Time available: 2 hours and 30 minutes.
 | 14  | Security                                                                              |              |
 | 15  | Mock exam                                                                             | $\checkmark$ |
 
+> [!tip]
+> Each lecture has a corresponding chapter in the textbook (see [Credits](#credits)).
+
+> [!tip]
+> Labs are good practice for the exam — each one maps to an exercise type.
+
 ## Credits
 
 The lectures are mainly based, with some modifications, on UNIX and Linux System Administration Handbook written by Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley, and Dan Mackin and published by Addison-Wesley Professional. Copyright © 2018 Pearson Education, Inc.
