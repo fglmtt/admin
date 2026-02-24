@@ -55,11 +55,11 @@ Time available: 2 hours and 30 minutes.
 | 3   | Daemons                                                                               | $\checkmark$ |
 | 4   | Process control                                                                       |              |
 | 5   | Periodic processes                                                                    | $\checkmark$ |
-| 6   | Containers                                                                            |              |
-| 7   | Container management                                                                  | $\checkmark$ |
-| 8   | The filesystem                                                                        |              |
-| 9   | Access control and rootly powers                                                      |              |
-| 10  | User management                                                                       |              |
+| 6   | Access control and rootly powers                                                      |              |
+| 7   | The filesystem                                                                        |              |
+| 8   | User management                                                                       |              |
+| 9   | Containers                                                                            |              |
+| 10  | Container management                                                                  | $\checkmark$ |
 | 11  | Account administration                                                                | $\checkmark$ |
 | 12  | Networking                                                                            |              |
 | 13  | Packet filtering and NAT                                                              | $\checkmark$ |
