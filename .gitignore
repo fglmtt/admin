@@ -3,4 +3,6 @@
 .claude/
 __pycache__/
 
+bib/
+
 .DS_Store
