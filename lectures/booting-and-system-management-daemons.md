@@ -4,11 +4,11 @@
 
 - [1. Booting](#1-booting)
     - [1.1. Firmware](#11-firmware)
-    	- [1.1.1. BIOS v. UEFI](#111-bios-v-uefi)
-    	- [1.1.2. BIOS](#112-bios)
-    	- [1.1.3. UEFI](#113-uefi)
+        - [1.1.1. BIOS v. UEFI](#111-bios-v-uefi)
+        - [1.1.2. BIOS](#112-bios)
+        - [1.1.3. UEFI](#113-uefi)
     - [1.2. Boot loader](#12-boot-loader)
-    	- [1.2.1. GRUB](#121-grub)
+        - [1.2.1. GRUB](#121-grub)
     - [1.3. Kernel](#13-kernel)
         - [1.3.1. Kernel parameters](#131-kernel-parameters)
         - [1.3.2. Kernel operating modes](#132-kernel-operating-modes)
@@ -32,20 +32,20 @@
 
 ## 1. Booting
 
-The process of starting up a computer. This consists of
+Booting is the process of starting up a computer. This consists of
 1. Finding, loading, and running boot code
 2. Finding, loading, and running the kernel
-3. Running startup script and system daemons
+3. Running startup scripts and system daemons
 4. Maintaining process hygiene and managing system state transitions
 
-Point (4) continues as long as the system remains up
+Step 4 continues as long as the system remains up.
 
 ---
 
 Traditional booting:
 
 ```mermaid
-stateDiagram 
+stateDiagram
     direction LR
     bl: Boot loader
     [*] --> Firmware
@@ -57,7 +57,7 @@ stateDiagram
 Loader-less booting:
 
 ```mermaid
-stateDiagram 
+stateDiagram
     direction LR
     [*] --> Firmware
     Firmware --> Kernel
@@ -66,39 +66,39 @@ stateDiagram
 
 ### 1.1. Firmware
 
-Software that 
+Firmware is software that
 - Provides low-level control of computer hardware
-- Stored in non-volatile memory, such as ROM
+- Is stored in non-volatile memory, such as ROM
 
-When a computer is powered on, the CPU is hardwired to execute the firmware
+When a computer is powered on, the CPU is hardwired to execute the firmware.
 
 ---
 
 The firmware knows the devices on the motherboard and allows
 - Hardware-level configuration of such devices
-- Either expose such devices to the OS or disable and hide them
+- Exposing or hiding such devices from the OS
 
-During normal booting, the firmware 
+During normal booting, the firmware
 - Probes for hardware and disks
 - Runs a simple set of health checks
-- Selects the boot device and loads boot loader
+- Selects the boot device and loads a boot loader
 
 #### 1.1.1. BIOS v. UEFI
 
-BIOS is the traditional firmware
+Basic input/output system (BIOS) is the traditional firmware.
 
-UEFI is the modern standard
+Unified extensible firmware interface (UEFI) is a modern firmware specification
 - Most UEFI firmware can fall back to a BIOS implementation
 - UEFI support is pretty much universal
 - But BIOS systems remain in the field
 
 #### 1.1.2. BIOS
 
-BIOS assumes that the boot device starts with the MBR, which includes
-- A first-stage boot loader, aka firmware loader (512 bytes)
+BIOS assumes that the boot device starts with the master boot record (MBR), which includes
+- A first-stage boot loader, aka firmware loader (almost 512 bytes)
 - A primitive disk-partitioning table
 
-As the first-stage boot loader is less than 512 bytes, it is not sophisticated enough to read any type of filesystem
+As the first-stage boot loader is less than 512 bytes, it is not sophisticated enough to read any type of filesystem.
 
 ---
 
@@ -108,15 +108,15 @@ Option 1
 3. Executes the second-stage boot loader
 
 Option 2
-- The second-stage boot loader can live in the dead zone that lies between the MBR and the beginning of the first disk partition 
+- The second-stage boot loader can live in the dead zone that lies between the MBR and the beginning of the first disk partition
 - This dead zone contains around 32KB, enough for a filesystem driver
 
 #### 1.1.3. UEFI
 
-This specification
-- Includes a modern disk-partitioning scheme, i.e., GPT
-- Understands FAT filesystem
-- Defines ESP
+UEFI is a specification that
+- Includes a modern disk-partitioning scheme, i.e., GUID partition table (GPT)
+- Understands file allocation table (FAT) filesystem
+- Defines EFI system partition (ESP)
 
 At boot time, the firmware
 1. Looks into the GPT to identify the ESP
@@ -130,9 +130,9 @@ As ESP is just a generic FAT filesystem, the UEFI boot target can be
     - EFI boot stub is an example of firmware loader
 - A boot loader
 
-UEFI saves the path to the boot target as a configuration parameter
+UEFI saves the path to the boot target as a configuration parameter.
 
-Although no boot loader at all is technically required, most systems still use one
+Although no boot loader at all is technically required, most systems still use one.
 
 ---
 
@@ -140,9 +140,9 @@ Although no boot loader at all is technically required, most systems still use o
 $ efibootmgr -v
 BootCurrent: 0004
 BootOrder: 0000,0001,0002,0004,0003
-Boot0000* EFI DVD/CDROM [...] 
+Boot0000* EFI DVD/CDROM [...]
 Boot0001* EFI Hard Drive [...]
-Boot0002* EFI Network [...] 
+Boot0002* EFI Network [...]
 Boot0003* EFI Internal Shell [...]
 Boot0004* ubuntu HD(1,GPT, [...])/File(\EFI\ubuntu\shimx64.efi)
 ```
@@ -158,11 +158,11 @@ Boot0004* ubuntu HD(1,GPT, [...])/File(\EFI\ubuntu\shimx64.efi)
 
 ### 1.2. Boot loader
 
-A computer program that is responsible for booting the kernel
+A boot loader is a computer program that is responsible for booting the kernel.
 
-As there may be multiple kernels available, most boot loaders have a boot-time user interface where it is possible to make a choice
+As there may be multiple kernels available, most boot loaders have a boot-time user interface where it is possible to make a choice.
 
-A boot loader also takes care of marshalling configuration arguments for the kernel. This arguments can be either hardwired or provided on the fly through the user interface
+A boot loader also takes care of marshalling configuration arguments for the kernel. These arguments can be either hardwired or provided on the fly through the user interface.
 
 ---
 
@@ -171,7 +171,7 @@ A boot loader also takes care of marshalling configuration arguments for the ker
 | ELILO            | Developed by HP for EFI-based firmware                                                            |
 | GRUB             | Developed by the GNU project                                                                      |
 | GRUB2            | Evolution of GRUB. Current standard. Default boot loader for most Linux distributions             |
-| LILO             | Was the default boot loader on most Linux distribution before GRUB (then GRUB2). Now discontinued |
+| LILO             | Was the default boot loader on most Linux distributions before GRUB (then GRUB2). Now discontinued |
 | Syslinux project | A suite of lightweight boot loaders                                                               |
 
 #### 1.2.1. GRUB
@@ -188,7 +188,7 @@ A boot loader also takes care of marshalling configuration arguments for the ker
 
 `/etc/default/grub`:
 
-```
+```bash
 GRUB_DEFAULT=0
 GRUB_TIMEOUT_STYLE=hidden
 GRUB_TIMEOUT=0
@@ -210,7 +210,7 @@ GRUB_CMDLINE_LINUX=""
 
 ### 1.3. Kernel
 
-A computer program at the core of an operating system that
+The kernel is a computer program at the core of an operating system that
 - Controls the hardware resources of the computer
 - Provides an environment under which programs can run
 
@@ -234,7 +234,7 @@ block-beta
 	space:5
 	space:5
 	Hardware:5
-	
+
     u -- "System calls (from user to kernel space)" --> s
     s --> u
     s --> f
@@ -273,8 +273,8 @@ block-beta
 
 #### 1.3.3. Daemon processes
 
-Processes that lives for a long time. Daemon processes  
-- Start when the system is bootstrapped 
+A daemon process is a process that lives for a long time. Daemon processes
+- Start when the system is bootstrapped
 - Run in the background (no controlling terminal)
 - Terminate only when the system is shut down
 
@@ -289,11 +289,11 @@ Kernel daemons are part of the kernel itself. This means that
 - They are not configurable
 - They do not require administrative attention
 
-In general, each kernel component that 
-- Needs to perform work in a process context 
-- But that is not invoked from the context of a user-level process 
+In general, each kernel component that
+- Needs to perform work in a process context
+- But that is not invoked from the context of a user-level process
 
-will usually have its own kernel daemon
+will usually have its own kernel daemon.
 
 ---
 
@@ -304,7 +304,7 @@ PID  PPID  TTY   CMD
   2     0    ?   [kthreadd]
   3     2    ?   [pool_workqueue_release]
   4     2    ?   [kworker/R-rcu_g]
-  
+
 [...]
 
 700     1    ?   /usr/lib/systemd/systemd-logind
@@ -320,19 +320,19 @@ Anything with `PPID 0` is a kernel daemon started during booting
 `TTY` identifies the controlling terminal
 - `?` means that there is no controlling terminal
 
-Kernel daemons have brackets around their names
+Kernel daemons have brackets around their names.
 
-`[kthreadd]` is the parent of the other kernel daemons
+`[kthreadd]` is the parent of the other kernel daemons.
 
-#### 1.3.4. System management daemon 
+#### 1.3.4. System management daemon
 
 The kernel starts the system management daemon with `PID 1`
 - Traditionally called `init`
 - Nowadays called `systemd` on most Linux distributions
 
-The goal of the system management daemon is to make sure the system runs the right set of services and daemons at any given time
+The goal of the system management daemon is to make sure the system runs the right set of services and daemons at any given time.
 
-This depends on the mode in which the system should be operating (see [§1.3.2](#132-kernel-operating-modes))
+This depends on the mode in which the system should be operating (see [§1.3.2](#132-kernel-operating-modes)).
 
 ---
 
@@ -341,9 +341,9 @@ Booting $\rightarrow$ multiuser mode
 - Check disks and mount filesystems
 - Remove old files from `/tmp`
 - Configure network interfaces and packet filters
-- Startup other daemons and services
+- Start up other daemons and services
 
-The system management daemon has very little knowledge about these tasks, it simply runs a set of commands or scripts that have been designated for execution in that particular order
+The system management daemon has very little knowledge about these tasks. It simply runs a set of commands or scripts that have been designated for execution in that particular order.
 
 ### 1.4. Summary
 
@@ -362,7 +362,7 @@ timeline
     	: Starts init/systemd as PID 1
     	: Executes startup scripts
 ```
- 
+
 #### 1.4.2. Loader-less booting
 
 ```mermaid
@@ -378,7 +378,7 @@ timeline
 
 ## 2. System and service management in Linux
 
-`systemd` is the default system daemon for most Linux distributions, which
+`systemd` is the default system and service manager for most Linux distributions, which
 - Runs with `PID 1`
 - Starts the rest of the system
 
@@ -388,9 +388,9 @@ timeline
 
 ### 2.1. Units and unit files
 
-A unit is an entity managed by `systemd`
+A unit is an entity managed by `systemd`.
 
-The behavior of each unit is defined in a unit file. These files 
+The behavior of each unit is defined in a unit file. These files
 - Are plain text files encoded in ini style
 - End with a suffix that identifies the type of unit (e.g., `.service`)
 
@@ -401,7 +401,7 @@ For example, in the case of a service, the unit file tells `systemd`
 
 ---
 
-`systemd` reads unit files from [several directories](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#Unit%20File%20Load%20Path)
+`systemd` reads unit files from [several directories](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#Unit%20File%20Load%20Path).
 
 | Directory                    | Meaning                                       |
 | ---------------------------- | --------------------------------------------- |
@@ -411,7 +411,7 @@ For example, in the case of a service, the unit file tells `systemd`
 | `/etc/systemd/user`          | User units created by the administrator       |
 | `$HOME/.config/systemd/user` | User configuration                            |
 
-Files in `/etc` have the highest priority
+Files in `/etc` have the highest priority.
 
 ---
 
@@ -423,7 +423,7 @@ There are also `systemd` user instances. A user instance
 - Is started (stopped) as the user logs in (logs off)
 - Controls user units
 
-The system-wide instance is managed by the administrators, while a user instance is managed by either the user or an administrator
+The system-wide instance is managed by the administrators, while a user instance is managed by either the user or an administrator.
 
 ---
 
@@ -451,7 +451,7 @@ WantedBy=multi-user.target
 | Section     | Directive             | Meaning                                                           |
 | ----------- | --------------------- | ----------------------------------------------------------------- |
 | `[Unit]`    | `Description`         | Human-readable description                                        |
-| `[Unit]`    | `ConditionPathExists` | `systemd` starts `rsyncd` if and only if `/etc/rsyncd.conf`exists |
+| `[Unit]`    | `ConditionPathExists` | `systemd` starts `rsyncd` if and only if `/etc/rsyncd.conf` exists |
 | `[Unit]`    | `After`               | `systemd` starts `rsyncd` after `network.target`                  |
 | `[Unit]`    | `Documentation`       | Links to manual pages                                             |
 | `[Service]` | `ExecStart`           | Command used to run `rsyncd`                                      |
@@ -461,7 +461,7 @@ WantedBy=multi-user.target
 
 ### 2.2. Controlling systemd
 
-`systemctl` 
+`systemctl`
 - First argument is typically a subcommand
 - Subsequent arguments are specific to that particular subcommand
 
@@ -470,6 +470,7 @@ WantedBy=multi-user.target
 | `daemon-reload`   | n/a       | Reload unit files and `systemd` config                         |
 | `disable`         | `unit`    | Prevent `unit` from activating at boot                         |
 | `enable`          | `unit`    | Enable `unit` to activate at boot                              |
+| `get-default`     | n/a       | Show the default target                                        |
 | `isolate`         | `target`  | Change operating mode to `target`                              |
 | `kill`            | `pattern` | Send a signal to units matching `pattern`                      |
 | `list-unit-files` | `pattern` | List the unit files matching `pattern` installed in the system |
@@ -502,7 +503,7 @@ apparmor.service   loaded active exited  Load AppArmor profiles
 | `SUB`         | Low-level unit activation state (unit type specific)      |
 | `DESCRIPTION` | Human-readable description (same as unit file)            |
 
-The unit file `apparmor.service` was properly loaded into memory (`loaded`), the unit was started (`active`), but now the service is not running anymore (`exited`)
+The unit file `apparmor.service` was properly loaded into memory (`LOAD=loaded`), the unit is active (`ACTIVE=active`), and the service has completed its work and exited (`SUB=exited`).
 
 #### 2.2.2. Listing unit files
 
@@ -525,7 +526,7 @@ apparmor.service   enabled         enabled
 | `STATE`     | Unit file state                                  |
 | `PRESET`    | Default unit file state as defined by the system |
 
-`apparmor.service` starts on boot (`STATE=enabled`) as defined by the system (`PRESET=enabled`)
+`apparmor.service` starts on boot (`STATE=enabled`) as defined by the system (`PRESET=enabled`).
 
 ---
 
@@ -533,7 +534,7 @@ apparmor.service   enabled         enabled
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `bad`           | Some kind of problem within `systemd` (usually a bad unit file)                                                                  |
 | `disabled`      | Installed, but not configured to start on boot. The unit can be started manually                                                 |
-| `masked`        | Completely disabled. The unit cannot even started manually                                                                       |
+| `masked`        | Completely disabled. The unit cannot even be started manually                                                                    |
 | `enabled`       | Installed, will start on boot                                                                                                    |
 | `indirect`      | Enabled by another service                                                                                                       |
 | `static`        | Started when another service depends on it. The unit file does not have an `[Install]` section. The unit can be started manually |
@@ -542,15 +543,15 @@ apparmor.service   enabled         enabled
 
 ---
 
-`enabled` and `disabled` 
+`enabled` and `disabled`
 - Apply only to unit files that live in a standard `systemd` directory
 - Have an `[Install]` section
 
 `enabled` means that
-- The directives in the `[Install]`have been executed
+- The directives in the `[Install]` have been applied
 - The unit will start on boot
 
-`static` is for those units that do not have an `[Install]` section
+`static` is for those units that do not have an `[Install]` section.
 
 As a rule of thumb
 - Avoid `linked` unit files $\rightarrow$ just make copies
@@ -559,7 +560,7 @@ As a rule of thumb
 
 #### 2.2.3. Showing unit statuses
 
-`status` shows runtime status information
+`status` shows runtime status information.
 
 ```shell
 $ systemctl status rsync.service
@@ -570,7 +571,7 @@ $ systemctl status rsync.service
              man:rsyncd.conf(5)
 ```
 
-- The unit file of `rsync.service` was properly loaded into memory (`loaded`)
+- The unit file of `rsync.service` was properly loaded into memory (`Loaded: loaded`)
 - The service does not start on boot (`disabled`), although the default setting is to start it on boot (`preset: enabled`)
 - The service is not running right now (`Active: inactive (dead)`)
 
@@ -601,7 +602,9 @@ Feb 26 06:29:28 admin systemd-journald[75103]: Journal started
 
 #### 2.2.4. Switching between targets
 
-`get-default` shows the target the system boots into by default
+A target is a unit that represents a system state, such as an operating mode (`multi-user.target`) or a system transition (`reboot.target`).
+
+`get-default` shows the target the system boots into by default.
 
 ```shell
 $ systemctl get-default
@@ -617,10 +620,10 @@ graphical.target
 ---
 
 There are also other targets, such as
-- `poweroff.target` that halts the system
+- `poweroff.target` that powers off the system
 - `reboot.target` that reboots the system
 
-`isolate` changes operating mode to a given target
+`isolate` changes operating mode to a given target.
 
 ```shell
 $ sudo systemctl isolate reboot.target
@@ -630,7 +633,7 @@ Connection to admin.unife.edu closed.
 
 ### 2.3. Dependencies among units
 
-Runtime dependencies define how units behave at runtime, i.e., when `systemd` starts or stops them
+Runtime dependencies define how units behave at runtime, i.e., when `systemd` starts or stops them.
 
 | Directive  | Section  | Type    | Meaning                                                                                              |
 | ---------- | -------- | ------- | ---------------------------------------------------------------------------------------------------- |
@@ -639,7 +642,7 @@ Runtime dependencies define how units behave at runtime, i.e., when `systemd` st
 
 ---
 
-Install-time dependencies define what happens when  `systemd` enables them
+Install-time dependencies define what happens when `systemd` enables the corresponding units.
 
 | Directive    | Section     | Type         | Meaning                                                    |
 | ------------ | ----------- | ------------ | ---------------------------------------------------------- |
@@ -657,16 +660,18 @@ $ cat /usr/lib/systemd/system/rsync.service
 WantedBy=multi-user.target
 ```
 
-When the system boots in `multi-user.target`, `rsync.service` is started. If `rsync.service` fails (the wanted unit), `multi-user.target` starts anyway (the main unit). In other words, the system still boots in multi-user mode if `rsync` fails. Put yet another way, `rsync` is an optional dependency of `multi-user.target`
+When the system boots in `multi-user.target`, `rsync.service` is started. If `rsync.service` fails (the wanted unit), `multi-user.target` starts anyway (the main unit). In other words, the system still boots in multi-user mode if `rsync` fails. Put yet another way, `rsync` is an optional dependency of `multi-user.target`.
 
 ### 2.4. Execution order
 
-Do **not** assume that if `A Requires B`, then `A` is started before `B`
+Ordering and dependency are orthogonal. If service A has `Requires=B`, A does not necessarily start after B. If service A has `After=B`, A does not necessarily depend on B.
 
 When the system transitions to a new state, `systemd`
-1. Identify the units that will be affected
+1. Identifies the units that will be affected
 2. Uses `Before` and `After` directives in `[Unit]` to sort the work
-    1. Units with no `Before/After` are adjusted in parallel
+    - Units with no `Before/After` are started in parallel
+
+`rsync.service` has `After=network.target` but not `Requires=network.target`. `systemd` starts `rsync.service` after `network.target` (ordering), but if `network.target` stops, `rsync.service` keeps running (no dependency).
 
 ## Glossary
 
@@ -678,14 +683,14 @@ When the system transitions to a new state, `systemd`
 | Booting                                         | The process of starting up a computer                                                                                                                                                                                                                                |
 | Central processing unit (CPU)                   | The primary processor of a computer                                                                                                                                                                                                                                  |
 | Controlling terminal                            | The terminal device, either physical or virtual, associated with a process                                                                                                                                                                                           |
-| Daemon process                                  | A process that is often started when the system is bootstrapped and terminate only when the system is shut down. Daemons run in the background, i.e., they do not have a controlling terminal                                                                        |
+| Daemon process                                  | A process that is often started when the system is bootstrapped and terminates only when the system is shut down. Daemons run in the background, i.e., they do not have a controlling terminal                                                                       |
 | Disk partitioning                               | The creation of one or more regions on secondary storage, so that each region can be managed separately                                                                                                                                                              |
 | Driver                                          | A computer program that controls a particular type of device that is attached to a computer                                                                                                                                                                          |
-| EFI system partition (ESP)                      | A partition on a storage device that is used by computers that have UEFI                                                                                                                                                                                             |
-| File allocation table (FAT)                     | A type of filesystem                                                                                                                                                                                                                                                 |
+| EFI system partition (ESP)                      | A FAT-formatted partition on a GPT-partitioned disk, used by UEFI firmware to locate and execute one or more boot targets, each of which can be either a boot loader or a kernel with an EFI boot stub                                                               |
+| File allocation table (FAT)                     | A simple filesystem originally developed by Microsoft. FAT is the filesystem required for the ESP under the UEFI specification                                                                                                                                       |
 | Filesystem                                      | A structure used by an OS to organize and manage files on a storage device                                                                                                                                                                                           |
 | Firmware                                        | Software that provides low-level control of computer hardware. Firmware is stored in non-volatile memory, such as ROM                                                                                                                                                |
-| Grand unified bootloader (GRUB)                 | A boot loader from the GNU project                                                                                                                                                                                                                                   |
+| GRand Unified Bootloader (GRUB)                 | A boot loader from the GNU project                                                                                                                                                                                                                                   |
 | GUID partition table (GPT)                      | A standard for the layout of partition tables. This standard is part of UEFI                                                                                                                                                                                         |
 | Kernel                                          | A computer program at the core of an operating system that controls the hardware resources of the computer and provides an environment under which programs can run                                                                                                  |
 | Kernel daemon (aka kernel threads or processes) | A daemon process that exists for the entire lifetime of the system and runs with superuser privileges                                                                                                                                                                |
@@ -701,18 +706,22 @@ When the system transitions to a new state, `systemd`
 | Random-access memory (RAM)                      | A type of computer memory that can be read and changed in any order, typically used to store working data and machine code                                                                                                                                           |
 | Read-only memory (ROM)                          | A type of non-volatile memory. Data stored in ROM cannot be electronically modified after the manufacture of the memory device                                                                                                                                       |
 | Secondary storage                               | A non-volatile type of storage that is not directly accessible by the CPU, such as hard disk drives or solid state drives                                                                                                                                            |
+| Service                                         | A unit that represents one or more processes                                                                                                                                                                                                                         |
 | Shell                                           | A special application that provides an interface for running other applications. Technically, a shell is a command-line interpreter that reads user input and executes commands. User inputs are from either a terminal (interactive shell) or a file (shell script) |
 | Stub                                            | A wrapper for another program                                                                                                                                                                                                                                        |
-| System calls                                    | A layer of software that provides the interface to the kernel                                                                                                                                                                                                        |
-| Unified extensible firmware interface (UEFI)    | A firmware specification                                                                                                                                                                                                                                             |
+| System call interface                           | The layer of software between user space and the kernel that receives system calls from processes and dispatches them to the appropriate kernel subsystem                                                                                                            |
+| System calls                                    | Requests made by a user-space process to the kernel to perform privileged operations, such as reading a file or creating a process                                                                                                                                   |
+| `systemd`                                       | The default system and service manager for most Linux distributions                                                                                                                                                                                                  |
+| Target                                          | A unit that represents a system state, such as an operating mode (`multi-user.target`) or a system transition (`reboot.target`)                                                                                                                                      |
+| Unified extensible firmware interface (UEFI)    | A modern firmware specification, succeeding BIOS                                                                                                                                                                                                                     |
 | Unit                                            | An entity managed by `systemd`                                                                                                                                                                                                                                       |
 | Unit file                                       | A plain text file encoded in ini style that defines the behavior of a unit                                                                                                                                                                                           |
 | User mode                                       | The mode in which regular applications run. Processes that run in user mode do not have direct access to hardware and they request services to the OS through system calls                                                                                           |
 | Volatile memory                                 | A type of computer memory that loses the information when not powered                                                                                                                                                                                                |
 
-## Bibliography 
+## Bibliography
 
-| Author                   | Title                                                                                                                       | Year |
+| Author(s)                | Title                                                                                                                       | Year |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---- |
 | Bach, M.                 | [The Design of the UNIX Operating System](https://dl.acm.org/doi/10.5555/8570)                                              | 1986 |
 | Kerrisk, M.              | [The Linux Programming Interface](https://man7.org/tlpi)                                                                    | 2010 |
