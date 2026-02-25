@@ -43,8 +43,8 @@ Time available: 2 hours and 30 minutes.
 | [Course Catalogue](https://unife.coursecatalogue.cineca.it/corsi/2023/10431/insegnamenti/2025/51959/2016/9999?annoOrdinamento=2016&coorte=2023)                                                                                                                                                                                                         | Syllabus                              |
 | [Aule](https://aule.unife.it/AgendaStudenti/index.php?view=easycourse&form-type=attivita&include=attivita&anno=2025&attivita%5B%5D=EC603046&visualizzazione_orario=cal&periodo_didattico=&date=23-02-2026&_lang=it&list=&week_grid_type=-1&ar_codes_=&ar_select_=&col_cells=0&empty_box=0&only_grid=0&highlighted_date=0&all_events=0&faculty_group=0#) | Week-to-week lecture timetable        |
 | [Studiare](https://studiare.unife.it/ListaAppelliOfferta.do)                                                                                                                                                                                                                                                                                            | Exam dates                            |
-| [Google Classroom](https://classroom.google.com/c/MjE2MDAxMTU4Mzda?cjc=kja2mqxa)                                                                                                                                                                                                                                                                         | Communications and lecture recordings |
-| [GitHub](https://github.com/fglmtt/admin)                                                                                                                                                                                                                                                                                                               | Lecture notes and code                |
+| [Google Classroom](https://classroom.google.com/c/MjE2MDAxMTU4Mzda?cjc=kja2mqxa)                                                                                                                                                                                                                                                                        | Communications, notes, and recordings |
+| [GitHub](https://github.com/fglmtt/admin)                                                                                                                                                                                                                                                                                                               | Notes, code, and past exams           |
 
 ## Lectures
 
@@ -70,7 +70,7 @@ Time available: 2 hours and 30 minutes.
 > Each lecture has a corresponding chapter in the textbook (see [Credits](#credits)).
 
 > [!tip]
-> Labs are good practice for the exam — each one maps to an exercise type.
+> Labs are good practice for the exam — each one maps to an exam exercise.
 
 ## Credits
 
