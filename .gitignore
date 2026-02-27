@@ -4,5 +4,6 @@
 __pycache__/
 
 bib/
+journal/
 
 .DS_Store
