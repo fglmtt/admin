@@ -51,7 +51,7 @@ Time available: 2 hours and 30 minutes.
 | #   | Title                                                                                 | Lab          |
 | --- | ------------------------------------------------------------------------------------- | ------------ |
 | 1   | [Booting and system management daemons](https://github.com/fglmtt/admin/blob/main/lectures/booting-and-system-management-daemons.md) |              |
-| 2   | Logging                                                                               |              |
+| 2   | [Logging](https://github.com/fglmtt/admin/blob/main/lectures/logging.md)             |              |
 | 3   | Daemons                                                                               | $\checkmark$ |
 | 4   | Process control                                                                       |              |
 | 5   | Periodic processes                                                                    | $\checkmark$ |
