@@ -30,13 +30,15 @@
 
 ## 1. Components of a process
 
-A process represents a running program. A process consists of
+A computer program is a sequence of instructions for a computer to execute. Computer programs can be in the form of source code (human-readable) or executable files (machine-readable).
+
+A process is a program in execution. A process consists of
 - An address space
 - A set of data structures within the kernel
 
 ### 1.1. Address space
 
-The address space is the range of memory addresses that the kernel makes available for a process
+The address space is the range of memory addresses that the kernel makes available for a process.
 
 | Segment | Description                                                                                                               |
 | ------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -48,7 +50,7 @@ The address space is the range of memory addresses that the kernel makes availab
 
 ### 1.2. Kernel data structures
 
-A set of data structures that record various pieces of information about the process. Some examples are
+The kernel maintains a set of data structures that record various pieces of information about the process. Some examples are
 - Address space map
 - Current status
 - Execution priority
@@ -59,13 +61,13 @@ A set of data structures that record various pieces of information about the pro
 
 ### 1.3. Threads
 
-A thread is an execution context within a process
+A thread is an execution context within a process.
 
-Every process has at least one thread, but some processes have many
+Every process has at least one thread, but some processes have many.
 
-Each thread has its own stack and CPU context, but it operates within the address space of its enclosing process
+Each thread has its own stack and CPU context, but it operates within the address space of its enclosing process.
 
-Modern computer hardware includes multiple CPUs and, potentially, multiple cores per CPU $\rightarrow$ the threads of a process can run simultaneously on different cores (parallelism)
+Modern hardware typically includes multiple CPU cores. Threads of a process can run simultaneously on different cores (parallelism).
 
 ### 1.4. PIDs and PPIDs
 
@@ -77,7 +79,7 @@ There is not a system call that initiates a new process running a particular pro
 1. An existing process (parent) clones itself to create a new process (child)
 2. The child can then exchange the program it is running for a different one
 
-The PPID of a process is the PID of the parent from which it was cloned
+The PPID of a process is the PID of the parent from which it was cloned.
 
 ### 1.5. Real, effective, and saved IDs
 
@@ -92,7 +94,7 @@ The PPID of a process is the PID of the parent from which it was cloned
 
 ### 1.6. Niceness
 
-Niceness is a value that specifies how nice you are planning to be to other users of the system
+Niceness is a numeric hint to the kernel about how a process should be treated in relation to other processes contending for CPU time.
 
 The scheduling priority of a process determines how much CPU time the process will receive. The algorithm that the kernel uses to compute priorities takes into account
 - The amount of CPU time that a process has recently consumed
@@ -109,7 +111,7 @@ Most non-daemon processes have a controlling terminal, which
 
 ### 2.1. Parents and children
 
-`fork.py` (see [here](../code/fork.py))
+[`fork.py`](https://github.com/fglmtt/admin/blob/main/code/fork.py)
 
 ```python
 import os
@@ -141,24 +143,25 @@ if __name__ == "__main__":
 
 ---
 
-1. `fork` creates a new process (child) by duplicating the calling process (parent). Although the child and the parent run in different address spaces, at the time of `fork` both spaces have the same content.  The child is an almost exact duplicate of the parent (see exceptions [here](https://man7.org/linux/man-pages/man2/fork.2.html)) 
-2. `fork` has the unique properties of returning two different values
+1. `fork` creates a new process (child) by duplicating the calling process (parent). Although the child and the parent run in different address spaces, at the time of `fork` both spaces have the same content. The child is an almost exact duplicate of the parent (see exceptions [here](https://man7.org/linux/man-pages/man2/fork.2.html))
+2. `fork` has the unique property of returning two different values
     1. From the child's perspective $\rightarrow$ 0
     2. From the parent's perspective $\rightarrow$ child's PID
-3. `exec` replaces the program that is currently being run by the calling process with a new program (including stack, heap, etc.)
+3. `exec` replaces the entire address space of the calling process with a new program
 4. `wait` suspends execution of the calling process until one of its children terminates
 
 ---
 
-All processes except kernel daemons are descendants of `systemd` (`PID 1`)
+All processes except kernel threads are descendants of `systemd` (`PID 1`).
 
 1. When a process completes, it calls `_exit` to notify the kernel it is ready to die and supplies an exit code that tells why it is exiting. By convention, `0` indicates a normal termination
 2. Before a dead process can be allowed to disappear completely, the kernel requires that its death be acknowledged by the parent, which receives a copy of the child's exit code (`wait`)
-3. This scheme works if parents outlive their children and `wait` for their termination. If a parent dies before its children, the kernel adjusts the orphans to make them children of `systemd`, which performs the `wait` needed to get rid of them when they die
+
+This scheme works if parents outlive their children and `wait` for their termination. If a parent dies before its children, the kernel adjusts the orphans to make them children of `systemd`, which performs the `wait` needed to get rid of them when they die.
 
 ---
 
-`orphan.py` (see [here](../code/orphan.py))
+[`orphan.py`](https://github.com/fglmtt/admin/blob/main/code/orphan.py)
 
 ```python
 import os
@@ -218,9 +221,9 @@ stateDiagram
 
 A signal is a notification sent to a process that some condition has occurred. Signals can be sent
 - Among processes as a means of communication
-- By the controlling terminal to kill, interrupt, or suspend processes when some key are pressed
+- By the controlling terminal to kill, interrupt, or suspend processes when some keys are pressed
 - By an administrator
-- By the kernel when a process commits an infractions (e.g., division by zero)
+- By the kernel when a process commits an infraction (e.g., division by zero)
 - By the kernel to notify a process of an "interesting" condition (e.g., the death of a child or the availability of data on an I/O channel)
 
 ---
@@ -240,31 +243,31 @@ A process can prevent signals from arriving. Specifically, a signal can be
 | 1   | `HUP`  | Hangup           | Terminate | No   | Yes   | Yes   |
 | 2   | `INT`  | Interrupt        | Terminate | No   | Yes   | Yes   |
 | 3   | `QUIT` | Quit             | Terminate | Yes  | Yes   | Yes   |
+| 7   | `BUS`  | Bus error        | Terminate | Yes  | Yes   | Yes   |
 | 9   | `KILL` | Kill             | Terminate | No   | No    | No    |
-| 10  | `BUS`  | Bus error        | Terminate | Yes  | Yes   | Yes   |
+| 10  | `USR1` | User-defined 1   | Terminate | No   | Yes   | Yes   |
 | 11  | `SEGV` | Segm. fault      | Terminate | Yes  | Yes   | Yes   |
+| 12  | `USR2` | User-defined 2   | Terminate | No   | Yes   | Yes   |
 | 15  | `TERM` | Software term.   | Terminate | No   | Yes   | Yes   |
-| 17  | `STOP` | Stop             | Stop      | No   | No    | No    |
-| 18  | `TSTP` | Keyboard stop    | Stop      | No   | Yes   | Yes   |
-| 19  | `CONT` | Cont. after stop | Ignore    | No   | Yes   | No    |
-| 30  | `USR1` | User-defined 1   | Terminate | No   | Yes   | Yes   |
-| 31  | `USR2` | User-defined 2   | Terminate | No   | Yes   | Yes   |
+| 18  | `CONT` | Cont. after stop | Ignore    | No   | Yes   | No    |
+| 19  | `STOP` | Stop             | Stop      | No   | No    | No    |
+| 20  | `TSTP` | Keyboard stop    | Stop      | No   | Yes   | Yes   |
 
 ---
 
-`BUS` and `SEGV` are common when a program crashes, they indicate an attempt to use or access memory improperly
+`BUS` and `SEGV` are common when a program crashes; they indicate an attempt to use or access memory improperly.
 
 `KILL` and `STOP` cannot be caught, blocked, or ignored
 - `KILL` destroys the receiving process
 - `STOP` suspends the receiving process until `CONT` is received
 
-`TSTP` (a soft version of `STOP`) is a request to stop. Usually, programs that catch `TSTP` clean up their state and then send `STOP` to themselves to complete the stop operation
+`TSTP` (a soft version of `STOP`) is a request to stop. Usually, programs that catch `TSTP` clean up their state and then send `STOP` to themselves to complete the stop operation.
 
-`USR1` and `USR2` have no set meaning, programs are free to use them as they like
+`USR1` and `USR2` have no set meaning; programs are free to use them as they like.
 
 ---
 
-`KILL`, `INT`, `TERM`, `HUP`, and `QUIT` may sound as if they mean almost the same thing, but they did not
+`KILL`, `INT`, `TERM`, `HUP`, and `QUIT` may sound as if they mean almost the same thing, but they do not.
 
 | Signal | Meaning                                                                                                                                              |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -276,7 +279,7 @@ A process can prevent signals from arriving. Specifically, a signal can be
 
 ### 2.3. Sending signals
 
-The `kill` command sends any signal (by default it sends `TERM`). This command can be used by a user on their own process or by `root` on any process
+`kill` is the command to send signals (by default it sends `TERM`). This command can be used by a user on their own process or by `root` on any process.
 
 The syntax is `kill [-signal] pid`. For example
 
@@ -284,17 +287,17 @@ The syntax is `kill [-signal] pid`. For example
 $ kill -9 100
 ```
 
-`kill` sends the signal `KILL`, whose identifier is `9` (see [§2.2](#22-signals)), to the process identified by `PID 100`
+`kill` sends the signal `KILL`, whose identifier is `9` (see [§2.2](#22-signals)), to the process identified by `PID 100`.
 
 ## 3. Process monitoring
 
 ### 3.1. Static monitoring
 
-The `ps` command is the main tool for system administrators for process monitoring 
+`ps` is the main process monitoring tool for system administrators.
 
-A peculiarity of this command is that `ps` accepts command-line arguments with or without dashes, but it might assign different interpretations to those forms. For example, `ps -a` is not the same as `ps a`
+A peculiarity of this command is that `ps` accepts command-line arguments with or without dashes, but it might assign different interpretations to those forms. For example, `ps -a` is not the same as `ps a`.
 
-Implementations of `ps` may vary significantly from one vendor to another and some of them have become quite complex over the years. However, this complexity is mainly there for developers. System administrators will typically use `ps` in a few configurations
+Implementations of `ps` may vary significantly from one vendor to another, and some of them have become quite complex over the years. However, this complexity is mainly there for developers. System administrators will typically use `ps` in a few configurations.
 
 ---
 
@@ -307,7 +310,7 @@ root   2  0.0  0.0     0     0 ?   S    11:22   0:00 [kthreadd]
 [...]
 ```
 
-- `a` shows all processes
+- `a` shows all processes with a controlling terminal
 - `x` shows even processes without a controlling terminal
 - `u` selects the user-oriented output
 
@@ -320,32 +323,33 @@ root   2  0.0  0.0     0     0 ?   S    11:22   0:00 [kthreadd]
 | `%CPU`    | Percentage of CPU the process is using                                                              |
 | `%MEM`    | Percentage of memory (RAM) the process is using                                                     |
 | `VSZ`     | Virtual memory size, i.e., the total amount of memory given to the process in KiB (1024-byte units) |
-| `RSS`     | Resident set size, i.e., the actual amount memory (RAM) the process is using in KiB                 |
+| `RSS`     | Resident set size, i.e., the actual amount of memory (RAM) the process is using in KiB                 |
 | `TTY`     | Controlling terminal                                                                                |
 | `STAT`    | Current process status                                                                              |
+| `START`   | Time at which the process started                                                                   |
 | `TIME`    | CPU time the process has consumed                                                                   |
 | `COMMAND` | Command name and arguments                                                                          |
 
 ---
 
-`RSS` is the actual amount of RAM that a process is actually using. As memory may be shared by multiple processes (e.g., shared libraries), $\sum_{n}^{N} RSS_n$, where $N$ is the total number of processes running the system, may be greater than the memory available in the system
+`RSS` is the amount of RAM that a process is actually using. As memory may be shared by multiple processes (e.g., shared libraries), $\sum_{n=1}^{N} RSS_n$, where $N$ is the total number of processes running on the system, may be greater than the memory available in the system.
 
-`%MEM` is a relative measure of the amount of RAM usage of a process compared to the entire system
+`%MEM` is the percentage of total RAM used by a process
 
 $$\%MEM = \frac{RSS}{RAM} \times 100$$
 
-`VSZ` is the total memory allocated to a process, including memory that is not actually in RAM (e.g., memory swapped to disk). Therefore, $VSZ \ge RSS$
+`VSZ` is the total memory allocated to a process, including memory that is not actually in RAM (e.g., memory swapped to disk). Therefore, $VSZ \ge RSS$.
 
 ---
 
 Consider what happens when a process `A` forks a child process `B`
 
-1. `A` executes a `fork`, then `B` moves into a state where is ready to run 
+1. `A` executes a `fork`, then `B` moves into a state where it is ready to run
 2. The process scheduler eventually picks `B` to be executed
 3. `B` completes its part of the `fork`, which happens in kernel space, and then executes in user space
 4. After a while, the system clock interrupts the processor, and then the kernel may decide to schedule another process, say `C`
-5. Suppose that `C` must wait for the I/O to complete, then `C` puts itself to sleep until the I/O has completed
-6. Suppose the system is executing many processes that do not fit simultaneously in memory, that the swapper swaps out `C` to make room for another process 
+5. Suppose that `C` must wait for I/O to complete. `C` puts itself to sleep until the I/O has completed
+6. Suppose the system is executing many processes that do not fit simultaneously in memory. The kernel swaps out `C` to make room for another process
 
 ---
 
@@ -369,7 +373,7 @@ Consider what happens when a process `A` forks a child process `B`
 
 ---
 
-System administrators frequently need to find out the PID of a process
+System administrators frequently need to find out the PID of a process.
 
 ```shell
 $ ps aux | grep -v grep | grep bash
@@ -388,7 +392,7 @@ $ pgrep bash
 
 ### 3.2. Interactive monitoring
 
-`ps` shows a snapshot of the system. `top` is a sort of real-time version of `ps`. Specifically, `top`
+`ps` shows a snapshot of the system. `top` is a real-time version of `ps`. Specifically, `top`
 - Updates the view periodically (~ 3 s)
 - Displays the most CPU-consumptive processes at the top of the list
 - Accepts inputs from keyboard to send signals or renice processes
@@ -411,7 +415,7 @@ PID USER   PR NI VIRT   RES  SHR  S %CPU %MEM TIME+   COMMAND
 
 ---
 
-The 1st line provides system-level statistics
+The 1st line provides system-level statistics.
 
 | Field                           | Meaning                                                                              |
 | ------------------------------- | ------------------------------------------------------------------------------------ |
@@ -422,7 +426,7 @@ The 1st line provides system-level statistics
 
 ---
 
-The 2nd line (`Tasks`) provides process-level statistics
+The 2nd line (`Tasks`) provides process-level statistics.
 
 | Field         | Meaning                      |
 | ------------- | ---------------------------- |
@@ -434,7 +438,7 @@ The 2nd line (`Tasks`) provides process-level statistics
 
 ---
 
-The 3rd line provides (`%Cpu(s)`) CPU-level statistics (press `1` to switch to per-core statistics)
+The 3rd line (`%Cpu(s)`) provides CPU-level statistics (press `1` to switch to per-core statistics).
 
 | Field     | Meaning                                                       |
 | --------- | ------------------------------------------------------------- |
@@ -449,9 +453,9 @@ The 3rd line provides (`%Cpu(s)`) CPU-level statistics (press `1` to switch to p
 
 ---
 
-The 4th line (`MiB Mem`) provides RAM-level statistics
+The 4th line (`MiB Mem`) provides RAM-level statistics.
 
-| File               | Meaning                                                                                                                               |
+| Field              | Meaning                                                                                                                               |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `1968.1 total`     | Total memory (`1968.1` MiB)                                                                                                           |
 | `1242 free`        | Free memory (`1242` MiB)                                                                                                              |
@@ -460,7 +464,7 @@ The 4th line (`MiB Mem`) provides RAM-level statistics
 
 ---
 
-The 5th line (`MiB Swap`) provides swapped-memory-level statistics
+The 5th line (`MiB Swap`) provides swapped-memory-level statistics.
 
 | Field              | Meaning                                                                             |
 | ------------------ | ----------------------------------------------------------------------------------- |
@@ -488,16 +492,15 @@ The 5th line (`MiB Swap`) provides swapped-memory-level statistics
 
 ## 4. Influencing scheduling priority
 
-As mentioned in [§1.6](#16-niceness), the niceness of a process is a numeric hint to the kernel about how the process should be treated in relation to other processes
-- The higher the niceness, the lower the priority—you are going to be nice
-- In Linux, the range of allowable nice values is -20 to +19
-- Unless the user takes special action, a newly created process inherits the niceness of its parent process
-- The process owner can increase the niceness, but not lower it
-- `root` can set nice values arbitrarily
+The higher the niceness (see [§1.6](#16-niceness)), the lower the priority. In Linux, the range of allowable nice values is -20 to +19.
+
+Unless the user takes special action, a newly created process inherits the niceness of its parent process.
+
+The process owner can increase the niceness, but not lower it. `root` can set nice values arbitrarily.
 
 ---
 
-The `nice` command is to set niceness at creation time, while `renice` is to adjust niceness while the process is already running
+`nice` sets the niceness of a process at creation time, while `renice` adjusts it while the process is already running.
 
 ```shell
 $ nice -n 10 python app.py
@@ -526,7 +529,7 @@ $ sudo renice --priority 10 5155
 - Most files are read-only
 - Those files that are writable change kernel variables
 
-`/proc` lives in RAM (pseudo-filesystem), it does not occupy space on disk
+`/proc` lives in RAM; it does not occupy space on disk.
 
 ```shell
 $ du -sh /proc
@@ -544,7 +547,7 @@ Process-specific information is divided into subdirectories named by PID. For ex
 | `cwd`     | Symbolic link to the current directory of the process                  |
 | `environ` | Environment variables of the process                                   |
 | `exe`     | Symbolic link to the file being executed                               |
-| `fd`      | Subdirectory containing links for open file descriptor                 |
+| `fd`      | Subdirectory containing links for open file descriptors                 |
 | `fdinfo`  | Subdirectory containing further info for each open file descriptor     |
 | `maps`    | Memory layout of the process                                           |
 | `ns`      | Subdirectory with links to each namespace used by the process          |
@@ -554,15 +557,17 @@ Process-specific information is divided into subdirectories named by PID. For ex
 
 ## 6. Tracing signals and system calls
 
-It is often difficult to figure out what a process is actually doing. The first step is generally to make a guess based on indirect data collected from the filesystem, logs, and tools (e.g., `ps`)
+> [!warning]
+> It is often difficult to figure out what a process is actually doing. Indirect data from the filesystem, logs, and tools (e.g., `ps`) only reveals external state and may be misleading — or even deliberately so.
 
-The `strace` command comes into play when such sources of information prove insufficient. `strace` displays 
-- System calls made by a process, as well as arguments and result codes
-- Signals that a process receive
+> [!tip]
+> A process must go through system calls to do anything meaningful. System calls are captured at the kernel level, so a process cannot fake them.
+
+`strace` is the command to display system calls made by a process, as well as arguments and result codes, and signals that a process receives.
 
 ---
 
-`cpu_logger.py` (see [here](../code/cpu-logger/app.py)):
+[CPU logger](https://github.com/fglmtt/admin/blob/main/code/cpu-logger/app.py):
 
 ```shell
 $ sudo strace -p 5360
@@ -583,7 +588,7 @@ write(1, "\n", 1)                       = 1
 
 1. `clock_nanosleep`: Suspend the process for a while. Return `0`, which means success
 2. `openat`: Open `/proc/stat` in read-only (`O_RDONLY`) and ensure the file is closed on `exec` (`O_CLOEXEC`). `AT_FDCWD` indicates to consider the path from the current working directory. However, the path is absolute, so the kernel ignores `AT_FDCWD`. Return `3`, which is the file descriptor
-3. `fstat`: Verify that file descriptor `3` is a regular file (`S_IFREG`), readable (`0444`), and empty (`0`). Return `0`, which means success
+3. `fstat`: Get metadata about file descriptor `3`. The file is a regular file (`S_IFREG`) with read-only permissions (`0444`). `st_size` is `0` because `/proc` files do not occupy space on disk (see [§5](#5-the-proc-filesystem)). Return `0`, which means success
 4. `lseek`: Return the current pointer position, i.e., `0`
 5. `read`: Read from `3` up to `32768` bytes. `"cpu  6421 1370 6067 13140802 862"...` is the actual content being read. Return `780`, which is the number of bytes actually read
 6. `close`: Close file descriptor `3`. Return `0`, which means success
@@ -592,15 +597,15 @@ write(1, "\n", 1)                       = 1
 
 ## 7. Periodic processes
 
-It's often useful to have a program executed without any human intervention on a predefined schedule. The traditional tool for running programs on a predefined schedule is the `cron` daemon. `cron` starts when the system boots and runs as long as the system is up
+It's often useful to have a program executed without any human intervention on a predefined schedule. The traditional tool for running programs on a predefined schedule is the `cron` daemon. `cron` starts when the system boots and runs as long as the system is up.
 
-`systemd` can also be used to run periodic processes. In fact, `systemd` includes the concept of timers, which activate a given `systemd` service on a predefined schedule
+`systemd` can also be used to run periodic processes. In fact, `systemd` includes the concept of timers, which activate a given `systemd` service on a predefined schedule.
 
-Some Linux distributions have abandoned `cron` entirely in favor of `systemd`. However, most distributions continue to include `cron` and to run it by default. Unfortunately, there is no standard. Software packages add their jobs to a random system of their own choice. Always check both systems 
+Some Linux distributions have abandoned `cron` entirely in favor of `systemd`. However, most distributions continue to include `cron` and to run it by default. Unfortunately, there is no standard. Software packages add their jobs to a random system of their own choice. Always check both systems.
 
 ### 7.1. Structure of timers
 
-A `systemd` timer comprises two [unit files](booting-and-system-management-daemons.md#21-units-and-unit-files) 
+A `systemd` timer comprises two [unit files](booting-and-system-management-daemons.md#21-units-and-unit-files)
 - A timer unit that describes the schedule and the unit to activate
 - A service unit that specifies the details of what to run
 
@@ -637,7 +642,7 @@ OnStartupSec=1week 2days 3hours
 OnActiveSec=1hr20m30sec10msec
 ```
 
-`systemd-analyze timespan` parses timings and outputs the normalized form and the equivalent value in microseconds
+`systemd-analyze timespan` parses timings and outputs the normalized form and the equivalent value in microseconds.
 
 ```shell
 $ systemd-analyze timespan 2M1hour2minutes120s
@@ -653,12 +658,12 @@ Timers can also be scheduled at specific times (with `OnCalendar`), such as
 - `Mon..Fri *-7-4`: July 4 each year at 00:00:00, but only if it falls from Monday to Friday
 - `Mon,Tue *-7-4 12:30:00`: July 4 each year at 12:30:00, but only if it falls on Monday or Tuesday
 - `weekly`: Mondays at 00:00:00
-- `monthly`: The 1st day if the month at 00:00:00
+- `monthly`: The 1st day of the month at 00:00:00
 - `*:0/10`: Every 10 minutes, starting at the 0th minute of each hour
 
 ---
 
-`systemd-analyze calendar` parses calendar time events and outputs the normalized form and calculates when they elapse next
+`systemd-analyze calendar` parses calendar time events and outputs the normalized form and calculates when they elapse next.
 
 ```shell
 $ systemd-analyze calendar 'Mon,Tue *-7-4 12:30:00'
@@ -688,7 +693,7 @@ Normalized form: *-*-* *:00/10:00
 
 ### 7.3. Cleaning temporary files
 
-The following is the `systemd` timer that cleans up temporary files once a day
+The following is the `systemd` timer that cleans up temporary files once a day.
 
 ```shell
 $ systemctl list-timers
@@ -714,11 +719,11 @@ OnBootSec=15min
 OnUnitActiveSec=1d
 ```
 
-`ConditionPathExists` makes sure the timer does not run if `/etc/initrd-release` exists, which is a temporary root filesystem used during the early stages of booting
+`ConditionPathExists` makes sure the timer does not run if `/etc/initrd-release` exists. The initrd is a temporary root filesystem used during the early stages of booting, and `initrd-release` is a marker file that indicates the system has not yet switched to the real root filesystem.
 
 ---
 
-As this timer unit does not specify which service unit to run, `systemd` automatically looks for a service unit that has the same name as the timer unit
+As this timer unit does not specify which service unit to run, `systemd` automatically looks for a service unit that has the same name as the timer unit.
 
 ```shell
 $ cat /usr/lib/systemd/system/systemd-tmpfiles-clean.service
@@ -739,27 +744,34 @@ ExecStart=systemd-tmpfiles --clean
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Address space (or virtual address space) | The range of memory addresses that the kernel makes available for a process                                                                                                           |
 | Automatic variable                       | A variable that is created when a function is called and destroyed when it returns. Automatic variables are stored on the stack                                                       |
+| Computer program                         | A sequence of instructions for a computer to execute. Computer programs can be in the form of source code (human-readable) or executable files (machine-readable)                     |
 | Control group                            | A Linux feature that allows processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored                            |
+| Controlling terminal                     | A terminal associated with a session that provides default standard I/O channels and distributes signals in response to keyboard events                                               |
 | Core dump                                | A file containing the address space (memory) of a process when the process terminates unexpectedly                                                                                    |
+| Daemon process                           | A process that is often started when the system is bootstrapped and terminates only when the system is shut down. Daemons run in the background, i.e., they do not have a controlling terminal |
 | Dynamic variable                         | A variable whose memory is manually allocated at runtime and must be manually freed. Dynamic variables are stored on the heap                                                         |
 | File descriptor                          | A reference to an open file description                                                                                                                                               |
 | Namespace                                | A namespace wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of that resource   |
+| Niceness                                 | A numeric hint to the kernel about how a process should be treated in relation to other processes contending for CPU time                                                             |
 | Open file description                    | An entry in the system-wide table of open files that records the file offset and the file status flags                                                                                |
 | Orphan                                   | A process that has not terminated yet, but whose parent has already terminated                                                                                                        |
-| Parent process identifier (PPID)         | The PID of the parent from which a process was forked                                                                                                                                 |
+| Parent process identifier (PPID)         | A non-negative integer that uniquely identifies the parent process                                                                                                                    |
 | Process                                  | A program in execution                                                                                                                                                                |
 | Process data structures                  | Data structures maintained by the kernel that provide information about a process                                                                                                     |
-| Process group                            | A collection of one or more processes that can receive signals from the same terminal                                                                                                 |
+| Process group                            | A collection of one or more processes that can be signaled together                                                                                                                   |
 | Process identifier (PID)                 | A non-negative integer that uniquely identifies a process                                                                                                                             |
+| Scheduling priority                      | A value computed by the kernel that determines how much CPU time a process receives                                                                                                    |
 | Session                                  | A collection of one or more process groups                                                                                                                                            |
 | Session leader                           | The first process in a session                                                                                                                                                        |
+| Signal                                   | A notification sent to a process that some condition has occurred                                                                                                                      |
 | Static variable                          | A variable whose lifetime is the entire run of the program. Initialized static variables are stored in the data segment. Uninitialized static variables are stored in the BSS segment |
-| Swapping                                 | When the kernel moves a process from RAM to disk                                                                                                                                      |
+| Swapping                                 | When the kernel moves memory pages of a process from RAM to disk                                                                                                                      |
 | Symbolic link                            | A special type of file whose content is a string that is the pathname of another file, i.e., the file to which the link refers                                                        |
+| System call                              | A request made by a user-space process to the kernel to perform privileged operations, such as reading a file or creating a process                                                   |
 | Thread                                   | An execution context within a process                                                                                                                                                 |
 | Zombie                                   | A process that has terminated, but whose parent has not yet waited for it                                                                                                             |
 
-## Bibliography 
+## Bibliography
 
 | Author                   | Title                                                                                                                       | Year |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---- |
