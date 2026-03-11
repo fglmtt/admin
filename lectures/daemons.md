@@ -1,217 +1,265 @@
-# Booting and system management daemons - Lab
+# Daemons
 
 ## Table of contents
 
-- [1. Get started](#1-get-started)
-    - [1.1. Assignment](#11-assignment)
-    - [1.2. Hints](#12-hints)
-        - [1.2.1. Run a Python program](#121-run-a-python-program)
-        - [1.2.2. Enable the interactive mode](#122-enable-the-interactive-mode)
-- [2. CPU logger](#2-cpu-logger)
-    - [2.1. Problem](#21-problem)
-        - [2.1.1. Assignment 1](#211-assignment-1)
-        - [2.1.2. Assignment 2](#212-assignment-2)
-        - [2.1.3. Assignment 3](#213-assignment-3)
-        - [2.1.4. Assignment 4](#214-assignment-4)
-    - [2.2. Hints](#22-hints)
-        - [2.2.1. Package management](#221-package-management)
-        - [2.2.2. Command-line argument parsing](#222-command-line-argument-parsing)
-        - [2.2.3. Unit files and where to find them](#223-unit-files-and-where-to-find-them)
-        - [2.2.4. How to control a systemd user instance](#224-how-to-control-a-systemd-user-instance)
-- [3. Solutions](#3-solutions)
+- [1. Text](#1-text)
+    - [1.1. Python script](#11-python-script)
+    - [1.2. Service](#12-service)
+- [2. Hints](#2-hints)
+    - [2.1. System reference manuals](#21-system-reference-manuals)
+    - [2.2. Python script](#22-python-script)
+        - [2.2.1. Program execution](#221-program-execution)
+        - [2.2.2. Interactive mode](#222-interactive-mode)
+        - [2.2.3. Documentation](#223-documentation)
+        - [2.2.4. Program structure](#224-program-structure)
+        - [2.2.5. Recursion](#225-recursion)
+    - [2.3. Service](#23-service)
+        - [2.3.1. Unit file structure](#231-unit-file-structure)
+        - [2.3.2. Unit file location](#232-unit-file-location)
+        - [2.3.3. Service management](#233-service-management)
+        - [2.3.4. Logs](#234-logs)
+- [3. Solution](#3-solution)
 - [Licenses](#licenses)
 
-## 1. Get started
+## 1. Text
 
-### 1.1. Assignment
+### 1.1. Python script
 
-1. [Set up the development environment](1-python-basic-stuff-pt1.md#16-development-environment)
-2. Try out the examples provided in the previous lectures
-	1. [Python: Basic stuff - Pt. 1](1-python-basic-stuff-pt1.md)
-	2. [Python: Basic stuff - Pt. 2](2-python-basic-stuff-pt2.md)
-	3. [Python: Advanced stuff](4-python-advanced-stuff.md)
-3. Complete the previous assignments
-	1. [Python: Basic stuff - Lab](3-python-basic-stuff-lab.md)
-	2. [Python: Advanced stuff - Lab](5-python-advanced-stuff-lab.md)
-4. Review [system and service management in Linux](booting-and-system-management-daemons.md#2-system-and-service-management-in-linux)
+Write a Python script that periodically analyzes a specified directory (including all its subdirectories), identifying files whose size exceeds or equals a certain threshold (in bytes). Whenever the script finds a file whose size is greater than or equal to the threshold, it must write the file's path to a log file. In your home directory, create a directory called `large-file-detector`, and inside it, the file `app.py`, using this template:
 
-### 1.2. Hints
+```python
+# first name and last name:
+# student id:
+#
+# path:
 
-#### 1.2.1. Run a Python program
+import argparse
+import os
+import sys
+import time
 
-```shell
-$ python <your_program>.py
+def main():
+    pass
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-Depending on your system, you may have to use `python` or `python3`
+The script must accept exactly four mandatory command-line arguments, parsed with the `argparse` module: `--target`, indicating the absolute path of the directory to check; `--size`, specifying the minimum size in bytes (positive integer) of files to report; `--interval`, defining the interval in seconds (positive integer) between each check; and finally, `--log`, specifying where to save the log file. The log file's name is always `large-file-detector.log`.
 
-#### 1.2.2. Enable the interactive mode
+After parsing, validate the received inputs: check that the path specified by `--target` is absolute (`os.path.isabs`), exists (`os.path.exists`), and is a directory (`os.path.isdir`); also check that the values provided for `--size` and `--interval` are positive integers; verify that the path indicated by `--log` exists (`os.path.exists`) and is a directory (`os.path.isdir`).
 
-```shell
-$ python
-```
+After validation, recursively traverse the directory tree at the path provided with `--target` (`os.listdir`, `os.path.join`, `os.path.isdir`). For each file (`os.path.isfile`), compute its size (`os.path.getsize`) and compare it with the threshold defined by `--size`. If the size is greater than or equal to the indicated threshold, write the absolute path of the file, followed by a newline, into the log file named `large-file-detector.log` (`open`), located in the directory specified with `--log`. Each write operation to the log file must be in append mode. The script must repeat this procedure periodically, waiting a number of seconds equal to the value indicated by `--interval` between each check (`time.sleep`).
 
-Depending on your system, you may have to use `python` or `python3`
-
-## 2. CPU logger
-
-### 2.1. Problem
-
-Implement a program in Python called `cpu_logger` that logs the CPU usage of the system over time. Use the function `cpu_percent` of the `psutil`module to get the current CPU usage of the system. `cpu_logger` accept a single argument, `interval`, which indicates the time interval between logs. For example, in the following case
+For example, running
 
 ```shell
-$ python cpu_logger.py --interval 5
+$ python ~/large-file-detector/app.py \
+    --target ~/archive \
+    --size 10 \
+    --interval 30 \
+    --log ~
 ```
 
-`cpu_logger` logs the CPU usage of the system every 5 seconds. Run `cpu_logger` as a user Linux service with `systemd`.
+the script will identify all files of `10` bytes or more in `~/archive` (and all its subdirectories) and append the path of each identified file to `~/large-file-detector.log`. The script will repeat this operation every `30` seconds.
 
-#### 2.1.1. Assignment 1
+### 1.2. Service
 
-Create a service unit file called `cpu-logger.service`. Check that `systemd` has installed it with the following command
+Create a service unit named `large-file-detector.service` in your user's `systemd` instance. The unit must start `~/large-file-detector/app.py` with the arguments `--target %h/docs`, `--size 100`, `--interval 300`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
+
+```ini
+# first name and last name:
+# student id:
+#
+# path:
+#
+# command to enable the service:
+# command to start the service:
+```
+
+## 2. Hints
+
+### 2.1. System reference manuals
+
+`man` displays the system reference manuals. For example, `man:systemctl(1)` translates to
 
 ```shell
-$ systemctl --user list-unit-files --type=service | grep cpu-logger
-cpu-logger.service                               static    -
+$ man 1 systemctl
 ```
 
-#### 2.1.2. Assignment 2
+### 2.2. Python script
 
-Connect `cpu_logger.py` with `cpu-logger.service` and start the service through `systemd`. Check that `systemd` has started it with the following command
+#### 2.2.1. Program execution
+
+To run a Python program
 
 ```shell
-$ systemctl --user status cpu-logger.service
-● cpu-logger.service - CPU logger service
-     Loaded: loaded (/home/ubuntu/.config/systemd/user/cpu-logger.service; static)
-     Active: active (running) since Mon 2025-03-10 22:02:34 UTC; 10s ago
-   Main PID: 35593 (python)
-      Tasks: 1 (limit: 2318)
-     Memory: 6.6M (peak: 6.9M)
-        CPU: 106ms
-     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/cpu-logger.service
-             └─35593 /home/ubuntu/cpu-logger/.venv/bin/python app.py
-
-Mar 10 22:02:35 admin python[35593]: 1741644155.6969433 - 1.0
-
-[...]
+$ python3 <your_program>.py
 ```
 
-#### 2.1.3. Assignment 3
+> [!warning]
+> Depending on your system, you may have to use `python` or `python3`.
 
-Configure `cpu-logger.service` to be automatically restarted on failure. Run the following command to kill it and then check `systemd` has restarted it
+#### 2.2.2. Interactive mode
+
+The interactive mode starts a read-eval-print loop (REPL) where you can type Python expressions and see their results immediately. This is useful for experimenting with functions and modules before writing a full program.
+
+To enable the interactive mode
 
 ```shell
-$ systemctl --user kill --signal=SIGKILL cpu-logger.service
-$ journalctl --user -u cpu-logger --no-pager | tail -n 10
-Mar 10 22:06:23 admin python[35601]: 1741644383.0334637 - 0.0
-Mar 10 22:06:24 admin python[35601]: 1741644384.033956 - 1.0
-Mar 10 22:06:24 admin systemd[35373]: cpu-logger.service: Sent signal SIGKILL to main process 35601 (python) on client request.
-Mar 10 22:06:24 admin systemd[35373]: cpu-logger.service: Main process exited, code=killed, status=9/KILL
-Mar 10 22:06:24 admin systemd[35373]: cpu-logger.service: Failed with result 'signal'.
-Mar 10 22:06:24 admin systemd[35373]: cpu-logger.service: Scheduled restart job, restart counter is at 2.
-Mar 10 22:06:24 admin systemd[35373]: Started cpu-logger.service - CPU logger service.
-Mar 10 22:06:25 admin python[35616]: 1741644385.0087981 - 0.0
-Mar 10 22:06:26 admin python[35616]: 1741644386.0097404 - 0.0
-Mar 10 22:06:27 admin python[35616]: 1741644387.0101533 - 1.0
+$ python3
 ```
 
-#### 2.1.4. Assignment 4
+#### 2.2.3. Documentation
 
-Configure `cpu-logger.service` to be automatically started on boot in `default.target` mode. Reboot the system and then check that `systemd` has restarted it
+`help()` displays documentation for modules, functions, classes, and keywords in the Python interactive interpreter. For example, to read the documentation for the `argparse` module
 
 ```shell
-$ systemctl --user status cpu-logger.service
-● cpu-logger.service - CPU logger service
-     Loaded: loaded (/home/ubuntu/.config/systemd/user/cpu-logger.service; enabled; preset: enabled)
-     Active: active (running) since Mon 2025-03-10 22:15:58 UTC; 11s ago
-   Main PID: 817 (python)
-      Tasks: 1 (limit: 2318)
-     Memory: 7.2M (peak: 7.4M)
-        CPU: 71ms
-     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/cpu-logger.service
-             └─817 /home/ubuntu/cpu-logger/.venv/bin/python app.py --interval 5
-
-Mar 10 22:15:58 admin python[817]: 1741644958.2480302 - 100.0
-Mar 10 22:15:58 admin systemd[808]: Started cpu-logger.service - CPU logger service.
-Mar 10 22:16:03 admin python[817]: 1741644963.2484303 - 3.6
-Mar 10 22:16:08 admin python[817]: 1741644968.6842127 - 0.6
+$ python3
+>>> import argparse
+>>> help(argparse)
 ```
 
-### 2.2. Hints
-
-#### 2.2.1. Package management
-
-`pip` is the standard package-management system in Python. To install a package
+To get help on a specific function
 
 ```shell
-$ pip install <package-name>
+$ python3
+>>> import os.path
+>>> help(os.path.isabs)
 ```
 
-A common practice is to list project dependencies in a file called `requirements.txt`, which is located in the project directory. For example
+#### 2.2.4. Program structure
 
-```shell
-$ cd <path-to-project>
-$ echo "psutil" > requirements.txt
+The following extends the template from [§1.1](#11-python-script) with comments that map to each step described in the text.
+
+```python
+# first name and last name:
+# student id:
+#
+# path:
+
+import argparse
+import os
+import sys
+import time
+
+
+def walk(basepath, size, log_path):
+    # recursive traversal
+    pass
+
+
+def main():
+    # argument parsing
+
+    # validation
+
+    # periodic execution
+    pass
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-To install all the project dependencies
+#### 2.2.5. Recursion
 
-```shell
-$ pip install -r requirements.txt
+The following example recursively lists all file paths in a directory tree.
+
+```python
+import os
+
+
+def walk(basepath):
+    for filename in os.listdir(basepath):
+        path = os.path.join(basepath, filename)
+        if os.path.isfile(path):
+            print(path)
+        elif os.path.isdir(path):
+            walk(path)
 ```
 
-A good practice is to manage dependencies separately from different projects. This is where virtual environments come into play. A virtual environment is an isolated Python development environment. `venv` is the module of the Python standard library to create virtual environments. To create a virtual environment
+### 2.3. Service
 
-```shell
-$ python -m venv .venv
+#### 2.3.1. Unit file structure
+
+The following extends the template from [§1.2](#12-service) with comments that map to each section of the unit file.
+
+```ini
+# first name and last name:
+# student id:
+#
+# path:
+#
+# command to enable the service:
+# command to start the service:
+
+[Unit]
+# human-readable description
+
+[Service]
+# how to run the service
+# what to do on failure
+
+[Install]
+# start on boot
 ```
 
-The convention is to name the virtual environment directory `.venv` or `venv`. 
+An example of a service unit file is provided [here](https://github.com/fglmtt/admin/blob/main/lectures/booting-and-system-management-daemons.md#21-units-and-unit-files). The available directives are documented in `man:systemd.unit(5)` (for `[Unit]` and `[Install]`) and `man:systemd.service(5)` (for `[Service]`).
 
-To activate a virtual environment
+> [!tip]
+> `%h` expands to the home directory of the user running the service. For example, `WorkingDirectory=%h/large-file-detector` expands to `WorkingDirectory=/home/ubuntu/large-file-detector`.
 
-```shell
-$ source .venv/bin/activate
-```
+> [!tip]
+> Add `Environment=PYTHONUNBUFFERED=1` to `[Service]` so that `print` output shows up in `journalctl` right away.
 
-Then, `pip` will automatically install packages to the virtual environment. 
+#### 2.3.2. Unit file location
 
-To deactivate a virtual environment
-
-```shell
-$ deactivate
-```
-
-Fundamentally, a virtual environment is just a directory. To delete all the installed packages
-
-```shell
-$ rm -r .venv
-```
-
-#### 2.2.2. Command-line argument parsing
-
-`argparse` is the recommended command-line parsing module in the Python standard library. See [this](https://docs.python.org/3/howto/argparse.html) tutorial for a gentle introduction to `argparse`.
-
-#### 2.2.3. Unit files and where to find them
-
-As mentioned [here](booting-and-system-management-daemons.md#21-units-and-unit-files), there are several directories where `systemd` reads unit files. The recommended directory for user units created by the user is `~/.config/systemd/user`. For example, the path of the unit file for the service `cpu-logger` should be `~/.config/systemd/user/cpu-logger.service`. If the `~/.config/systemd/user` does not exist, just create it. To create a directory and make parent directories as needed
+The directories where `systemd` reads unit files are documented in `man:systemd.unit(5)`. The recommended directory for user units is `~/.config/systemd/user`. If it does not exist, create it
 
 ```shell
 $ mkdir -p ~/.config/systemd/user
 ```
 
-#### 2.2.4. How to control a systemd user instance
-
-Just append the `--user` option to the commands listed [here](booting-and-system-management-daemons.md#22-controlling-systemd) to control the `systemd` user instance instead of the system-wide one. For example
+Then copy the unit file there
 
 ```shell
-$ systemctl --user list-units
+$ cp ~/large-file-detector/large-file-detector.service ~/.config/systemd/user
 ```
 
-## 3. Solutions
+#### 2.3.3. Service management
 
-| Problem             | Program                             | Requirements                                            | Unit file                                                   |
-| ------------------- | ----------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------- |
-| [§2](#2-cpu-logger) | [app.py](../code/cpu-logger/app.py) | [requirements.txt](../code/cpu-logger/requirements.txt) | [cpu-logger.service](../code/cpu-logger/cpu-logger.service) |
+The commands to control `systemd` are listed [here](https://github.com/fglmtt/admin/blob/main/lectures/booting-and-system-management-daemons.md#22-controlling-systemd). Append the `--user` option to control the user instance instead of the system-wide one. See also `man:systemctl(1)`.
+
+After copying the unit file:
+
+- [ ] List unit files to verify that `systemd` sees the new file (`list-unit-files`)
+- [ ] Reload unit files so that `systemd` picks up any changes (`daemon-reload`)
+- [ ] Start the service (`start`)
+- [ ] Check the status to confirm it was correctly loaded and is running (`status`)
+- [ ] Enable the service so it starts on boot (`enable`)
+- [ ] Reboot the system
+- [ ] Check the status to confirm it survived the reboot (`status`)
+- [ ] Kill the service to simulate a failure (`kill`)
+- [ ] Check the status to confirm `systemd` restarted it (`status`)
+
+> [!tip]
+> Use `systemctl --user kill --signal=SIGKILL large-file-detector.service` to forcefully kill your service and verify that `systemd` restarts it.
+
+#### 2.3.4. Logs
+
+`journalctl` queries the `systemd` journal. Append the `--user` option to read logs from the user instance. For example
+
+```shell
+$ journalctl --user -u large-file-detector.service
+```
+
+See also `man:journalctl(1)`.
+
+## 3. Solution
+
+This exercise was proposed on [June 20, 2025](https://github.com/fglmtt/admin/tree/main/exams/2025-06-20/large-file-detector).
 
 ## Licenses
 
