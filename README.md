@@ -55,7 +55,7 @@ Time available: 2 hours and 30 minutes.
 | 3   | [Daemons](https://github.com/fglmtt/admin/blob/main/lectures/daemons.md)             | $\checkmark$ |
 | 4   | [Process control](https://github.com/fglmtt/admin/blob/main/lectures/process-control.md) |              |
 | 5   | [Periodic processes](https://github.com/fglmtt/admin/blob/main/lectures/periodic-processes.md) | $\checkmark$ |
-| 6   | Access control and rootly powers                                                      |              |
+| 6   | [Access control and rootly powers](https://github.com/fglmtt/admin/blob/main/lectures/access-control-and-rootly-powers.md) |              |
 | 7   | The filesystem                                                                        |              |
 | 8   | User management                                                                       |              |
 | 9   | Containers                                                                            |              |
