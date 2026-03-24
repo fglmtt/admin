@@ -314,6 +314,9 @@ The following extends the template from [§1.3](#13-timer) with comments that ma
 
 The available directives are documented in `man:systemd.timer(5)` (for `[Timer]`) and `man:systemd.unit(5)` (for `[Unit]` and `[Install]`). The timer types and calendar expressions are covered [here](https://github.com/fglmtt/admin/blob/main/lectures/process-control.md#7-periodic-processes).
 
+> [!tip]
+> Use `WantedBy=timers.target` in the `[Install]` section. `timers.target` is a dedicated target that collects all timer units and is activated early during boot. This is preferable to `default.target`, which is about bringing the system to its normal operating state, not about managing timers.
+
 #### 2.4.2. Unit file location
 
 Timer unit files go in the same directory as service unit files: `~/.config/systemd/user`.
