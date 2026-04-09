@@ -57,7 +57,7 @@ Time available: 2 hours and 30 minutes.
 | 5   | [Periodic processes](https://github.com/fglmtt/admin/blob/main/lectures/periodic-processes.md) | $\checkmark$ |
 | 6   | [Access control and rootly powers](https://github.com/fglmtt/admin/blob/main/lectures/access-control-and-rootly-powers.md) |              |
 | 7   | The filesystem                                                                        |              |
-| 8   | User management                                                                       |              |
+| 8   | [User management](https://github.com/fglmtt/admin/blob/main/lectures/user-management.md) |              |
 | 9   | Containers                                                                            |              |
 | 10  | Container management                                                                  | $\checkmark$ |
 | 11  | Account administration                                                                | $\checkmark$ |
