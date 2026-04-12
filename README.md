@@ -48,23 +48,23 @@ Time available: 2 hours and 30 minutes.
 
 ## Lectures
 
-| #   | Title                                                                                 | Lab          |
-| --- | ------------------------------------------------------------------------------------- | ------------ |
+| #   | Title                                                                                                                                | Lab          |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
 | 1   | [Booting and system management daemons](https://github.com/fglmtt/admin/blob/main/lectures/booting-and-system-management-daemons.md) |              |
-| 2   | [Logging](https://github.com/fglmtt/admin/blob/main/lectures/logging.md)             |              |
-| 3   | [Daemons](https://github.com/fglmtt/admin/blob/main/lectures/daemons.md)             | $\checkmark$ |
-| 4   | [Process control](https://github.com/fglmtt/admin/blob/main/lectures/process-control.md) |              |
-| 5   | [Periodic processes](https://github.com/fglmtt/admin/blob/main/lectures/periodic-processes.md) | $\checkmark$ |
-| 6   | [Access control and rootly powers](https://github.com/fglmtt/admin/blob/main/lectures/access-control-and-rootly-powers.md) |              |
-| 7   | The filesystem                                                                        |              |
-| 8   | [User management](https://github.com/fglmtt/admin/blob/main/lectures/user-management.md) |              |
-| 9   | Containers                                                                            |              |
-| 10  | Container management                                                                  | $\checkmark$ |
-| 11  | Account administration                                                                | $\checkmark$ |
-| 12  | Networking                                                                            |              |
-| 13  | Packet filtering and NAT                                                              | $\checkmark$ |
-| 14  | Security                                                                              |              |
-| 15  | Mock exam                                                                             | $\checkmark$ |
+| 2   | [Logging](https://github.com/fglmtt/admin/blob/main/lectures/logging.md)                                                             |              |
+| 3   | [Daemons](https://github.com/fglmtt/admin/blob/main/lectures/daemons.md)                                                             | $\checkmark$ |
+| 4   | [Process control](https://github.com/fglmtt/admin/blob/main/lectures/process-control.md)                                             |              |
+| 5   | [Periodic processes](https://github.com/fglmtt/admin/blob/main/lectures/periodic-processes.md)                                       | $\checkmark$ |
+| 6   | [Access control and rootly powers](https://github.com/fglmtt/admin/blob/main/lectures/access-control-and-rootly-powers.md)           |              |
+| 7   | [The filesystem](https://github.com/fglmtt/admin/blob/main/lectures/the-filesystem.md)                                               |              |
+| 8   | [User management](https://github.com/fglmtt/admin/blob/main/lectures/user-management.md)                                             |              |
+| 9   | Containers                                                                                                                           |              |
+| 10  | Container management                                                                                                                 | $\checkmark$ |
+| 11  | Account administration                                                                                                               | $\checkmark$ |
+| 12  | Networking                                                                                                                           |              |
+| 13  | Packet filtering and NAT                                                                                                             | $\checkmark$ |
+| 14  | Security                                                                                                                             |              |
+| 15  | Mock exam                                                                                                                            | $\checkmark$ |
 
 > [!tip]
 > Each lecture has a corresponding chapter in the textbook (see [Credits](#credits)).
