@@ -96,10 +96,8 @@ $ sudo fuser -v -m /proc
             USER        PID ACCESS COMMAND
 /proc:      root     kernel mount /proc
             root          1 f.... systemd
-            root        281 f.... systemd-journal
-            root        641 f.... udisksd
-            syslog      675 f.... rsyslogd
-            ubuntu    32713 f.... systemd
+
+[...]
 ```
 
 - the kernel has mounted `/proc`
