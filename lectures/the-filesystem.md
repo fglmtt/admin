@@ -48,7 +48,7 @@ The filesystem is composed of smaller chunks, which are also called filesystems.
 
 Henceforth, the term file tree will refer to the overall layout. The term filesystem will be reserved to the "branches" attached to the tree.
 
-A filesystem can be anything that obeys the proper API, from a disk partition to a network file server or a kernel component. Most kernels also provide a "loop" filesystem that lets you mount individual files as if they were distinct devices.
+A filesystem can be anything that obeys the proper API, from a disk partition to a network file server or a kernel component.
 
 ### 3.1. Mounting
 
