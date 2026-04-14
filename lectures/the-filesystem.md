@@ -30,9 +30,9 @@
 
 A filesystem comprises four main components: a namespace for naming and organizing objects in a hierarchy, an application programming interface (API) for navigating and manipulating those objects, a security model for protecting and sharing them, and an implementation that ties the logical model to the hardware.
 
-Modern kernels define an abstract interface that accommodates many different implementations. Disk-based filesystems live on local storage. Network filesystems are handled by drivers that forward operations to another computer. The bad news is that the result looks like a Frankenstein's monster.
+Modern kernels define an abstract interface that accommodates many different implementations. Disk-based filesystems live on local storage. Network filesystems are handled by drivers that forward operations to another computer. Pseudo filesystems expose kernel state as files. Every object reachable through the filesystem is accessed through the same API. Hence the UNIX mantra: everything is a file.
 
-The good news is that the filesystem presents a consistent interface. Devices, kernel internals, and many other resources are exposed through it too. Hence the UNIX mantra: everything is a file.
+The unification is leaky, however. Device files, for example, are rendezvous points for drivers, not data files — yet they live in the filesystem and carry on-disk metadata like regular files. Special cases like these make the result look like a Frankenstein's monster.
 
 ## 2. Pathnames
 
