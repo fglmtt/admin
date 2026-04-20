@@ -310,7 +310,7 @@ The `chmod` command is to change the permissions on a file.
 > [!note]
 > Only the owner and `root` can do it.
 
-The first argument of `chmod` is a specification of the permissions to be assigned (either with the octal syntax or the mnemonic syntax), and the following arguments are names of files on which such permissions apply
+The first argument of `chmod` is a specification of the permissions to be assigned (either with the octal syntax or the mnemonic syntax), and the following arguments are names of files on which such permissions apply.
 
 ---
 
@@ -354,7 +354,7 @@ $ chmod -R a+x mydir
 is probably not a good idea. Use `find` to target regular files only
 
 ```shell
-$ find mydir -type f -exec chmod a-x {} ';'
+$ find mydir -type f -exec chmod a+x {} ';'
 ```
 
 ### 6.5. Changing ownership
