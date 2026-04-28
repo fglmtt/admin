@@ -96,7 +96,13 @@ The recommended drop-in directory for additional sudoers files is `/etc/sudoers.
 
 #### 2.3.1. Container
 
-Use [`podman`](https://github.com/fglmtt/admin/blob/main/lectures/containers.md#3-podman) to run the course's container image (`fglmtt/admin`). For example
+Use [`podman`](https://github.com/fglmtt/admin/blob/main/lectures/containers.md#3-podman) to run the course's container image (`fglmtt/admin`). First, pull the image
+
+```shell
+$ podman pull fglmtt/admin
+```
+
+Then, run a container. For example
 
 ```shell
 $ podman run \
