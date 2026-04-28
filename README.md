@@ -58,7 +58,7 @@ Time available: 2 hours and 30 minutes.
 | 6   | [Access control and rootly powers](https://github.com/fglmtt/admin/blob/main/lectures/access-control-and-rootly-powers.md)           |              |
 | 7   | [The filesystem](https://github.com/fglmtt/admin/blob/main/lectures/the-filesystem.md)                                               |              |
 | 8   | [User management](https://github.com/fglmtt/admin/blob/main/lectures/user-management.md)                                             |              |
-| 9   | Containers                                                                                                                           |              |
+| 9   | [Containers](https://github.com/fglmtt/admin/blob/main/lectures/containers.md)                                                       |              |
 | 10  | [Account administration](https://github.com/fglmtt/admin/blob/main/lectures/account-administration.md)                               | $\checkmark$ |
 | 11  | Networking                                                                                                                           |              |
 | 12  | Packet filtering and NAT                                                                                                             | $\checkmark$ |
