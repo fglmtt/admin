@@ -61,7 +61,7 @@ Time available: 2 hours and 30 minutes.
 | 9   | [Containers](https://github.com/fglmtt/admin/blob/main/lectures/containers.md)                                                       |              |
 | 10  | [Account administration](https://github.com/fglmtt/admin/blob/main/lectures/account-administration.md)                               | $\checkmark$ |
 | 11  | [Networking](https://github.com/fglmtt/admin/blob/main/lectures/networking.md)                                                       |              |
-| 12  | Packet filtering and NAT                                                                                                             | $\checkmark$ |
+| 12  | [Packet filtering and NAT](https://github.com/fglmtt/admin/blob/main/lectures/packet-filtering-and-nat.md)                           | $\checkmark$ |
 | 13  | Security                                                                                                                             |              |
 | 14  | Mock exam                                                                                                                            | $\checkmark$ |
 
