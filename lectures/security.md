@@ -33,9 +33,16 @@
 
 Computer security is in a sorry state. In contrast to the progress seen in virtually every other area of computing, security flaws have become increasingly dire and the consequences of inadequate security more severe.
 
-Part of the challenge is that security problems are not purely technical. Unfortunately, these problems cannot be solved just by buying a particular product or service from a third party.
+Part of the challenge is that security problems are not purely technical.
 
-As a system administrator you bear a heavy burden. You must push an agenda that secures your organization's systems and networks, ensures that they are vigilantly monitored, and properly educates your users and staff, familiarize yourself with current security technology, and work with experts to identify and resolve vulnerabilities at your site.
+> [!warning]
+> Unfortunately, these problems cannot be solved just by buying a particular product or service from a third party.
+
+---
+
+As a system administrator you bear a heavy burden. 
+
+You must push an agenda that secures your organization's systems and networks, ensures that they are vigilantly monitored, and properly educates your users and staff, familiarize yourself with current security technology, and work with experts to identify and resolve vulnerabilities at your site.
 
 > [!note]
 > As a rule of thumb, the more security you introduce, the more constrained you and your users will be. In other words, as security increases, convenience decreases, and vice versa.
