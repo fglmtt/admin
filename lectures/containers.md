@@ -19,7 +19,6 @@
         - [3.2.1. Running containers](#321-running-containers)
         - [3.2.2. Executing commands](#322-executing-commands)
         - [3.2.3. Managing containers](#323-managing-containers)
-    - [3.3. Compose](#33-compose)
 - [Glossary](#glossary)
 - [Bibliography](#bibliography)
 - [Licenses](#licenses)
@@ -313,32 +312,6 @@ $ podman rm admin
 
 > [!note]
 > When a container is removed, its writable layer is discarded and it cannot be restarted. However, the underlying image is not affected and can be used to create new containers. To remove an image, use `podman rmi`.
-
-### 3.3. Compose
-
-`podman-compose` manages multi-container applications. The Compose file (`compose.yaml`) describes the containers that make up the application and how they are interconnected.
-
-To start all services
-
-```shell
-$ podman-compose -f <path/to/compose-file> up -d
-```
-
-- `-f` specifies the path to the Compose file
-- `-d` starts the services in the background
-
----
-
-Individual containers can be managed with the usual `podman` subcommands — `podman-compose` creates regular containers underneath.
-
-To stop and remove them
-
-```shell
-$ podman-compose -f <path/to/compose-file> down
-```
-
-> [!note]
-> In production, multi-container applications are typically managed by a container orchestrator such as Kubernetes, which handles scheduling, scaling, and fault tolerance across a cluster of hosts.
 
 ## Glossary
 
