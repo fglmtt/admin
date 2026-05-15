@@ -63,7 +63,8 @@ Time available: 2 hours and 30 minutes.
 | 11  | [Networking](https://github.com/fglmtt/admin/blob/main/lectures/networking.md)                                                       |              |
 | 12  | [Packet filtering and NAT](https://github.com/fglmtt/admin/blob/main/lectures/packet-filtering-and-nat.md)                           | $\checkmark$ |
 | 13  | [Security](https://github.com/fglmtt/admin/blob/main/lectures/security.md)                                                           |              |
-| 14  | Mock exam                                                                                                                            | $\checkmark$ |
+| 14  | [Exam guide](https://github.com/fglmtt/admin/blob/main/lectures/exam-guide.md)                                                       |              |
+| 15  | Mock exam                                                                                                                            | $\checkmark$ |
 
 > [!tip]
 > Each lecture has a corresponding chapter in the textbook (see [Credits](#credits)).
