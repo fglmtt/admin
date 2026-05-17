@@ -76,28 +76,28 @@ This exercise was proposed on [June 20, 2025](https://github.com/fglmtt/admin/tr
 
 ### 2.1. Text
 
-Configure `sudo` on a fleet of four Linux hosts: two mail hosts (`mail01`, `mail02`) and two application hosts (`app01`, `app02`). The fleet has the following users and groups:
+Configure `sudo` on a fleet of four Linux hosts: three cache hosts (`cache01`, `cache02`, `cache03`) and a gateway host (`gateway01`). The fleet has the following users and groups:
 
-| User    | Primary group | Additional groups |
-| ------- | ------------- | ----------------- |
-| `emma`  | `emma`        |                   |
-| `frank` | `frank`       |                   |
-| `gina`  | `gina`        | `sre`             |
-| `henry` | `henry`       | `deploy`          |
+| User     | Primary group | Additional groups |
+| -------- | ------------- | ----------------- |
+| `liam`   | `liam`        |                   |
+| `mia`    | `mia`         | `ops`             |
+| `noah`   | `noah`        | `ops`             |
+| `olivia` | `olivia`      | `audit`           |
 
 Apply the following rules:
 
-| Category    | Rule                                                                                                                                                              |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Aliases     | Define `Host_Alias MAIL = mail01, mail02` and `Host_Alias APP = app01, app02`                                                                                     |
-| Aliases     | Define `Cmnd_Alias SHELLS = /bin/sh, /bin/dash, /bin/bash`, `Cmnd_Alias LOGMGM = /usr/bin/journalctl, /usr/bin/tail`, and `Cmnd_Alias SVCMGM = /usr/bin/systemctl` |
-| Permissions | `emma` can run any command as any user on any host                                                                                                                |
-| Permissions | `frank` can run any command as any user on any host, except `SHELLS`                                                                                              |
-| Permissions | `%sre` can run `SVCMGM` as `root` on `APP`                                                                                                                        |
-| Permissions | `%deploy` can run `LOGMGM` as `root` on `MAIL`, without a password                                                                                                |
-| Permissions | `gina` can run `/usr/bin/less /var/log/auth.log` as `root` on any host, without a password                                                                        |
-| Permissions | `henry` can run `/usr/bin/whoami` as `nobody` on `APP`                                                                                                            |
-| Permissions | `%sre, %deploy` can run `/usr/sbin/shutdown` as `root` on any host, without a password                                                                            |
+| Category    | Rule                                                                                                                                                          |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Aliases     | Define `Host_Alias CACHE = cache01, cache02, cache03`                                                                                                         |
+| Aliases     | Define `Cmnd_Alias SHELLS = /bin/sh, /bin/dash, /bin/bash`, `Cmnd_Alias NETMGM = /usr/bin/ss, /usr/bin/ip`, and `Cmnd_Alias BACKUP = /usr/bin/rsync, /usr/bin/tar` |
+| Permissions | `liam` can run any command as any user on any host                                                                                                            |
+| Permissions | `mia` can run any command as any user on any host, except `SHELLS`                                                                                            |
+| Permissions | `%ops` can run `NETMGM` as `root` on `CACHE`                                                                                                                  |
+| Permissions | `%audit` can run `BACKUP` as `root` on `gateway01`, without a password                                                                                        |
+| Permissions | `noah` can run `/usr/bin/tail -f /var/log/syslog` as `root` on any host, without a password                                                                   |
+| Permissions | `olivia` can run `/usr/bin/id` as `mia` on `CACHE`                                                                                                            |
+| Permissions | `%ops, %audit` can run `/usr/sbin/reboot` as `root` on any host, without a password                                                                           |
 
 The file must be created at `/etc/sudoers.d/local`. Use this template:
 
@@ -116,20 +116,19 @@ The file must be created at `/etc/sudoers.d/local`. Use this template:
 #
 # path: /etc/sudoers.d/local
 
-Host_Alias  MAIL = mail01, mail02
-Host_Alias  APP  = app01, app02
+Host_Alias  CACHE = cache01, cache02, cache03
 
 Cmnd_Alias  SHELLS  = /bin/sh, /bin/dash, /bin/bash
-Cmnd_Alias  LOGMGM  = /usr/bin/journalctl, /usr/bin/tail
-Cmnd_Alias  SVCMGM  = /usr/bin/systemctl
+Cmnd_Alias  NETMGM  = /usr/bin/ss, /usr/bin/ip
+Cmnd_Alias  BACKUP  = /usr/bin/rsync, /usr/bin/tar
 
-emma           ALL = (ALL) ALL
-frank          ALL = (ALL) ALL, !SHELLS
-%sre           APP = SVCMGM
-%deploy        MAIL = NOPASSWD: LOGMGM
-gina           ALL = NOPASSWD: /usr/bin/less /var/log/auth.log
-henry          APP = (nobody) /usr/bin/whoami
-%sre, %deploy  ALL = NOPASSWD: /usr/sbin/shutdown
+liam            ALL       = (ALL) ALL
+mia             ALL       = (ALL) ALL, !SHELLS
+%ops            CACHE     = NETMGM
+%audit          gateway01 = NOPASSWD: BACKUP
+noah            ALL       = NOPASSWD: /usr/bin/tail -f /var/log/syslog
+olivia          CACHE     = (mia) /usr/bin/id
+%ops, %audit    ALL       = NOPASSWD: /usr/sbin/reboot
 ```
 
 ## Licenses
