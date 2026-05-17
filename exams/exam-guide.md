@@ -32,7 +32,7 @@ During the exam you may use
 
 - Python documentation (`help`)
 - Manual pages (`man`)
-- [Cheat sheet](https://github.com/fglmtt/admin/blob/main/lectures/cheat-sheet.md)
+- [Cheat sheet](https://github.com/fglmtt/admin/blob/main/exams/cheat-sheet.md)
 - The [`up.sh`](https://github.com/fglmtt/admin/blob/main/code/up.sh) and [`down.sh`](https://github.com/fglmtt/admin/blob/main/code/down.sh) scripts
 - The container image [`fglmtt/admin`](https://hub.docker.com/repository/docker/fglmtt/admin)
 
@@ -72,15 +72,15 @@ mindmap
 
 ## 2. Exercises
 
-| Exercise | Previous exams |
-| -------- | -------------- |
-| Daemon | [2025-06-20](https://github.com/fglmtt/admin/blob/main/exams/2025-06-20/README.md), [2025-11-03](https://github.com/fglmtt/admin/blob/main/exams/2025-11-03/README.md), [2026-02-09](https://github.com/fglmtt/admin/blob/main/exams/2026-02-09/README.md) |
-| Periodic process | [2025-06-16](https://github.com/fglmtt/admin/blob/main/exams/2025-06-16/README.md), [2025-07-11](https://github.com/fglmtt/admin/blob/main/exams/2025-07-11/README.md), [2025-09-08](https://github.com/fglmtt/admin/blob/main/exams/2025-09-08/README.md), [2026-01-09](https://github.com/fglmtt/admin/blob/main/exams/2026-01-09/README.md) |
+| Exercise                 | Previous exams                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Daemon                   | [2025-06-20](https://github.com/fglmtt/admin/blob/main/exams/2025-06-20/README.md), [2025-11-03](https://github.com/fglmtt/admin/blob/main/exams/2025-11-03/README.md), [2026-02-09](https://github.com/fglmtt/admin/blob/main/exams/2026-02-09/README.md)                                                                                                                                                                                                                                                                                                                                                 |
+| Periodic process         | [2025-06-16](https://github.com/fglmtt/admin/blob/main/exams/2025-06-16/README.md), [2025-07-11](https://github.com/fglmtt/admin/blob/main/exams/2025-07-11/README.md), [2025-09-08](https://github.com/fglmtt/admin/blob/main/exams/2025-09-08/README.md), [2026-01-09](https://github.com/fglmtt/admin/blob/main/exams/2026-01-09/README.md)                                                                                                                                                                                                                                                             |
 | Packet filtering and NAT | [2025-06-16](https://github.com/fglmtt/admin/blob/main/exams/2025-06-16/README.md), [2025-06-20](https://github.com/fglmtt/admin/blob/main/exams/2025-06-20/README.md), [2025-07-11](https://github.com/fglmtt/admin/blob/main/exams/2025-07-11/README.md), [2025-09-08](https://github.com/fglmtt/admin/blob/main/exams/2025-09-08/README.md), [2025-11-03](https://github.com/fglmtt/admin/blob/main/exams/2025-11-03/README.md), [2026-01-09](https://github.com/fglmtt/admin/blob/main/exams/2026-01-09/README.md), [2026-02-09](https://github.com/fglmtt/admin/blob/main/exams/2026-02-09/README.md) |
-| Account administration | — |
+| Account administration   | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 > [!warning]
-> Account administration is a new exercise type introduced this year (2025/2026). There are no previous exam examples — refer to the [lab](https://github.com/fglmtt/admin/blob/main/lectures/account-administration.md) and [mock exam](https://github.com/fglmtt/admin/blob/main/lectures/mock-exam.md).
+> Account administration is a new exercise type introduced this year (2025/2026). There are no previous exam examples — refer to the [lab](https://github.com/fglmtt/admin/blob/main/lectures/account-administration.md) and [mock exam](https://github.com/fglmtt/admin/blob/main/exams/mock-exam.md).
 
 ## 3. Questions
 
