@@ -15,15 +15,16 @@
 
 ### 1.1. Python script
 
-Write a Python script that periodically analyzes a specified directory (including all its subdirectories), identifying files whose size exceeds or equals a certain threshold (in bytes). Whenever the script finds a file whose size is greater than or equal to the threshold, it must write the file's path to a log file. In your home directory, create a directory called `large-file-detector`, and inside it, the file `app.py`, using this template:
+Write a Python script that periodically calculates the total size of all files in a specified directory (including all its subdirectories) and logs the date, time, and total size when it exceeds a given threshold expressed in bytes. In your home directory, create the directory `dir-size-monitor` and, inside it, the file `app.py`, using this template:
 
 ```python
-# first name and last name:
+# first and last name:
 # student id:
 #
 # path:
 
 import argparse
+from datetime import datetime
 import os
 import sys
 import time
@@ -36,41 +37,41 @@ if __name__ == "__main__":
     main()
 ```
 
-The script must accept exactly four mandatory command-line arguments, parsed with the `argparse` module: `--target`, indicating the absolute path of the directory to check; `--size`, specifying the minimum size in bytes (positive integer) of files to report; `--interval`, defining the interval in seconds (positive integer) between each check; and finally, `--log`, specifying where to save the log file. The log file's name is always `large-file-detector.log`.
+The script must accept exactly four mandatory command-line arguments, parsed with the `argparse` module: `--target`, which specifies the absolute path of the directory to monitor; `--threshold`, which specifies the threshold in bytes (positive integer) above which a warning must be logged; `--interval`, which defines the interval in seconds (positive integer) between each check; and `--log`, which specifies the absolute path of the directory where to save the log file. The name of the log file is always `dir-size-monitor.log`.
 
-After parsing, validate the received inputs: check that the path specified by `--target` is absolute (`os.path.isabs`), exists (`os.path.exists`), and is a directory (`os.path.isdir`); also check that the values provided for `--size` and `--interval` are positive integers; verify that the path indicated by `--log` exists (`os.path.exists`) and is a directory (`os.path.isdir`).
+After parsing, validate the received inputs: verify that the path specified with `--target` is absolute (`os.path.isabs`), that it exists (`os.path.exists`), and that it is a directory (`os.path.isdir`); also check that the values provided for `--threshold` and `--interval` are positive integers; verify that the path indicated with `--log` exists, that is a directory, and that is absolute. If any check fails, print an explanatory error message to standard error (`print`) and exit with a non-zero status code (`sys.exit`).
 
-After validation, recursively traverse the directory tree at the path provided with `--target` (`os.listdir`, `os.path.join`, `os.path.isdir`). For each file (`os.path.isfile`), compute its size (`os.path.getsize`) and compare it with the threshold defined by `--size`. If the size is greater than or equal to the indicated threshold, write the absolute path of the file, followed by a newline, into the log file named `large-file-detector.log` (`open`), located in the directory specified with `--log`. Each write operation to the log file must be in append mode. The script must repeat this procedure periodically, waiting a number of seconds equal to the value indicated by `--interval` between each check (`time.sleep`).
+After validation, recursively traverse the directory tree at the path provided with `--target` (`os.listdir`, `os.path.join`, `os.path.isdir`). For each file encountered (`os.path.isfile`), get its size (`os.path.getsize`) and add it to an accumulator to calculate the total size of the directory. If the total size is greater than or equal to the threshold indicated by `--threshold`, open in append mode the log file `dir-size-monitor.log` in the directory specified with `--log` (`open`) and write a line containing the current date and time (`datetime.now`), a space, and the total size in bytes. The script must repeat this procedure periodically, waiting for a number of seconds equal to the value indicated by `--interval` between each check (`time.sleep`).
 
-For example, running
+For example, running:
 
 ```shell
-$ python ~/large-file-detector/app.py \
-    --target ~/archive \
-    --size 10 \
-    --interval 30 \
+$ python ~/dir-size-monitor/app.py \
+    --target ~/documents \
+    --threshold 1000 \
+    --interval 60 \
     --log ~
 ```
 
-the script will identify all files of `10` bytes or more in `~/archive` (and all its subdirectories) and append the path of each identified file to `~/large-file-detector.log`. The script will repeat this operation every `30` seconds.
+the script will calculate the total size of all files in `~/documents` (and in all its subdirectories) and, if that size is greater than or equal to `1000` bytes, will append to `~/dir-size-monitor.log` the date, time, and total size. The script will repeat the operation every `60` seconds.
 
 ### 1.2. Service
 
-Create a service unit named `large-file-detector.service` in your user's `systemd` instance. The unit must start `~/large-file-detector/app.py` with the arguments `--target %h/docs`, `--size 100`, `--interval 300`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
+Create a service unit named `dir-size-monitor.service` in your user instance of `systemd`. The unit must start `~/dir-size-monitor/app.py` with the arguments `--target %h/documents`, `--threshold 1000`, `--interval 60`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
 
 ```
-# first name and last name:
+# first and last name:
 # student id:
 #
-# path: 
-# 
+# path:
+#
 # command to enable the service:
 # command to start the service:
 ```
 
 ### 1.3. Solution
 
-This exercise was proposed on [June 20, 2025](https://github.com/fglmtt/admin/tree/main/exams/2025-06-20/large-file-detector).
+This exercise was proposed on [February 9, 2026](https://github.com/fglmtt/admin/tree/main/exams/2026-02-09/dir-size-monitor).
 
 ## 2. Account administration
 
