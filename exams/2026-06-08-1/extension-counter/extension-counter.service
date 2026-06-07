@@ -1,0 +1,20 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/extension-counter.service
+#
+# command to enable the service: systemctl --user enable extension-counter.service
+# command to start the service: systemctl --user start extension-counter.service
+
+[Unit]
+Description=extension counter service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/extension-counter
+ExecStart=/usr/bin/python3 app.py --target %h/documents --ext .log --interval 60 --log %h
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

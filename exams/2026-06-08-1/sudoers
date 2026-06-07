@@ -1,0 +1,18 @@
+# first name and last name: mattia fogli
+# student id: 123456
+#
+# path: /etc/sudoers.d/fleet
+
+Host_Alias  RUNNERS = runner01, runner02
+
+Cmnd_Alias  USERMGM = /usr/sbin/useradd, /usr/sbin/userdel, /usr/sbin/usermod
+Cmnd_Alias  NETINFO = /usr/bin/ip, /usr/bin/ss
+Cmnd_Alias  PKGINFO = /usr/bin/dpkg, /usr/bin/apt
+
+nora         ALL        = (ALL) ALL
+omar         ALL        = (ALL) ALL, !USERMGM
+%dev         RUNNERS    = NETINFO
+%sec         registry01 = NOPASSWD: PKGINFO
+priya        ALL        = NOPASSWD: /usr/bin/cat /etc/shadow
+quinn        RUNNERS    = (ravi) /usr/bin/id
+%ops, %dev   ALL        = NOPASSWD: /usr/bin/tcpdump
