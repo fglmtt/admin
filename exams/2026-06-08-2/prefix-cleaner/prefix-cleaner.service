@@ -1,0 +1,20 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/prefix-cleaner.service
+#
+# command to enable the service: systemctl --user enable prefix-cleaner.service
+# command to start the service: systemctl --user start prefix-cleaner.service
+
+[Unit]
+Description=prefix cleaner service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/prefix-cleaner
+ExecStart=/usr/bin/python3 app.py --target %h/scratch --prefix tmp --interval 60 --log %h
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

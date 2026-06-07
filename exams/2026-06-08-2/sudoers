@@ -1,0 +1,19 @@
+# first name and last name: mattia fogli
+# student id: 123456
+#
+# path: /etc/sudoers.d/policy
+
+Host_Alias  EDGE = edge01, edge02
+Host_Alias  CORE = core01, core02
+
+Cmnd_Alias  EDITORS = /usr/bin/vim, /usr/bin/nano
+Cmnd_Alias  GRPMGM  = /usr/sbin/groupadd, /usr/sbin/groupdel
+Cmnd_Alias  PKGINFO = /usr/bin/dpkg, /usr/bin/apt
+
+sara          ALL    = (ALL) ALL
+tom           ALL    = (ALL) ALL, !EDITORS
+%ident        EDGE   = GRPMGM
+%pkg          CORE   = NOPASSWD: PKGINFO
+uma           ALL    = NOPASSWD: /usr/bin/cat /etc/sudoers
+vera          edge01 = (tom) /usr/bin/id
+%ident, %pkg  ALL    = NOPASSWD: /usr/bin/ss
