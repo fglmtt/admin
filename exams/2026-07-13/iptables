@@ -1,0 +1,22 @@
+# first and last name: mattia fogli
+# student id: 123456
+
+-F
+-t nat -F
+
+-P INPUT DROP
+-P FORWARD DROP
+
+-A INPUT -i eth1 -s 172.20.0.90 -p tcp --dport 22 -j ACCEPT
+
+-A FORWARD -i eth1 -o eth0 -j ACCEPT
+
+-A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+-t nat -A POSTROUTING -o eth0 -j SNAT --to-source 192.0.2.1
+
+-t nat -A PREROUTING -i eth0 -p tcp --dport 25 -j DNAT --to-destination 172.20.0.40:2525
+-A FORWARD -i eth0 -o eth1 -p tcp -d 172.20.0.40 --dport 2525 -j ACCEPT
+
+-t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j DNAT --to-destination 172.20.0.40:8443
+-A FORWARD -i eth0 -o eth1 -p tcp -d 172.20.0.40 --dport 8443 -j ACCEPT

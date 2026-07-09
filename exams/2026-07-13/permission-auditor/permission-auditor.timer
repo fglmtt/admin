@@ -1,0 +1,17 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/permission-auditor.timer
+#
+# command to enable the timer: systemctl --user enable permission-auditor.timer
+# command to start the timer: systemctl --user start permission-auditor.timer
+
+[Unit]
+Description=permission auditor timer
+
+[Timer]
+Unit=permission-auditor.service
+OnCalendar=Tue,Fri *-*-* 23:30
+
+[Install]
+WantedBy=timers.target

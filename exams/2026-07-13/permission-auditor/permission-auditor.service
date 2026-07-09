@@ -1,0 +1,12 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/permission-auditor.service
+
+[Unit]
+Description=permission auditor service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/permission-auditor
+ExecStart=/usr/bin/python3 app.py --path %h/data --mode 644 --log %h/permission-auditor.log
