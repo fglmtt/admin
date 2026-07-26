@@ -1,6 +1,8 @@
-# 20 giugno 2025
+# June 20, 2025
 
-Durata esame: 2 ore e 30 minuti
+## Italian
+
+Durata esame: 2 ore e 30 minuti.
 
 | Sezione                             | Punti |
 | ----------------------------------- | ----- |
@@ -10,22 +12,22 @@ Durata esame: 2 ore e 30 minuti
 | Filtraggio dei pacchetti e NAT (§2) | 8     |
 | Domande a risposta aperta (§3)      | 9     |
 
-Per stampare
+Per stampare:
 
 ```shell
 $ stampa <path/file/da/stampare>
 ```
 
 > [!warning]
-> 1. Scrivere **nome**, **cognome** e numero di matricola su ogni file che si stampa
-> 2. Una volta mandati in stampa i file, avvisare il docente e **rimanere seduti al posto**
+> 1. Scrivere **nome**, **cognome** e numero di matricola su ogni file che si stampa.
+> 2. Una volta mandati in stampa i file, avvisare il docente e **rimanere seduti al posto**.
 
 > [!tip]
-> 1. Se si nota un errore sul file stampato, lo si può correggere a penna
+> 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Demone
+### 1. Demone
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che periodicamente analizza una directory specificata (incluse tutte le sue sottodirectory) identificando i file la cui dimensione supera o eguaglia una certa soglia (in byte). Ogniqualvolta lo script trova un file la cui dimensione è maggiore o uguale alla soglia deve scrivere il percorso di quel file in un file di log. Nella tua home directory, crea la directory `large-file-detector` e, al suo interno, il file `app.py`, utilizzando questo template:
 
@@ -66,7 +68,7 @@ $ python ~/large-file-detector/app.py \
 
 lo script dovrà individuare tutti i file di `10` byte o più presenti in `~/archive` (e in tutte le sue sottodirectory) e scrivere in append in `~/large-file-detector.log` il percorso di ciascuno dei file individuati. Lo script ripeterà l'operazione ogni `30` secondi.
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service denominata `large-file-detector.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/large-file-detector/app.py` con gli argomenti `--target %h/docs`, `--size 100`, `--interval 300`, e `--log %h`, partire all'avvio del sistema e ripartire in caso di fallimenti. Usa questo template:
 
@@ -74,13 +76,13 @@ Crea un'unità service denominata `large-file-detector.service` nella tua istanz
 # nome e cognome:
 # matricola:
 #
-# path: 
-# 
+# path:
+#
 # comando per abilitare il service:
 # comando per avviare il service:
 ```
 
-## 2. Filtraggio dei pacchetti e NAT
+### 2. Filtraggio dei pacchetti e NAT
 
 Configura un firewall Linux utilizzando `iptables`. Il firewall ha due interfacce:
 
@@ -111,7 +113,7 @@ Usa questo template:
 # matricola:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Chi può modificare l'ownership di un file (owner e group owner), quali regole devono essere soddisfatte e quale comando esegue l'operazione?
 2. Cos'è l'ingegneria sociale, perché è particolarmente difficile da contrastare e qual è una forma comune di questo tipo di attacco?
@@ -130,11 +132,9 @@ Usa questo template:
 3.
 ```
 
----
+## English
 
-# June 20, 2025
-
-Exam duration: 2 hours and 30 minutes
+Exam duration: 2 hours and 30 minutes.
 
 | Section                       | Points |
 | ----------------------------- | ------ |
@@ -144,27 +144,27 @@ Exam duration: 2 hours and 30 minutes
 | Packet filtering and NAT (§2) | 8      |
 | Open-ended questions (§3)     | 9      |
 
-To print
+To print:
 
 ```shell
 $ stampa <path/file/to/print>
 ```
 
 > [!warning]
-> 1. Write your **first name**, **last name**, and student id on every file you print
-> 2. After sending the files to the printer, notify the instructor and **remain seated**
+> 1. Write your **first name**, **last name**, and student id on every file you print.
+> 2. After sending the files to the printer, notify the instructor and **remain seated**.
 
 > [!tip]
-> 1. If a mistake is spotted on the printed file, it can be corrected by hand
+> 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Daemon
+### 1. Daemon
 
-### 1.1. Python script
+#### 1.1. Python script
 
 Write a Python script that periodically analyzes a specified directory (including all its subdirectories), identifying files whose size exceeds or equals a certain threshold (in bytes). Whenever the script finds a file whose size is greater than or equal to the threshold, it must write the file's path to a log file. In your home directory, create a directory called `large-file-detector`, and inside it, the file `app.py`, using this template:
 
 ```python
-# first name and last name:
+# first and last name:
 # student id:
 #
 # path:
@@ -200,28 +200,28 @@ $ python ~/large-file-detector/app.py \
 
 the script will identify all files of `10` bytes or more in `~/archive` (and all its subdirectories) and append the path of each identified file to `~/large-file-detector.log`. The script will repeat this operation every `30` seconds.
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `large-file-detector.service` in your user's `systemd` instance. The unit must start `~/large-file-detector/app.py` with the arguments `--target %h/docs`, `--size 100`, `--interval 300`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
 
 ```
-# first name and last name:
+# first and last name:
 # student id:
 #
-# path: 
-# 
+# path:
+#
 # command to enable the service:
 # command to start the service:
 ```
 
-## 2. Packet filtering and NAT
+### 2. Packet filtering and NAT
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
-| NIC    | Network Address     | Firewall IP     | Scope    |
-| ------ | ------------------- | --------------- | -------- |
-| `eth0` | `198.51.100.0/24`   | `198.51.100.5`  | Public   |
-| `eth1` | `10.10.20.0/24`     | `10.10.20.1`    | Private  |
+| NIC    | Network Address   | Firewall IP    | Scope   |
+| ------ | ----------------- | -------------- | ------- |
+| `eth0` | `198.51.100.0/24` | `198.51.100.5` | Public  |
+| `eth1` | `10.10.20.0/24`   | `10.10.20.1`   | Private |
 
 Hosts on the `10.10.20.0/24` network use the firewall as their default gateway. Host `10.10.20.50` runs an FTP server on port `19990`.
 
@@ -245,7 +245,7 @@ Use this template:
 # student id:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. Who may change a file’s ownership (owner and group owner), what rules must be satisfied, and which command performs the operation?
 2. What is social engineering, why is it particularly difficult to defend against, and what is one common form of this attack?
@@ -263,3 +263,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Daemon (§1)](https://github.com/fglmtt/admin/tree/main/exams/2025-06-20/large-file-detector)
+- [Packet filtering and NAT (§2)](https://github.com/fglmtt/admin/blob/main/exams/2025-06-20/iptables)

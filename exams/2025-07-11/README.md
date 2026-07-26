@@ -1,6 +1,8 @@
-# 11 luglio 2025
+# July 11, 2025
 
-Durata esame: 2 ore e 30 minuti
+## Italian
+
+Durata esame: 2 ore e 30 minuti.
 
 | Sezione                             | Punti |
 | ----------------------------------- | ----- |
@@ -11,22 +13,22 @@ Durata esame: 2 ore e 30 minuti
 | Filtraggio dei pacchetti e NAT (§2) | 8     |
 | Domande a risposta aperta (§3)      | 9     |
 
-Per stampare
+Per stampare:
 
 ```shell
 $ stampa <path/file/da/stampare>
 ```
 
 > [!warning]
-> 1. Scrivere **nome**, **cognome** e numero di matricola su ogni file che si stampa
-> 2. Una volta mandati in stampa i file, avvisare il docente e **rimanere seduti al posto**
+> 1. Scrivere **nome**, **cognome** e numero di matricola su ogni file che si stampa.
+> 2. Una volta mandati in stampa i file, avvisare il docente e **rimanere seduti al posto**.
 
 > [!tip]
-> 1. Se si nota un errore sul file stampato, lo si può correggere a penna
+> 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Processo periodico
+### 1. Processo periodico
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che monitora l’utilizzo percentuale dello spazio disco di una partizione specificata. Quando l’utilizzo percentuale della partizione supera o eguaglia una certa soglia, lo script deve registrare nel file di log la data e l’ora correnti e la percentuale di spazio occupato. Nella tua home directory, crea la directory `disk-usage-monitor` e, al suo interno, il file `app.py`, utilizzando questo template:
 
@@ -63,7 +65,7 @@ $ python ~/disk-usage-monitor/app.py --partition / --threshold 80
 
 lo script controllerà l'utilizzo percentuale della partizione `/`, registrando nel file di log `~/disk-usage-monitor/disk-usage-monitor.log` data, ora e percentuale di spazio usato se questa è uguale o superiore a `80`%.
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service denominata `disk-usage-monitor.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/disk-usage-monitor/app.py` con gli argomenti `--partition /` e `--threshold 90`. Usa questo template:
 
@@ -74,7 +76,7 @@ Crea un'unità service denominata `disk-usage-monitor.service` nella tua istanza
 # path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Crea un'unità timer denominata `disk-usage-monitor.timer` nella tua istanza utente di `systemd`. Configurala per avviare `disk-usage-monitor.service` ogni 2 minuti. Usa questo template:
 
@@ -88,7 +90,7 @@ Crea un'unità timer denominata `disk-usage-monitor.timer` nella tua istanza ute
 # comando per avviare il timer:
 ```
 
-## 2. Filtraggio dei pacchetti e NAT
+### 2. Filtraggio dei pacchetti e NAT
 
 Configura un firewall Linux utilizzando `iptables`. Il firewall ha due interfacce:
 
@@ -101,16 +103,16 @@ Gli host della rete `192.168.30.0/24` utilizzano il firewall come gateway predef
 
 Applica le seguenti regole:
 
-| Tabella      | Catena          | Regola                                                                                                                                                |
-| ------------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filter,nat` | `*`             | Elimina tutte le regole esistenti                                                                                                                     |
-| `filter`     | `INPUT,FORWARD` | Scarta tutto a meno che non sia esplicitamente permesso                                                                                               |
-| `filter`     | `INPUT`         | Consenti pacchetti ICMP ricevuti su `eth0` e `eth1`                                                                                                   |
-| `filter`     | `INPUT`         | Consenti pacchetti SSH (`tcp/22`) ricevuti su `eth1` e provenienti esclusivamente dall’host amministrativo `192.168.30.200`                           |
-| `filter`     | `FORWARD`       | Consenti tutti i pacchetti ricevuti su `eth1` e in uscita su `eth0`                                                                                   |
-| `filter`     | `FORWARD`       | Consenti pacchetti con stato `ESTABLISHED,RELATED`                                                                                                    |
-| `nat`        | `POSTROUTING`   | MASQUERADE pacchetti in uscita da `eth0` affinché gli host privati ricevano risposte da Internet                                                      |
-| `nat`        | `PREROUTING`    | Applica DNAT ai pacchetti HTTP (`tcp/80`) ricevuti su `eth0`, inoltrandoli a `192.168.30.60:8080` e assicurandoti che possano raggiungere quell'host  |
+| Tabella      | Catena          | Regola                                                                                                                                               |
+| ------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filter,nat` | `*`             | Elimina tutte le regole esistenti                                                                                                                    |
+| `filter`     | `INPUT,FORWARD` | Scarta tutto a meno che non sia esplicitamente permesso                                                                                              |
+| `filter`     | `INPUT`         | Consenti pacchetti ICMP ricevuti su `eth0` e `eth1`                                                                                                  |
+| `filter`     | `INPUT`         | Consenti pacchetti SSH (`tcp/22`) ricevuti su `eth1` e provenienti esclusivamente dall’host amministrativo `192.168.30.200`                          |
+| `filter`     | `FORWARD`       | Consenti tutti i pacchetti ricevuti su `eth1` e in uscita su `eth0`                                                                                  |
+| `filter`     | `FORWARD`       | Consenti pacchetti con stato `ESTABLISHED,RELATED`                                                                                                   |
+| `nat`        | `POSTROUTING`   | MASQUERADE pacchetti in uscita da `eth0` affinché gli host privati ricevano risposte da Internet                                                     |
+| `nat`        | `PREROUTING`    | Applica DNAT ai pacchetti HTTP (`tcp/80`) ricevuti su `eth0`, inoltrandoli a `192.168.30.60:8080` e assicurandoti che possano raggiungere quell'host |
 
 Usa questo template:
 
@@ -119,7 +121,7 @@ Usa questo template:
 # matricola:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Che cos'è l'esecuzione set-UID, perché `passwd` ne ha bisogno e cosa succede quando un utente normale esegue `passwd`?
 2. Che cos'è l'ARP spoofing, quali debolezze del protocollo ARP sfrutta e come si svolge in pratica un attacco MITM?
@@ -138,9 +140,9 @@ Usa questo template:
 3.
 ```
 
-# July 11, 2025
+## English
 
-Exam duration: 2 hours and 30 minutes
+Exam duration: 2 hours and 30 minutes.
 
 | Section                       | Points |
 | ----------------------------- | ------ |
@@ -151,22 +153,22 @@ Exam duration: 2 hours and 30 minutes
 | Packet filtering and NAT (§2) | 8      |
 | Open-ended questions (§3)     | 9      |
 
-To print
+To print:
 
 ```shell
 $ stampa <path/file/to/print>
 ```
 
 > [!warning]
-> 1. Write your **first name**, **last name**, and student id on every file you print
-> 2. After sending the files to the printer, notify the instructor and **remain seated**
+> 1. Write your **first name**, **last name**, and student id on every file you print.
+> 2. After sending the files to the printer, notify the instructor and **remain seated**.
 
 > [!tip]
-> 1. If a mistake is spotted on the printed file, it can be corrected by hand
+> 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Periodic process
+### 1. Periodic process
 
-### 1.1. Python script
+#### 1.1. Python script
 
 Write a Python script that monitors the percentage usage of disk space on a specified partition. When the partition's usage percentage exceeds or equals a given threshold, the script must record in a log file the current date and time and the percentage of space used. In your home directory, create the directory `disk-usage-monitor` and, inside it, the file `app.py`, using this template:
 
@@ -204,7 +206,7 @@ $ python ~/disk-usage-monitor/app.py --partition / --threshold 80
 
 the script will check the usage percentage of the `/` partition, recording in the log file `~/disk-usage-monitor/disk-usage-monitor.log` the date, time, and used space percentage if it is equal to or above `80`%.
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `disk-usage-monitor.service` in your user instance of `systemd`. The unit must launch `~/disk-usage-monitor/app.py` with the arguments `--partition /` and `--threshold 90`. Use this template:
 
@@ -215,7 +217,7 @@ Create a service unit named `disk-usage-monitor.service` in your user instance o
 # path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Create a timer unit named `disk-usage-monitor.timer` in your user instance of `systemd`. Configure it to start `disk-usage-monitor.service` every 2 minutes. Use this template:
 
@@ -227,14 +229,14 @@ Create a timer unit named `disk-usage-monitor.timer` in your user instance of `s
 # command to start the timer:
 ```
 
-## 2. Packet filtering and NAT
+### 2. Packet filtering and NAT
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
-|NIC|Network Address|Firewall IP|Scope|
-|---|---|---|---|
-|`eth0`|`203.0.113.0/24`|`203.0.113.10`|Public|
-|`eth1`|`192.168.30.0/24`|`192.168.30.1`|Private|
+| NIC    | Network Address   | Firewall IP    | Scope   |
+| ------ | ----------------- | -------------- | ------- |
+| `eth0` | `203.0.113.0/24`  | `203.0.113.10` | Public  |
+| `eth1` | `192.168.30.0/24` | `192.168.30.1` | Private |
 
 Hosts on the `192.168.30.0/24` network use the firewall as their default gateway. Host `192.168.30.60` runs an HTTP server on port `8080`.
 
@@ -258,7 +260,7 @@ Use this template:
 # student id:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. What is set-UID execution, why does `passwd` need it, and what happens when a regular user runs `passwd`?
 2. What is ARP spoofing, which weaknesses in the ARP protocol does it exploit, and how does a MITM attack unfold in practice?
@@ -276,3 +278,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Periodic process (§1)](https://github.com/fglmtt/admin/tree/main/exams/2025-07-11/disk-usage-monitor)
+- [Packet filtering and NAT (§2)](https://github.com/fglmtt/admin/blob/main/exams/2025-07-11/iptables)

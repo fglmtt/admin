@@ -1,4 +1,6 @@
-# 3 novembre 2025
+# November 3, 2025
+
+## Italian
 
 Durata esame: 2 ore e 30 minuti.
 
@@ -23,9 +25,9 @@ $ stampa <path/file/da/stampare>
 > [!tip]
 > 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Demone
+### 1. Demone
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che periodicamente analizza una directory specificata (incluse tutte le sue sottodirectory) per rimuovere i file la cui data di ultima modifica è antecedente a una certa soglia espressa in giorni. Nella tua home directory, crea la directory `old-file-detector` e, al suo interno, il file `app.py`, utilizzando questo template:
 
@@ -68,12 +70,12 @@ lo script dovrà individuare tutti i file modificati per l'ultima volta 30 o pi�
 
 > [!tip]
 > Per testare lo script puoi creare manualmente alcuni file nella directory `~/archive` e retrodatare la loro data di ultima modifica con il comando:
-> 
+>
 > ```
 > $ touch -d "45 days ago" <path>
 > ```
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service denominata `old-file-detector.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/old-file-detector/app.py` con gli argomenti `--target %h/archive`, `--days 30`, `--interval 60`, e `--log %h`, partire all'avvio del sistema e ripartire in caso di fallimenti. Usa questo template:
 
@@ -81,13 +83,13 @@ Crea un'unità service denominata `old-file-detector.service` nella tua istanza 
 # nome e cognome:
 # matricola:
 #
-# path: 
-# 
+# path:
+#
 # comando per abilitare il service:
 # comando per avviare il service:
 ```
 
-## 2. Filtraggio dei pacchetti e NAT
+### 2. Filtraggio dei pacchetti e NAT
 
 Configura un firewall Linux usando `iptables`. Il firewall dispone di due interfacce:
 
@@ -118,7 +120,7 @@ Usa questo template:
 # matricola:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Perché `sudo` è generalmente preferito al login diretto come `root` o all'uso di `su` per ottenere i privilegi di `root`, e quali sono i suoi principali vantaggi e svantaggi?
 2. Che cos'è l'IPv4 source routing e in che modo un attaccante può sfruttarlo?
@@ -137,7 +139,7 @@ Usa questo template:
 3.
 ```
 
-# November 3, 2025
+## English
 
 Exam duration: 2 hours and 30 minutes.
 
@@ -162,9 +164,9 @@ $ stampa <path/file/to/print>
 > [!tip]
 > 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Daemon
+### 1. Daemon
 
-### 1.1. Python script
+#### 1.1. Python script
 
 Write a Python script that periodically scans a specified directory (including all its subdirectories) to remove files whose last modification date is earlier than a given threshold expressed in days. In your home directory, create the directory `old-file-detector` and, inside it, the file `app.py`, using this template:
 
@@ -205,14 +207,14 @@ $ python ~/old-file-detector/app.py \
 
 the script will identify all files last modified 30 or more days ago in `~/archive` (and in all its subdirectories), append the path of each identified file to `~/old-file-detector.log`, and remove those files. The script will repeat the operation every `60` seconds.
 
-> [!tip]  
+> [!tip]
 > To test the script, you can manually create some files in the `~/archive` directory and backdate their last modification date with the command:
-> 
+>
 > ```
 > $ touch -d "45 days ago" <path>
 > ```
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `old-file-detector.service` in your user instance of `systemd`. The unit must start `~/old-file-detector/app.py` with the arguments `--target %h/archive`, `--days 30`, `--interval 60`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
 
@@ -220,20 +222,20 @@ Create a service unit named `old-file-detector.service` in your user instance of
 # first and last name:
 # student id:
 #
-# path: 
-# 
+# path:
+#
 # command to enable the service:
 # command to start the service:
 ```
 
-## 2. Packet filtering and NAT
+### 2. Packet filtering and NAT
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
-|NIC|Network address|Firewall IP|Scope|
-|---|---|---|---|
-|`eth0`|`203.0.113.0/24`|`203.0.113.10`|Public|
-|`eth1`|`10.0.0.0/24`|`10.0.0.1`|Private|
+| NIC    | Network address  | Firewall IP    | Scope   |
+| ------ | ---------------- | -------------- | ------- |
+| `eth0` | `203.0.113.0/24` | `203.0.113.10` | Public  |
+| `eth1` | `10.0.0.0/24`    | `10.0.0.1`     | Private |
 
 Hosts on the `10.0.0.0/24` network use this firewall as their default gateway. Host `10.0.0.50` runs an SSH server (`tcp/22`) and an HTTPS server (`tcp/8443`).
 
@@ -257,7 +259,7 @@ Use this template:
 # student id:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. Why is `sudo` generally preferred to direct `root` login or `su` for obtaining `root` privileges, and what are its main advantages and drawbacks?
 2. What is IPv4 source routing, and how can an attacker exploit it?
@@ -275,3 +277,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Daemon (§1)](https://github.com/fglmtt/admin/tree/main/exams/2025-11-03/old-file-detector)
+- [Packet filtering and NAT (§2)](https://github.com/fglmtt/admin/blob/main/exams/2025-11-03/iptables)

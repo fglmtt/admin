@@ -1,6 +1,8 @@
-# 16 giugno 2025
+# June 16, 2025
 
-Durata esame: 2 ore e 30 minuti
+## Italian
+
+Durata esame: 2 ore e 30 minuti.
 
 | Sezione                             | Punti |
 | ----------------------------------- | ----- |
@@ -11,22 +13,22 @@ Durata esame: 2 ore e 30 minuti
 | Filtraggio dei pacchetti e NAT (§2) | 8     |
 | Domande a risposta aperta (§3)      | 9     |
 
-Per stampare
+Per stampare:
 
 ```shell
 $ stampa <path/file/da/stampare>
 ```
 
 > [!warning]
-> 1. Scrivere **nome**, **cognome** e numero di matricola su ogni file che si stampa
-> 2. Una volta mandati in stampa i file, avvisare il docente e **rimanere seduti al posto**
+> 1. Scrivere **nome**, **cognome** e numero di matricola su ogni file che si stampa.
+> 2. Una volta mandati in stampa i file, avvisare il docente e **rimanere seduti al posto**.
 
 > [!tip]
-> 1. Se si nota un errore sul file stampato, lo si può correggere a penna
+> 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Processo periodico
+### 1. Processo periodico
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che sposta ogni file più vecchio di un certo numero di secondi da una directory specificata e da tutte le sue sottodirectory in una cartella di archivio denominata `archive`, creata (se necessario) in `~`. Nella tua home directory, crea una directory chiamata `file-archiver` e, al suo interno, un file chiamato `app.py`, utilizzando questo template:
 
@@ -34,7 +36,7 @@ Scrivi uno script Python che sposta ogni file più vecchio di un certo numero di
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 
 import argparse
 import os
@@ -64,7 +66,7 @@ $ python ~/file-archiver/app.py --path ~/target --seconds 30
 
 lo script dovrà spostare nella cartella `~/archive` tutti i file più vecchi di 30 secondi presenti in `~/target` e in tutte le sue sottodirectory.
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service denominata `file-archiver.service` nella tua istanza utente di `systemd`. Configurala per avviare `~/file-archiver/app.py` con gli argomenti `--path %h/mydocs` e `--seconds 30`. Usa questo template:
 
@@ -72,10 +74,10 @@ Crea un'unità service denominata `file-archiver.service` nella tua istanza uten
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Crea un'unità timer denominata `file-archiver.timer` nella tua istanza utente di `systemd`. Configurala per attivare `file-archiver.service` alle 04:00 di ogni sabato e domenica. Usa questo template:
 
@@ -83,13 +85,13 @@ Crea un'unità timer denominata `file-archiver.timer` nella tua istanza utente d
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 #
 # comando per abilitare il timer:
 # comando per avviare il timer:
 ```
 
-## 2. Filtraggio dei pacchetti e NAT
+### 2. Filtraggio dei pacchetti e NAT
 
 Configura un firewall Linux usando `iptables`. Il firewall dispone di due interfacce:
 
@@ -120,7 +122,7 @@ Usa questo template:
 # matricola:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Perché un lazy unmount (`umount -l`) è considerato non sicuro, quale comando permette di individuare i processi che mantengono ancora riferimenti al filesystem occupato e come si può eseguire invece un unmount pulito?
 2. Che cos'è una vulnerabilità software, qual è un esempio specifico di tale vulnerabilità e in che modo le pratiche di revisione del codice open source possono contribuire a ridurre queste vulnerabilità?
@@ -139,9 +141,9 @@ Usa questo template:
 3.
 ```
 
-# June 16, 2025
+## English
 
-Exam duration: 2 hours and 30 minutes
+Exam duration: 2 hours and 30 minutes.
 
 | Section                       | Points |
 | ----------------------------- | ------ |
@@ -152,22 +154,22 @@ Exam duration: 2 hours and 30 minutes
 | Packet filtering and NAT (§2) | 8      |
 | Open-ended questions (§3)     | 9      |
 
-To print
+To print:
 
 ```shell
 $ stampa <path/file/to/print>
 ```
 
 > [!warning]
-> 1. Write your **first name**, **last name**, and student id on every file you print
-> 2. After sending the files to the printer, notify the instructor and **remain seated**
+> 1. Write your **first name**, **last name**, and student id on every file you print.
+> 2. After sending the files to the printer, notify the instructor and **remain seated**.
 
 > [!tip]
-> 1. If a mistake is spotted on the printed file, it can be corrected by hand
+> 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Periodic process
+### 1. Periodic process
 
-### 1.1. Python script
+#### 1.1. Python script
 
 Write a Python script that moves every file older than a certain number of seconds from a specified directory and all its subdirectories into an archive folder named `archive`, created (if necessary) in `~`. In your home directory, create a directory called `file-archiver` and, inside it, a file called `app.py`, using this template:
 
@@ -175,7 +177,7 @@ Write a Python script that moves every file older than a certain number of secon
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 
 import argparse
 import os
@@ -205,7 +207,7 @@ $ python ~/file-archiver/app.py --path ~/target --seconds 30
 
 the script should move into `~/archive` all files older than 30 seconds found in `~/target` and all its subdirectories.
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `file-archiver.service` in your user instance of `systemd`. Configure it to start `~/file-archiver/app.py` with the arguments `--path %h/mydocs` and `--seconds 30`. Use this template:
 
@@ -213,10 +215,10 @@ Create a service unit named `file-archiver.service` in your user instance of `sy
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Create a timer unit named `file-archiver.timer` in your user instance of `systemd`. Configure it to trigger `file-archiver.service` at 04:00 on every Saturday and Sunday. Use this template:
 
@@ -224,13 +226,13 @@ Create a timer unit named `file-archiver.timer` in your user instance of `system
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 #
 # command to enable the timer:
 # command to start the timer:
 ```
 
-## 2. Packet filtering and NAT
+### 2. Packet filtering and NAT
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
@@ -243,16 +245,16 @@ Hosts on the `192.168.50.0/24` network use this firewall as their default gatewa
 
 Apply the following rules:
 
-|Table|Chain|Rule|
-|---|---|---|
-|`filter,nat`|`*`|Remove existing rules|
-|`filter`|`INPUT,FORWARD`|Drop everything unless explicitly allowed|
-|`filter`|`INPUT`|Allow ICMP packets received on `eth1`|
-|`filter`|`INPUT`|Allow SSH packets (`tcp/22`) received on `eth1`|
-|`filter`|`FORWARD`|Allow HTTP (`tcp/80`) and HTTPS (`tcp/443`) packets received on `eth0` and `eth1`|
-|`filter`|`FORWARD`|Allow packets with state `ESTABLISHED,RELATED`|
-|`nat`|`POSTROUTING`|SNAT for outgoing packets on `eth0` so that private hosts receive responses from the Internet|
-|`nat`|`PREROUTING`|DNAT for HTTPS (`tcp/443`) packets received on `eth0` to `192.168.50.20:30443`|
+| Table        | Chain           | Rule                                                                                          |
+| ------------ | --------------- | --------------------------------------------------------------------------------------------- |
+| `filter,nat` | `*`             | Remove existing rules                                                                         |
+| `filter`     | `INPUT,FORWARD` | Drop everything unless explicitly allowed                                                     |
+| `filter`     | `INPUT`         | Allow ICMP packets received on `eth1`                                                         |
+| `filter`     | `INPUT`         | Allow SSH packets (`tcp/22`) received on `eth1`                                               |
+| `filter`     | `FORWARD`       | Allow HTTP (`tcp/80`) and HTTPS (`tcp/443`) packets received on `eth0` and `eth1`             |
+| `filter`     | `FORWARD`       | Allow packets with state `ESTABLISHED,RELATED`                                                |
+| `nat`        | `POSTROUTING`   | SNAT for outgoing packets on `eth0` so that private hosts receive responses from the Internet |
+| `nat`        | `PREROUTING`    | DNAT for HTTPS (`tcp/443`) packets received on `eth0` to `192.168.50.20:30443`                |
 
 Use this template:
 
@@ -261,7 +263,7 @@ Use this template:
 # student id:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. Why is a lazy unmount (`umount -l`) considered unsafe, which command lets you identify the processes that still hold references to the busy filesystem, and how can you perform a clean unmount instead?
 2. What is a software vulnerability, what is a specific example of such a vulnerability, and how can open-source code review practices help in reducing these vulnerabilities?
@@ -279,3 +281,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Periodic process (§1)](https://github.com/fglmtt/admin/tree/main/exams/2025-06-16/file-archiver)
+- [Packet filtering and NAT (§2)](https://github.com/fglmtt/admin/blob/main/exams/2025-06-16/iptables)

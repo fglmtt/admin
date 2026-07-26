@@ -1,4 +1,6 @@
-# 13 luglio 2026
+# July 13, 2026
+
+## Italian
 
 Durata esame: 2 ore e 30 minuti.
 
@@ -24,9 +26,9 @@ $ stampa <path/file/da/stampare>
 > [!tip]
 > 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Processo periodico
+### 1. Processo periodico
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che verifica i permessi dei file in una directory specificata e in tutte le sue sottodirectory, registrando in un file di log ogni file i cui permessi non corrispondono esattamente a un valore atteso. Nella tua home directory, crea una directory chiamata `permission-auditor` e, al suo interno, un file chiamato `app.py`, utilizzando questo template:
 
@@ -34,7 +36,7 @@ Scrivi uno script Python che verifica i permessi dei file in una directory speci
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 
 import argparse
 from datetime import datetime
@@ -67,7 +69,7 @@ $ python ~/permission-auditor/app.py \
 
 lo script esaminerà `~/data` e tutte le sue sottodirectory, registrando in `~/permission-auditor.log` ogni file i cui permessi non corrispondono esattamente a `644` (`rw-r--r--`).
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service chiamata `permission-auditor.service` nella tua istanza utente di `systemd`. Configurala per avviare `~/permission-auditor/app.py` con gli argomenti `--path %h/data`, `--mode 644` e `--log %h/permission-auditor.log`. Usa questo template:
 
@@ -75,10 +77,10 @@ Crea un'unità service chiamata `permission-auditor.service` nella tua istanza u
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Crea un'unità timer chiamata `permission-auditor.timer` nella tua istanza utente di `systemd`. Configurala per attivare `permission-auditor.service` alle 23:30 di ogni martedì e venerdì. Usa questo template:
 
@@ -86,13 +88,13 @@ Crea un'unità timer chiamata `permission-auditor.timer` nella tua istanza utent
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 #
 # comando per abilitare il timer:
 # comando per avviare il timer:
 ```
 
-## 2. Filtraggio dei pacchetti e NAT
+### 2. Filtraggio dei pacchetti e NAT
 
 Configura un firewall Linux utilizzando `iptables`. Il firewall dispone di due interfacce:
 
@@ -123,7 +125,7 @@ Usa questo template:
 # matricola:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Perché oggi gli amministratori sono tenuti a mantenere un repository di log centralizzato e rafforzato, quale ruolo giocano i timestamp validati tramite NTP, e quali daemon di logging si occupano della raccolta locale rispetto all'inoltro verso il repository centrale?
 2. Che cos'è un firewall, come funziona uno schema di filtraggio a due stadi, e quale ruolo svolge una DMZ?
@@ -142,9 +144,7 @@ Usa questo template:
 3.
 ```
 
----
-
-# July 13, 2026
+## English
 
 Exam duration: 2 hours and 30 minutes.
 
@@ -170,9 +170,9 @@ $ stampa <path/file/to/print>
 > [!tip]
 > 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Periodic Process
+### 1. Periodic process
 
-### 1.1. Python Script
+#### 1.1. Python script
 
 Write a Python script that checks file permissions in a specified directory and all its subdirectories, logging to a log file every file whose permissions do not exactly match an expected mode. In your home directory, create a directory called `permission-auditor` and, inside it, a file called `app.py`, using this template:
 
@@ -180,7 +180,7 @@ Write a Python script that checks file permissions in a specified directory and 
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 
 import argparse
 from datetime import datetime
@@ -213,7 +213,7 @@ $ python ~/permission-auditor/app.py \
 
 the script will examine `~/data` and all its subdirectories, logging to `~/permission-auditor.log` every file whose permissions do not exactly match `644` (`rw-r--r--`).
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `permission-auditor.service` in your user instance of `systemd`. Configure it to start `~/permission-auditor/app.py` with the arguments `--path %h/data`, `--mode 644`, and `--log %h/permission-auditor.log`. Use this template:
 
@@ -221,10 +221,10 @@ Create a service unit named `permission-auditor.service` in your user instance o
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Create a timer unit named `permission-auditor.timer` in your user instance of `systemd`. Configure it to trigger `permission-auditor.service` at 23:30 on every Tuesday and Friday. Use this template:
 
@@ -232,13 +232,13 @@ Create a timer unit named `permission-auditor.timer` in your user instance of `s
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 #
 # command to enable the timer:
 # command to start the timer:
 ```
 
-## 2. Packet filtering and NAT
+### 2. Packet filtering and NAT
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
@@ -269,7 +269,7 @@ Use this template:
 # student id:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. Why are administrators today required to maintain a centralized, hardened logging repository, what role do NTP-validated timestamps play, and which logging daemons handle local collection versus forwarding to the central repository?
 2. What is a firewall, how does a two-stage filtering scheme work, and what role does a DMZ play?
@@ -287,3 +287,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Periodic process (§1)](https://github.com/fglmtt/admin/tree/main/exams/2026-07-13/permission-auditor)
+- [Packet filtering and NAT (§2)](https://github.com/fglmtt/admin/blob/main/exams/2026-07-13/iptables)

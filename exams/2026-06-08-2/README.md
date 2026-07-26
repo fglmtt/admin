@@ -1,14 +1,16 @@
-# 8 giugno 2026 - Turno 2
+# June 8, 2026 - Session 2
+
+## Italian
 
 Durata esame: 2 ore e 30 minuti.
 
-| Sezione                              | Punti |
-| ------------------------------------ | ----- |
-| Demone (§1)                          | 16    |
-| - Script Python (§1.1)               | 10/16 |
-| - Service (§1.2)                     | 6/16  |
-| Amministrazione degli account (§2)   | 8     |
-| Domande a risposta aperta (§3)       | 9     |
+| Sezione                            | Punti |
+| ---------------------------------- | ----- |
+| Demone (§1)                        | 16    |
+| - Script Python (§1.1)             | 10/16 |
+| - Service (§1.2)                   | 6/16  |
+| Amministrazione degli account (§2) | 8     |
+| Domande a risposta aperta (§3)     | 9     |
 
 Per stampare:
 
@@ -23,9 +25,9 @@ $ stampa <path/file/da/stampare>
 > [!tip]
 > 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Demone
+### 1. Demone
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che periodicamente analizza una directory specificata (incluse tutte le sue sottodirectory) per rimuovere i file il cui nome inizia con un determinato prefisso. Nella tua home directory, crea la directory `prefix-cleaner` e, al suo interno, il file `app.py`, utilizzando questo template:
 
@@ -67,7 +69,7 @@ $ python ~/prefix-cleaner/app.py \
 
 lo script individuerà tutti i file il cui nome inizia con `tmp` presenti in `~/scratch` (e in tutte le sue sottodirectory), scriverà in append in `~/prefix-cleaner.log` la data, l'ora e il percorso di ciascun file, e rimuoverà tali file. Lo script ripeterà l'operazione ogni `60` secondi.
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service denominata `prefix-cleaner.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/prefix-cleaner/app.py` con gli argomenti `--target %h/scratch`, `--prefix tmp`, `--interval 60`, e `--log %h`, partire all'avvio del sistema e ripartire in caso di fallimenti. Usa questo template:
 
@@ -81,7 +83,7 @@ Crea un'unità service denominata `prefix-cleaner.service` nella tua istanza ute
 # comando per avviare il service:
 ```
 
-## 2. Amministrazione degli account
+### 2. Amministrazione degli account
 
 Configura `sudo` su una rete di quattro host Linux: `edge01`, `edge02`, `core01` e `core02`. La rete ha i seguenti utenti e gruppi:
 
@@ -94,17 +96,17 @@ Configura `sudo` su una rete di quattro host Linux: `edge01`, `edge02`, `core01`
 
 Applica le seguenti regole:
 
-| Categoria | Regola                                                                                                                                |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Alias     | Definisci `Host_Alias EDGE = edge01, edge02` e `Host_Alias CORE = core01, core02`                                                      |
+| Categoria | Regola                                                                                                                                                                          |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Alias     | Definisci `Host_Alias EDGE = edge01, edge02` e `Host_Alias CORE = core01, core02`                                                                                               |
 | Alias     | Definisci `Cmnd_Alias EDITORS = /usr/bin/vim, /usr/bin/nano`, `Cmnd_Alias GRPMGM = /usr/sbin/groupadd, /usr/sbin/groupdel` e `Cmnd_Alias PKGINFO = /usr/bin/dpkg, /usr/bin/apt` |
-| Permessi  | `sara` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host                                                          |
-| Permessi  | `tom` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host, eccetto `EDITORS`                                        |
-| Permessi  | `%ident` può eseguire `GRPMGM` come `root` su `EDGE`                                                                                   |
-| Permessi  | `%pkg` può eseguire `PKGINFO` come `root` su `CORE`, senza password                                                                    |
-| Permessi  | `uma` può eseguire `/usr/bin/cat /etc/sudoers` come `root` su qualsiasi host, senza password                                           |
-| Permessi  | `vera` può eseguire `/usr/bin/id` come `tom` su `edge01`                                                                               |
-| Permessi  | `%ident, %pkg` può eseguire `/usr/bin/ss` come `root` su qualsiasi host, senza password                                                |
+| Permessi  | `sara` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host                                                                                                   |
+| Permessi  | `tom` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host, eccetto `EDITORS`                                                                                 |
+| Permessi  | `%ident` può eseguire `GRPMGM` come `root` su `EDGE`                                                                                                                            |
+| Permessi  | `%pkg` può eseguire `PKGINFO` come `root` su `CORE`, senza password                                                                                                             |
+| Permessi  | `uma` può eseguire `/usr/bin/cat /etc/sudoers` come `root` su qualsiasi host, senza password                                                                                    |
+| Permessi  | `vera` può eseguire `/usr/bin/id` come `tom` su `edge01`                                                                                                                        |
+| Permessi  | `%ident, %pkg` può eseguire `/usr/bin/ss` come `root` su qualsiasi host, senza password                                                                                         |
 
 Il file deve essere creato in `/etc/sudoers.d/policy`. Usa questo template:
 
@@ -115,7 +117,7 @@ Il file deve essere creato in `/etc/sudoers.d/policy`. Usa questo template:
 # path:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Quali sono le regole fondamentali che governano il modello tradizionale dei permessi UNIX?
 2. Che cos'è un attacco DDoS e come compromette tipicamente i sistemi presi di mira?
@@ -134,19 +136,17 @@ Usa questo template:
 3.
 ```
 
----
-
-# June 8, 2026 - Session 2
+## English
 
 Exam duration: 2 hours and 30 minutes.
 
-| Section                         | Points |
-| ------------------------------- | ------ |
-| Daemon (§1)                     | 16     |
-| - Python script (§1.1)          | 10/16  |
-| - Service (§1.2)                | 6/16   |
-| Account administration (§2)     | 8      |
-| Open-ended questions (§3)       | 9      |
+| Section                     | Points |
+| --------------------------- | ------ |
+| Daemon (§1)                 | 16     |
+| - Python script (§1.1)      | 10/16  |
+| - Service (§1.2)            | 6/16   |
+| Account administration (§2) | 8      |
+| Open-ended questions (§3)   | 9      |
 
 To print:
 
@@ -161,9 +161,9 @@ $ stampa <path/file/to/print>
 > [!tip]
 > 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Daemon
+### 1. Daemon
 
-### 1.1. Python script
+#### 1.1. Python script
 
 Write a Python script that periodically scans a specified directory (including all its subdirectories) to remove the files whose name starts with a given prefix. In your home directory, create the directory `prefix-cleaner` and, inside it, the file `app.py`, using this template:
 
@@ -205,7 +205,7 @@ $ python ~/prefix-cleaner/app.py \
 
 the script will identify all files whose name starts with `tmp` in `~/scratch` (and in all its subdirectories), append to `~/prefix-cleaner.log` the date, time, and path of each file, and remove those files. The script will repeat the operation every `60` seconds.
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `prefix-cleaner.service` in your user instance of `systemd`. The unit must start `~/prefix-cleaner/app.py` with the arguments `--target %h/scratch`, `--prefix tmp`, `--interval 60`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
 
@@ -219,7 +219,7 @@ Create a service unit named `prefix-cleaner.service` in your user instance of `s
 # command to start the service:
 ```
 
-## 2. Account administration
+### 2. Account administration
 
 Configure `sudo` on a fleet of four Linux hosts: `edge01`, `edge02`, `core01`, and `core02`. The fleet has the following users and groups:
 
@@ -232,28 +232,28 @@ Configure `sudo` on a fleet of four Linux hosts: `edge01`, `edge02`, `core01`, a
 
 Apply the following rules:
 
-| Category    | Rule                                                                                                                                  |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Aliases     | Define `Host_Alias EDGE = edge01, edge02` and `Host_Alias CORE = core01, core02`                                                      |
+| Category    | Rule                                                                                                                                                                            |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Aliases     | Define `Host_Alias EDGE = edge01, edge02` and `Host_Alias CORE = core01, core02`                                                                                                |
 | Aliases     | Define `Cmnd_Alias EDITORS = /usr/bin/vim, /usr/bin/nano`, `Cmnd_Alias GRPMGM = /usr/sbin/groupadd, /usr/sbin/groupdel`, and `Cmnd_Alias PKGINFO = /usr/bin/dpkg, /usr/bin/apt` |
-| Permissions | `sara` can run any command as any user on any host                                                                                    |
-| Permissions | `tom` can run any command as any user on any host, except `EDITORS`                                                                   |
-| Permissions | `%ident` can run `GRPMGM` as `root` on `EDGE`                                                                                         |
-| Permissions | `%pkg` can run `PKGINFO` as `root` on `CORE`, without a password                                                                      |
-| Permissions | `uma` can run `/usr/bin/cat /etc/sudoers` as `root` on any host, without a password                                                   |
-| Permissions | `vera` can run `/usr/bin/id` as `tom` on `edge01`                                                                                     |
-| Permissions | `%ident, %pkg` can run `/usr/bin/ss` as `root` on any host, without a password                                                        |
+| Permissions | `sara` can run any command as any user on any host                                                                                                                              |
+| Permissions | `tom` can run any command as any user on any host, except `EDITORS`                                                                                                             |
+| Permissions | `%ident` can run `GRPMGM` as `root` on `EDGE`                                                                                                                                   |
+| Permissions | `%pkg` can run `PKGINFO` as `root` on `CORE`, without a password                                                                                                                |
+| Permissions | `uma` can run `/usr/bin/cat /etc/sudoers` as `root` on any host, without a password                                                                                             |
+| Permissions | `vera` can run `/usr/bin/id` as `tom` on `edge01`                                                                                                                               |
+| Permissions | `%ident, %pkg` can run `/usr/bin/ss` as `root` on any host, without a password                                                                                                  |
 
 The file must be created at `/etc/sudoers.d/policy`. Use this template:
 
 ```
-# first name and last name:
+# first and last name:
 # student id:
 #
 # path:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. What core rules govern the traditional UNIX permission model?
 2. What is a DDoS attack, and how does it typically compromise the targeted systems?
@@ -271,3 +271,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Daemon (§1)](https://github.com/fglmtt/admin/tree/main/exams/2026-06-08-2/prefix-cleaner)
+- [Account administration (§2)](https://github.com/fglmtt/admin/blob/main/exams/2026-06-08-2/sudo)

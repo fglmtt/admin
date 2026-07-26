@@ -1,14 +1,16 @@
-# 8 giugno 2026 - Turno 1
+# June 8, 2026 - Session 1
+
+## Italian
 
 Durata esame: 2 ore e 30 minuti.
 
-| Sezione                              | Punti |
-| ------------------------------------ | ----- |
-| Demone (§1)                          | 16    |
-| - Script Python (§1.1)               | 10/16 |
-| - Service (§1.2)                     | 6/16  |
-| Amministrazione degli account (§2)   | 8     |
-| Domande a risposta aperta (§3)       | 9     |
+| Sezione                            | Punti |
+| ---------------------------------- | ----- |
+| Demone (§1)                        | 16    |
+| - Script Python (§1.1)             | 10/16 |
+| - Service (§1.2)                   | 6/16  |
+| Amministrazione degli account (§2) | 8     |
+| Domande a risposta aperta (§3)     | 9     |
 
 Per stampare:
 
@@ -23,9 +25,9 @@ $ stampa <path/file/da/stampare>
 > [!tip]
 > 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Demone
+### 1. Demone
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che periodicamente conta i file con una determinata estensione presenti in una directory specificata (incluse tutte le sue sottodirectory) e registra nel file di log la data, l'ora, l'estensione e il numero di file contati. Nella tua home directory, crea la directory `extension-counter` e, al suo interno, il file `app.py`, utilizzando questo template:
 
@@ -67,7 +69,7 @@ $ python ~/extension-counter/app.py \
 
 lo script conterà tutti i file con estensione `.log` presenti in `~/documents` (e in tutte le sue sottodirectory) e scriverà in append in `~/extension-counter.log` la data, l'ora, l'estensione e il numero di file contati. Lo script ripeterà l'operazione ogni `60` secondi.
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service denominata `extension-counter.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/extension-counter/app.py` con gli argomenti `--target %h/documents`, `--ext .log`, `--interval 60`, e `--log %h`, partire all'avvio del sistema e ripartire in caso di fallimenti. Usa questo template:
 
@@ -81,7 +83,7 @@ Crea un'unità service denominata `extension-counter.service` nella tua istanza 
 # comando per avviare il service:
 ```
 
-## 2. Amministrazione degli account
+### 2. Amministrazione degli account
 
 Configura `sudo` su una rete di tre host Linux: `runner01`, `runner02` e `registry01`. La rete ha i seguenti utenti e gruppi:
 
@@ -95,17 +97,17 @@ Configura `sudo` su una rete di tre host Linux: `runner01`, `runner02` e `regist
 
 Applica le seguenti regole:
 
-| Categoria | Regola                                                                                                                                                  |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Alias     | Definisci `Host_Alias RUNNERS = runner01, runner02`                                                                                                    |
+| Categoria | Regola                                                                                                                                                                                         |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Alias     | Definisci `Host_Alias RUNNERS = runner01, runner02`                                                                                                                                            |
 | Alias     | Definisci `Cmnd_Alias USERMGM = /usr/sbin/useradd, /usr/sbin/userdel, /usr/sbin/usermod`, `Cmnd_Alias NETINFO = /usr/bin/ip, /usr/bin/ss` e `Cmnd_Alias PKGINFO = /usr/bin/dpkg, /usr/bin/apt` |
-| Permessi  | `nora` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host                                                                          |
-| Permessi  | `omar` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host, eccetto `USERMGM`                                                       |
-| Permessi  | `%dev` può eseguire `NETINFO` come `root` su `RUNNERS`                                                                                                 |
-| Permessi  | `%sec` può eseguire `PKGINFO` come `root` su `registry01`, senza password                                                                              |
-| Permessi  | `priya` può eseguire `/usr/bin/cat /etc/shadow` come `root` su qualsiasi host, senza password                                                          |
-| Permessi  | `quinn` può eseguire `/usr/bin/id` come `ravi` su `RUNNERS`                                                                                            |
-| Permessi  | `%ops, %dev` può eseguire `/usr/bin/tcpdump` come `root` su qualsiasi host, senza password                                                             |
+| Permessi  | `nora` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host                                                                                                                  |
+| Permessi  | `omar` può eseguire qualsiasi comando come qualsiasi utente su qualsiasi host, eccetto `USERMGM`                                                                                               |
+| Permessi  | `%dev` può eseguire `NETINFO` come `root` su `RUNNERS`                                                                                                                                         |
+| Permessi  | `%sec` può eseguire `PKGINFO` come `root` su `registry01`, senza password                                                                                                                      |
+| Permessi  | `priya` può eseguire `/usr/bin/cat /etc/shadow` come `root` su qualsiasi host, senza password                                                                                                  |
+| Permessi  | `quinn` può eseguire `/usr/bin/id` come `ravi` su `RUNNERS`                                                                                                                                    |
+| Permessi  | `%ops, %dev` può eseguire `/usr/bin/tcpdump` come `root` su qualsiasi host, senza password                                                                                                     |
 
 Il file deve essere creato in `/etc/sudoers.d/fleet`. Usa questo template:
 
@@ -116,7 +118,7 @@ Il file deve essere creato in `/etc/sudoers.d/fleet`. Usa questo template:
 # path:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Che cos'è l'esecuzione set-UID, perché `passwd` ne ha bisogno e cosa accade quando un utente normale esegue `passwd`?
 2. Perché mantenere i sistemi aggiornati con le patch è considerato il compito di sicurezza di maggior valore per l'amministratore, quali rischi introducono le patch stesse e cosa dovrebbe includere una procedura di patching adeguata?
@@ -135,19 +137,17 @@ Usa questo template:
 3.
 ```
 
----
-
-# June 8, 2026 - Session 1
+## English
 
 Exam duration: 2 hours and 30 minutes.
 
-| Section                         | Points |
-| ------------------------------- | ------ |
-| Daemon (§1)                     | 16     |
-| - Python script (§1.1)          | 10/16  |
-| - Service (§1.2)                | 6/16   |
-| Account administration (§2)     | 8      |
-| Open-ended questions (§3)       | 9      |
+| Section                     | Points |
+| --------------------------- | ------ |
+| Daemon (§1)                 | 16     |
+| - Python script (§1.1)      | 10/16  |
+| - Service (§1.2)            | 6/16   |
+| Account administration (§2) | 8      |
+| Open-ended questions (§3)   | 9      |
 
 To print:
 
@@ -162,9 +162,9 @@ $ stampa <path/file/to/print>
 > [!tip]
 > 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Daemon
+### 1. Daemon
 
-### 1.1. Python script
+#### 1.1. Python script
 
 Write a Python script that periodically counts the files with a given extension in a specified directory (including all its subdirectories) and logs the date, time, extension, and number of files counted. In your home directory, create the directory `extension-counter` and, inside it, the file `app.py`, using this template:
 
@@ -206,7 +206,7 @@ $ python ~/extension-counter/app.py \
 
 the script will count all files with the `.log` extension in `~/documents` (and in all its subdirectories) and will append to `~/extension-counter.log` the date, time, extension, and number of files counted. The script will repeat the operation every `60` seconds.
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `extension-counter.service` in your user instance of `systemd`. The unit must start `~/extension-counter/app.py` with the arguments `--target %h/documents`, `--ext .log`, `--interval 60`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
 
@@ -220,7 +220,7 @@ Create a service unit named `extension-counter.service` in your user instance of
 # command to start the service:
 ```
 
-## 2. Account administration
+### 2. Account administration
 
 Configure `sudo` on a fleet of three Linux hosts: `runner01`, `runner02`, and `registry01`. The fleet has the following users and groups:
 
@@ -234,28 +234,28 @@ Configure `sudo` on a fleet of three Linux hosts: `runner01`, `runner02`, and `r
 
 Apply the following rules:
 
-| Category    | Rule                                                                                                                                                   |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Aliases     | Define `Host_Alias RUNNERS = runner01, runner02`                                                                                                      |
+| Category    | Rule                                                                                                                                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Aliases     | Define `Host_Alias RUNNERS = runner01, runner02`                                                                                                                                               |
 | Aliases     | Define `Cmnd_Alias USERMGM = /usr/sbin/useradd, /usr/sbin/userdel, /usr/sbin/usermod`, `Cmnd_Alias NETINFO = /usr/bin/ip, /usr/bin/ss`, and `Cmnd_Alias PKGINFO = /usr/bin/dpkg, /usr/bin/apt` |
-| Permissions | `nora` can run any command as any user on any host                                                                                                    |
-| Permissions | `omar` can run any command as any user on any host, except `USERMGM`                                                                                  |
-| Permissions | `%dev` can run `NETINFO` as `root` on `RUNNERS`                                                                                                       |
-| Permissions | `%sec` can run `PKGINFO` as `root` on `registry01`, without a password                                                                                |
-| Permissions | `priya` can run `/usr/bin/cat /etc/shadow` as `root` on any host, without a password                                                                  |
-| Permissions | `quinn` can run `/usr/bin/id` as `ravi` on `RUNNERS`                                                                                                  |
-| Permissions | `%ops, %dev` can run `/usr/bin/tcpdump` as `root` on any host, without a password                                                                     |
+| Permissions | `nora` can run any command as any user on any host                                                                                                                                             |
+| Permissions | `omar` can run any command as any user on any host, except `USERMGM`                                                                                                                           |
+| Permissions | `%dev` can run `NETINFO` as `root` on `RUNNERS`                                                                                                                                                |
+| Permissions | `%sec` can run `PKGINFO` as `root` on `registry01`, without a password                                                                                                                         |
+| Permissions | `priya` can run `/usr/bin/cat /etc/shadow` as `root` on any host, without a password                                                                                                           |
+| Permissions | `quinn` can run `/usr/bin/id` as `ravi` on `RUNNERS`                                                                                                                                           |
+| Permissions | `%ops, %dev` can run `/usr/bin/tcpdump` as `root` on any host, without a password                                                                                                              |
 
 The file must be created at `/etc/sudoers.d/fleet`. Use this template:
 
 ```
-# first name and last name:
+# first and last name:
 # student id:
 #
 # path:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. What is set-UID execution, why does `passwd` need it, and what happens when a regular user runs `passwd`?
 2. Why is keeping systems patched considered the administrator's highest-value security chore, what risks do patches themselves introduce, and what should a sound patching procedure include?
@@ -273,3 +273,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Daemon (§1)](https://github.com/fglmtt/admin/tree/main/exams/2026-06-08-1/extension-counter)
+- [Account administration (§2)](https://github.com/fglmtt/admin/blob/main/exams/2026-06-08-1/sudo)

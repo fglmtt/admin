@@ -1,4 +1,6 @@
-# 9 gennaio 2026
+# January 9, 2026
+
+## Italian
 
 Durata esame: 2 ore e 30 minuti.
 
@@ -24,9 +26,9 @@ $ stampa <path/file/da/stampare>
 > [!tip]
 > 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Processo periodico
+### 1. Processo periodico
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che comprime tutti i file più grandi di una certa dimensione (in byte) da una directory specificata e tutte le sue sottodirectory in un archivio zip nella directory `~/archives`. Nella tua home directory, crea una directory chiamata `file-compressor` e, al suo interno, un file chiamato `app.py`, utilizzando questo template:
 
@@ -34,7 +36,7 @@ Scrivi uno script Python che comprime tutti i file più grandi di una certa dime
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 
 import argparse
 import os
@@ -73,7 +75,7 @@ $ python ~/file-compressor/app.py \
 
 lo script comprimerà in `~/archives/1673038800.zip` (supponendo che quello fosse il timestamp corrente) tutti i file più grandi di 1 MB (1048576 byte) trovati in `~/media` e in tutte le sue sottodirectory, quindi cancellerà i file originali.
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service chiamata `file-compressor.service` nella tua istanza utente di `systemd`. Configurala per avviare `~/file-compressor/app.py` con gli argomenti `--path %h/media` e `--size 1048576`. Usa questo template:
 
@@ -81,10 +83,10 @@ Crea un'unità service chiamata `file-compressor.service` nella tua istanza uten
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Crea un'unità timer chiamata `file-compressor.timer` nella tua istanza utente di `systemd`. Configurala per attivare `file-compressor.service` alle 02:00 di ogni lunedì e giovedì. Usa questo template:
 
@@ -92,13 +94,13 @@ Crea un'unità timer chiamata `file-compressor.timer` nella tua istanza utente d
 # nome e cognome:
 # matricola:
 #
-# path: 
+# path:
 #
 # comando per abilitare il timer:
 # comando per avviare il timer:
 ```
 
-## 2. Filtraggio dei pacchetti e NAT
+### 2. Filtraggio dei pacchetti e NAT
 
 Configura un firewall Linux utilizzando `iptables`. Il firewall dispone di due interfacce:
 
@@ -129,7 +131,7 @@ Usa questo template:
 # matricola:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Quali operazioni può eseguire solo il proprietario del processo (o `root`), e quali identità sono associate a un processo?
 2. Che cos’è l'*insider abuse*, e perché è spesso più difficile da rilevare rispetto agli attacchi esterni?
@@ -148,9 +150,7 @@ Usa questo template:
 3.
 ```
 
----
-
-# January 9, 2026
+## English
 
 Exam duration: 2 hours and 30 minutes.
 
@@ -176,9 +176,9 @@ $ stampa <path/file/to/print>
 > [!tip]
 > 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Periodic Process
+### 1. Periodic process
 
-### 1.1. Python Script
+#### 1.1. Python script
 
 Write a Python script that compresses all files larger than a certain size (in bytes) from a specified directory and all its subdirectories into a zip archive in `~/archives`. In your home directory, create a directory called `file-compressor` and, inside it, a file called `app.py`, using this template:
 
@@ -186,7 +186,7 @@ Write a Python script that compresses all files larger than a certain size (in b
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 
 import argparse
 import os
@@ -225,7 +225,7 @@ $ python ~/file-compressor/app.py \
 
 the script should compress into `~/archives/1673038800.zip` (suppose that was the current timestamp) all files larger than 1 MB (1048576 bytes) found in `~/media` and all its subdirectories, and then delete the original files.
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `file-compressor.service` in your user instance of `systemd`. Configure it to start `~/file-compressor/app.py` with the arguments `--path %h/media` and `--size 1048576`. Use this template:
 
@@ -233,10 +233,10 @@ Create a service unit named `file-compressor.service` in your user instance of `
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 ```
 
-### 1.3. Timer
+#### 1.3. Timer
 
 Create a timer unit named `file-compressor.timer` in your user instance of `systemd`. Configure it to trigger `file-compressor.service` at 02:00 on every Monday and Thursday. Use this template:
 
@@ -244,13 +244,13 @@ Create a timer unit named `file-compressor.timer` in your user instance of `syst
 # first and last name:
 # student id:
 #
-# path: 
+# path:
 #
 # command to enable the timer:
 # command to start the timer:
 ```
 
-## 2. Packet filtering and NAT
+### 2. Packet filtering and NAT
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
@@ -259,7 +259,7 @@ Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 | `eth0` | `192.0.2.0/24`  | `192.0.2.5`  | Public  |
 | `eth1` | `172.16.0.0/12` | `172.16.0.1` | Private |
 
-Hosts on the `172.16.0.0/12` network use this firewall as the default gateway.  
+Hosts on the `172.16.0.0/12` network use this firewall as the default gateway.
 The host `172.16.0.30` runs a DNS server (`udp/5353`) and an HTTP server (`tcp/8080`).
 
 Apply the following rules:
@@ -282,7 +282,7 @@ Use this template:
 # student id:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. Which operations can only the process owner (or `root`) perform, and what identities are associated with a process?
 2. What is insider abuse, and why is it often harder to detect than external attacks?
@@ -300,3 +300,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Periodic process (§1)](https://github.com/fglmtt/admin/tree/main/exams/2026-01-09/file-compressor)
+- [Packet filtering and NAT (§2)](https://github.com/fglmtt/admin/blob/main/exams/2026-01-09/iptables)

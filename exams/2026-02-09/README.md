@@ -1,4 +1,6 @@
-# 9 febbraio 2026
+# February 9, 2026
+
+## Italian
 
 Durata esame: 2 ore e 30 minuti.
 
@@ -23,9 +25,9 @@ $ stampa <path/file/da/stampare>
 > [!tip]
 > 3. Se si nota un errore sul file stampato, lo si può correggere a penna.
 
-## 1. Demone
+### 1. Demone
 
-### 1.1. Script Python
+#### 1.1. Script Python
 
 Scrivi uno script Python che periodicamente calcola la dimensione totale di tutti i file presenti in una directory specificata (incluse tutte le sue sottodirectory) e registra nel file di log la data, l'ora e la dimensione totale quando questa supera una certa soglia espressa in byte. Nella tua home directory, crea la directory `dir-size-monitor` e, al suo interno, il file `app.py`, utilizzando questo template:
 
@@ -67,7 +69,7 @@ $ python ~/dir-size-monitor/app.py \
 
 lo script calcolerà la dimensione totale di tutti i file presenti in `~/documents` (e in tutte le sue sottodirectory) e, se tale dimensione è maggiore o uguale a `1000` byte, scriverà in append in `~/dir-size-monitor.log` la data, l'ora e la dimensione totale. Lo script ripeterà l'operazione ogni `60` secondi.
 
-### 1.2. Service
+#### 1.2. Service
 
 Crea un'unità service denominata `dir-size-monitor.service` nella tua istanza utente di `systemd`. L'unità deve avviare `~/dir-size-monitor/app.py` con gli argomenti `--target %h/documents`, `--threshold 1000`, `--interval 60`, e `--log %h`, partire all'avvio del sistema e ripartire in caso di fallimenti. Usa questo template:
 
@@ -81,14 +83,14 @@ Crea un'unità service denominata `dir-size-monitor.service` nella tua istanza u
 # comando per avviare il service:
 ```
 
-## 2. Filtraggio dei pacchetti e NAT
+### 2. Filtraggio dei pacchetti e NAT
 
 Configura un firewall Linux usando `iptables`. Il firewall dispone di due interfacce:
 
-| NIC    | Indirizzo di rete  | IP del firewall | Ambito   |
-| ------ | ------------------ | --------------- | -------- |
-| `eth0` | `203.0.113.0/24`   | `203.0.113.1`   | Pubblico |
-| `eth1` | `10.20.30.0/24`    | `10.20.30.1`    | Privato  |
+| NIC    | Indirizzo di rete | IP del firewall | Ambito   |
+| ------ | ----------------- | --------------- | -------- |
+| `eth0` | `203.0.113.0/24`  | `203.0.113.1`   | Pubblico |
+| `eth1` | `10.20.30.0/24`   | `10.20.30.1`    | Privato  |
 
 Gli host sulla rete `10.20.30.0/24` utilizzano questo firewall come gateway di default. L'host `10.20.30.100` esegue un server web che supporta HTTP sulla porta `8080` e HTTPS sulla porta `8443`.
 
@@ -113,7 +115,7 @@ Usa questo template:
 # matricola:
 ```
 
-## 3. Domande a risposta aperta
+### 3. Domande a risposta aperta
 
 1. Chi può modificare i bit dei permessi di un file, quale comando può usare e come si invoca tale comando?
 2. Che cos'è l'IP spoofing e quali difese possono essere utilizzate contro di esso?
@@ -132,9 +134,7 @@ Usa questo template:
 3.
 ```
 
----
-
-# February 9, 2026
+## English
 
 Exam duration: 2 hours and 30 minutes.
 
@@ -159,9 +159,9 @@ $ stampa <path/file/to/print>
 > [!tip]
 > 3. If a mistake is spotted on the printed file, it can be corrected by hand.
 
-## 1. Daemon
+### 1. Daemon
 
-### 1.1. Python script
+#### 1.1. Python script
 
 Write a Python script that periodically calculates the total size of all files in a specified directory (including all its subdirectories) and logs the date, time, and total size when it exceeds a given threshold expressed in bytes. In your home directory, create the directory `dir-size-monitor` and, inside it, the file `app.py`, using this template:
 
@@ -203,7 +203,7 @@ $ python ~/dir-size-monitor/app.py \
 
 the script will calculate the total size of all files in `~/documents` (and in all its subdirectories) and, if that size is greater than or equal to `1000` bytes, will append to `~/dir-size-monitor.log` the date, time, and total size. The script will repeat the operation every `60` seconds.
 
-### 1.2. Service
+#### 1.2. Service
 
 Create a service unit named `dir-size-monitor.service` in your user instance of `systemd`. The unit must start `~/dir-size-monitor/app.py` with the arguments `--target %h/documents`, `--threshold 1000`, `--interval 60`, and `--log %h`, start at system boot, and restart in case of failures. Use this template:
 
@@ -217,7 +217,7 @@ Create a service unit named `dir-size-monitor.service` in your user instance of 
 # command to start the service:
 ```
 
-## 2. Packet filtering and NAT
+### 2. Packet filtering and NAT
 
 Configure a Linux firewall using `iptables`. The firewall has two interfaces:
 
@@ -230,17 +230,17 @@ Hosts on the `10.20.30.0/24` network use this firewall as their default gateway.
 
 Apply the following rules:
 
-| Table        | Chain           | Rule                                                                                                                                     |
-| ------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `filter,nat` | `*`             | Flush all existing rules                                                                                                                 |
-| `filter`     | `INPUT,FORWARD` | Drop everything unless explicitly allowed                                                                                                |
-| `filter`     | `INPUT`         | Allow ICMP packets received on `eth1`                                                                                                    |
-| `filter`     | `INPUT`         | Allow SSH packets (`tcp/22`) received on `eth1`                                                                                          |
-| `filter`     | `FORWARD`       | Allow HTTP (`tcp/80`) and HTTPS (`tcp/443`) packets received on `eth0` and `eth1`                                                        |
-| `filter`     | `FORWARD`       | Allow packets with state `ESTABLISHED,RELATED`                                                                                           |
-| `nat`        | `POSTROUTING`   | MASQUERADE packets leaving via `eth0` so that private hosts receive responses from the Internet                                          |
-| `nat`        | `PREROUTING`    | DNAT for HTTP packets (`tcp/80`) received on `eth0`, forwarding them to `10.20.30.100:8080` and ensuring they can reach that host        |
-| `nat`        | `PREROUTING`    | DNAT for HTTPS packets (`tcp/443`) received on `eth0`, forwarding them to `10.20.30.100:8443` and ensuring they can reach that host      |
+| Table        | Chain           | Rule                                                                                                                                |
+| ------------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `filter,nat` | `*`             | Flush all existing rules                                                                                                            |
+| `filter`     | `INPUT,FORWARD` | Drop everything unless explicitly allowed                                                                                           |
+| `filter`     | `INPUT`         | Allow ICMP packets received on `eth1`                                                                                               |
+| `filter`     | `INPUT`         | Allow SSH packets (`tcp/22`) received on `eth1`                                                                                     |
+| `filter`     | `FORWARD`       | Allow HTTP (`tcp/80`) and HTTPS (`tcp/443`) packets received on `eth0` and `eth1`                                                   |
+| `filter`     | `FORWARD`       | Allow packets with state `ESTABLISHED,RELATED`                                                                                      |
+| `nat`        | `POSTROUTING`   | MASQUERADE packets leaving via `eth0` so that private hosts receive responses from the Internet                                     |
+| `nat`        | `PREROUTING`    | DNAT for HTTP packets (`tcp/80`) received on `eth0`, forwarding them to `10.20.30.100:8080` and ensuring they can reach that host   |
+| `nat`        | `PREROUTING`    | DNAT for HTTPS packets (`tcp/443`) received on `eth0`, forwarding them to `10.20.30.100:8443` and ensuring they can reach that host |
 
 Use this template:
 
@@ -249,7 +249,7 @@ Use this template:
 # student id:
 ```
 
-## 3. Open-ended questions
+### 3. Open-ended questions
 
 1. Who may change a file's permission bits, which command can they use, and how is that command invoked?
 2. What is IP spoofing, and what defences can be used against it?
@@ -267,3 +267,8 @@ Use this template:
 
 3.
 ```
+
+## Solutions
+
+- [Daemon (§1)](https://github.com/fglmtt/admin/tree/main/exams/2026-02-09/dir-size-monitor)
+- [Packet filtering and NAT (§2)](https://github.com/fglmtt/admin/blob/main/exams/2026-02-09/iptables)
