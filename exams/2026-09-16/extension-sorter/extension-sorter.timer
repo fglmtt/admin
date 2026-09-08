@@ -1,0 +1,17 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/extension-sorter.timer
+#
+# command to enable the timer: systemctl --user enable extension-sorter.timer
+# command to start the timer: systemctl --user start extension-sorter.timer
+
+[Unit]
+Description=extension sorter timer
+
+[Timer]
+Unit=extension-sorter.service
+OnCalendar=Wed,Sat *-*-* 05:30
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,12 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/extension-sorter.service
+
+[Unit]
+Description=extension sorter service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/extension-sorter
+ExecStart=/usr/bin/python3 app.py --path %h/inbox --dest %h/sorted --extensions pdf,txt --log %h/extension-sorter.log
