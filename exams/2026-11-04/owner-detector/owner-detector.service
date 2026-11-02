@@ -1,0 +1,20 @@
+# first and last name: mattia fogli
+# student id: 123456
+#
+# path: ~/.config/systemd/user/owner-detector.service
+#
+# command to enable the service: systemctl --user enable owner-detector.service
+# command to start the service: systemctl --user start owner-detector.service
+
+[Unit]
+Description=owner detector service
+
+[Service]
+Environment=PYTHONUNBUFFERED=1
+WorkingDirectory=%h/owner-detector
+ExecStart=/usr/bin/python3 app.py --target %h/shared --users 0,1000 --interval 60 --log %h/owner-detector.log
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
