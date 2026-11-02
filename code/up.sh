@@ -62,8 +62,8 @@ run "  Starting firewall (${FIREWALL_PUBLIC_IP} | ${FIREWALL_PRIVATE_IP})" \
     podman run -d --name firewall --hostname firewall \
         --cap-add NET_ADMIN --cap-add NET_RAW \
         --sysctl net.ipv4.ip_forward=1 \
-        --network external:ip="${FIREWALL_PUBLIC_IP}" \
-        --network internal:ip="${FIREWALL_PRIVATE_IP}" \
+        --network external:ip="${FIREWALL_PUBLIC_IP}",interface_name=eth0 \
+        --network internal:ip="${FIREWALL_PRIVATE_IP}",interface_name=eth1 \
         "${IMAGE}" sleep infinity
 
 run "  Starting client (${CLIENT_IP})" \
